@@ -1,4 +1,4 @@
-export const SQUARE = 0,
+const SQUARE = 0,
     ODDR = 1,
     WIDTH2 = 2,
     AXIAL = 3,
@@ -21,7 +21,7 @@ interface RescaleCoordinate {
  * WIDTH2 returns a hex grid with column equal to double x
  * AXIAL returns a hex grid with row shifted left by 0.5 more with each row
  */
-export function rescaleCoordinates(width: number, height: number, scale: number, layout: number): RescaleCoordinate {
+function rescaleCoordinates(width: number, height: number, scale: number, layout: number): RescaleCoordinate {
     let verticalScale: number = layout == 0 ? scale : scale * 0.75;
 
     let rows: number = Math.floor(height / verticalScale);
@@ -61,7 +61,7 @@ export function rescaleCoordinates(width: number, height: number, scale: number,
  * @param {*} columns
  * @param {*} geometry - one of SQUARE, ODDR or AXIAL
  */
-export function createNeighborDeltas(columns: number, geometry: number) {
+function createNeighborDeltas(columns: number, geometry: number) {
     let r;
     switch (geometry) {
         case SQUARE:
@@ -126,13 +126,13 @@ export function createNeighborDeltas(columns: number, geometry: number) {
     }
 }
 
-export function ind2xy(ind: number, columns: number): [number, number] {
+function ind2xy(ind: number, columns: number): [number, number] {
     let x = ind % columns;
     let y = (ind - x) / columns;
     return [x, y];
 }
 
-export function screenPos(ind: number, columns: number, layout: number, tileWidth: number, tileHeight: number = 0): [number, number] {
+function screenPos(ind: number, columns: number, layout: number, tileWidth: number, tileHeight: number = 0): [number, number] {
     let [x, y]: [number, number] = ind2xy(ind, columns);
     return [
         (x +
@@ -148,7 +148,7 @@ export function screenPos(ind: number, columns: number, layout: number, tileWidt
     ];
 }
 
-export function distanceBetweenCells(a: number, b: number, columns: number, layout: number = AXIAL): number {
+function distanceBetweenCells(a: number, b: number, columns: number, layout: number = AXIAL): number {
     let dx = (b % columns) - (a % columns);
     let dy = Math.floor(b / columns) - Math.floor(a / columns);
     let dist = 0;
@@ -169,7 +169,7 @@ export function distanceBetweenCells(a: number, b: number, columns: number, layo
     return dist;
 }
 
-export function shortestPath(world, start, end, columns, neighborDeltas, cellCost) {
+function shortestPath(world, start, end, columns, neighborDeltas, cellCost) {
     let bag = [start];
     let wayCost = [];
     wayCost[start] = 0;

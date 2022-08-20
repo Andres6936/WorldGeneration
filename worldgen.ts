@@ -43,10 +43,10 @@ function createCanvasCtx(width, height) {
 
 /**
  * Returns alpha channel of the image as numbers in 0-255 range.
- * @param {HTMLCanvasElement} ctx
+ * @param {HTMLCanvasElement} canvas
  * @returns {values:Float32Array[]}
  */
-function image2alpha(canvas) {
+function image2alpha(canvas: HTMLCanvasElement): Float32Array {
   let ctx = context2d(canvas);
   let idata = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let data = idata.data;
@@ -128,6 +128,19 @@ function normalizeValues(values, picks = 1000) {
   return values.map((v) => v / max);
 }
 
+interface GenerateMap {
+  elevation,
+  noise: Float32Array,
+  crust,
+  tectonic: Float32Array,
+  rivers: Float32Array,
+  wind,
+  temperature,
+  humidity: Float32Array,
+  biome,
+  photo,
+}
+
 /**
  * @param {number} width
  * @param {number} height
@@ -150,7 +163,7 @@ function generateMap({
   riversShown,
   randomiseHumidity,
   generatePhoto
-}) {
+}) : GenerateMap {
   randomSeed = seed;
 
   const mapSize = width * height;
@@ -158,13 +171,13 @@ function generateMap({
 
   console.time("noise");
 
-  let noise = image2alpha(
+  let noise: Float32Array = image2alpha(
     addFilter(
       gradientNoise(width, height, 3000, mapDiagonal * 0.15, 0.01),
       `blur(${noiseSmoothness}px)`
     )
   );
-  let crust = image2alpha(
+  let crust: Float32Array = image2alpha(
     addFilter(
       gradientNoise(width, height, 2000, mapDiagonal * 0.15, 0.03),
       `blur(${tectonicSmoothness}px)`
@@ -176,11 +189,11 @@ function generateMap({
 
   let tectonicMedian = approximateQuantile(crust, 0.5);
 
-  let tectonic = crust.map(
+  let tectonic: Float32Array = crust.map(
     (v) => 0.2 / (Math.abs(tectonicMedian - v) + 0.1) - 0.95
   );
 
-  let elevation = noise.map(
+  let elevation : Float32Array= noise.map(
     (_, i) =>
       5 +
       noise[i] * noiseFactor +
@@ -209,7 +222,7 @@ function generateMap({
 
   console.timeEnd("normalize");
 
-  let rivers = generateRiversAndErosion({
+  let rivers: Float32Array = generateRiversAndErosion({
     width,
     height,
     elevation,
@@ -233,7 +246,7 @@ function generateMap({
   ).map((v) => v * 2 - 1);
   console.timeEnd("windSmoothing");
 
-  let humidity = generateHumidity({ width, height, elevation, wind });
+  let humidity: Float32Array = generateHumidity({ width, height, elevation, wind });
 
   if (randomiseHumidity) {
     humidity = humidity.map((v, i) =>
@@ -276,6 +289,7 @@ function generateMap({
   let photo;
   if (generatePhoto) {
     console.time("photo");
+    // @ts-ignore
     photo = [...humidity].map((w, i) => {
       if (elevation[i] < 0)
         return [0, (1 + elevation[i]) * 55, (1 + elevation[i]) * 155, 255];
@@ -313,7 +327,6 @@ function generateMap({
     tectonic,
     rivers,
     wind,
-    noise,
     temperature,
     humidity,
     biome,
@@ -321,7 +334,7 @@ function generateMap({
   };
 }
 
-function generateHumidity({ width, height, elevation, wind }) {
+function generateHumidity({ width, height, elevation, wind }) : Float32Array {
   console.time("humidity");
   const mapDiagonal = Math.sqrt(width * width + height * height);
 
@@ -346,6 +359,7 @@ function generateHumidity({ width, height, elevation, wind }) {
   const spotSize = mapDiagonal / 10;
   for (let i = 0; i < 1200; i++) {
     let start = [random() * width, random() * height];
+    // @ts-ignore
     let windThere = wind[coord2ind(start, width)];
     let end = [
       start[0] + (windThere * (random() - 0.2) * width) / 8,
@@ -377,11 +391,21 @@ function generateHumidity({ width, height, elevation, wind }) {
     height
   );
 
-  let humidity = image2alpha(humidityImage);
+  let humidity: Float32Array = image2alpha(humidityImage);
 
   console.timeEnd("humidity");
 
   return humidity;
+}
+
+interface ParametersRiversErosion {
+  width: number,
+  height: number,
+  elevation: Float32Array,
+  humidity?: any[],
+  tectonic?: Float32Array,
+  erosion: number,
+  riversShown: number,
 }
 
 function generateRiversAndErosion({
@@ -389,14 +413,12 @@ function generateRiversAndErosion({
   height,
   elevation,
   humidity,
-  tectonic,
   erosion,
   riversShown,
-}) {
+} : ParametersRiversErosion): Float32Array {
   console.time("rivers");
 
-  let rivers = new Float32Array(width * height);
-
+  const rivers = new Float32Array(width * height);
   let neighbors = createNeighborDeltas(width, SQUARE8)[0];
 
   for (
