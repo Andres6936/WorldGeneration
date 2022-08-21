@@ -41,3 +41,10 @@ function data2image(values: Float32Array, width: number, converter: (v: number, 
     ctx.putImageData(idata, 0, 0);
     return canvas;
 }
+
+function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCanvasElement {
+    let {canvas, ctx}: CanvasContext = createCanvasCtx(srcCanvas.width, srcCanvas.height);
+    ctx.filter = filter;
+    ctx.drawImage(srcCanvas, 0, 0);
+    return canvas;
+}

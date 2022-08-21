@@ -79,13 +79,6 @@ function gradientNoise(
   return canvas;
 }
 
-function addFilter(srcCanvas, filter) {
-  let { canvas, ctx } = createCanvasCtx(srcCanvas.width, srcCanvas.height);
-  ctx.filter = filter;
-  ctx.drawImage(srcCanvas, 0, 0);
-  return canvas;
-}
-
 /**
  * Monte-Carlo approximation of the quantile
  * @param {number[]} values
