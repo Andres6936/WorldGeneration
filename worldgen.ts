@@ -113,31 +113,31 @@ function addFilter(srcCanvas, filter) {
  * @param {number} picks
  * @param {number} level
  */
-function approximateQuantile(values, level = 0.5, picks = 1000) {
+function approximateQuantile(values: Float32Array, level: number = 0.5, picks: number = 1000): number {
   let l = values.length;
-  let picked = [...Array(picks)].map(() => values[Math.floor(random() * l)]);
+  let picked: number[] = [...Array(picks)].map(() => values[Math.floor(random() * l)]);
   picked = picked.sort();
   return picked[Math.floor(level * picked.length)];
 }
 
-function normalizeValues(values, picks = 1000) {
+function normalizeValues(values: Float32Array, picks: number = 1000): Float32Array {
   let l = values.length;
-  let picked = [...Array(picks)].map(() => values[Math.floor(random() * l)]);
+  let picked: number[] = [...Array(picks)].map(() => values[Math.floor(random() * l)]);
   let max = 0;
   for (let v of picked) if (v > max) max = v;
   return values.map((v) => v / max);
 }
 
 interface GenerateMap {
-  elevation,
+  elevation: Float32Array,
   noise: Float32Array,
-  crust,
+  crust: Float32Array,
   tectonic: Float32Array,
   rivers: Float32Array,
-  wind,
-  temperature,
+  wind: Float32Array,
+  temperature: Float32Array,
   humidity: Float32Array,
-  biome,
+  biome: Float32Array,
   photo,
 }
 
@@ -187,7 +187,7 @@ function generateMap({
 
   console.time("main");
 
-  let tectonicMedian = approximateQuantile(crust, 0.5);
+  let tectonicMedian: number = approximateQuantile(crust, 0.5);
 
   let tectonic: Float32Array = crust.map(
     (v) => 0.2 / (Math.abs(tectonicMedian - v) + 0.1) - 0.95
@@ -209,7 +209,7 @@ function generateMap({
 
   elevation = normalizeValues(elevation);
 
-  let seaLevel = approximateQuantile(elevation, seaRatio);
+  let seaLevel: number = approximateQuantile(elevation, seaRatio);
 
   elevation = elevation.map((v, i) =>
     v < seaLevel
@@ -231,10 +231,10 @@ function generateMap({
     riversShown,
   });
 
-  let wind = elevation.map(
-    (h, i) =>
-      Math.cos((Math.abs(0.5 - i / mapSize) * 4 + 0.85) * Math.PI) /
-      (h < 0 ? 1 : 1 + 5 * h * h)
+  let wind: Float32Array = elevation.map(
+      (h, i) =>
+          Math.cos((Math.abs(0.5 - i / mapSize) * 4 + 0.85) * Math.PI) /
+          (h < 0 ? 1 : 1 + 5 * h * h)
   );
 
   console.time("windSmoothing");
@@ -254,28 +254,28 @@ function generateMap({
     );
   }
 
-  let temperature = elevation.map(
-    (e, i) =>
-      averageTemperature +
-      25 -
-      (100 * Math.abs(0.5 - i / mapSize)) / (0.7 + 0.6 * humidity[i]) -
-      Math.max(0, e) * 30
+  let temperature: Float32Array = elevation.map(
+      (e, i) =>
+          averageTemperature +
+          25 -
+          (100 * Math.abs(0.5 - i / mapSize)) / (0.7 + 0.6 * humidity[i]) -
+          Math.max(0, e) * 30
   );
 
   //humidity = humidity.map((w, i) => w * (1 + Math.atan(-temperature[i] / 100)));
 
   console.time("biome");
-  let biome = temperature.map((t, i) => {
+  let biome: Float32Array = temperature.map((t, i) => {
     let b =
-      biomeTable[
-        Math.floor(
-          Math.max(
-            0,
-            Math.min(
-              humidity[i] *
-                4.5 *
-                (1 + biomeScrambling * Math.sin(noise[i] * 100)),
-              5
+        biomeTable[
+            Math.floor(
+                Math.max(
+                    0,
+                    Math.min(
+                        humidity[i] *
+                        4.5 *
+                        (1 + biomeScrambling * Math.sin(noise[i] * 100)),
+                        5
             )
           )
         )
