@@ -1,7 +1,5 @@
 "use strict";
 
-import {createCanvasCtx} from "./src/CanvasContext";
-
 let randomSeed = 6;
 
 function random() {
@@ -522,25 +520,6 @@ const contrastColors = mapToList({
   [MOUNTAIN]: "c080c0",
   [BEACH]: "ffff80",
 }).map(colorFromRGBString);
-
-/**
- * Convert data to image according to callback function
- * @param {any[]} values
- * @param {number} width
- * @param {(v:number, i:number) => [number,number,number,number]} converter
- * @returns {HTMLCanvasElement}
- */
-
-function data2image(values, width, converter) {
-  let height = values.length / width;
-  let { canvas, ctx } = createCanvasCtx(width, height);
-  let idata = ctx.createImageData(width, height);
-  for (let i = 0; i < values.length; i++) {
-    idata.data.set(converter(values[i], i), i * 4);
-  }
-  ctx.putImageData(idata, 0, 0);
-  return canvas;
-}
 
 /**
  * Returns elevation image with higher elevation being brighter
