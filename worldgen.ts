@@ -1,5 +1,7 @@
 "use strict";
 
+import {createCanvasCtx} from "./src/CanvasContext";
+
 let randomSeed = 6;
 
 function random() {
@@ -18,27 +20,6 @@ function spread(range) {
  */
 function coord2ind([x, y], width) {
   return [Math.floor(x) + Math.floor(y * width)];
-}
-
-/**
- * @returns {CanvasRenderingContext2D}
- */
-function context2d(canvas) {
-  return canvas.getContext("2d");
-}
-
-/**
- * Creates canvas of the required size and returns it and it's 2d context.
- * @param {number} width
- * @param {number} height
- * @returns {{canvas:HTMLCanvasElement, ctx:CanvasRenderingContext2D}}
- */
-function createCanvasCtx(width, height) {
-  let canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  let ctx = context2d(canvas);
-  return { canvas, ctx };
 }
 
 /**
@@ -62,12 +43,12 @@ function image2alpha(canvas: HTMLCanvasElement): Float32Array {
  * @param {number} height
  */
 function gradientNoise(
-  width,
-  height,
-  points = 5000,
-  radius = 100,
-  alpha = 0.01,
-  gradientCircles = true
+    width: number,
+    height: number,
+    points: number = 5000,
+    radius: number = 100,
+    alpha: number = 0.01,
+    gradientCircles: boolean = true
 ) {
   let { canvas, ctx } = createCanvasCtx(width, height);
 
