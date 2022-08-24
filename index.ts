@@ -1,6 +1,19 @@
 // @ts-nocheck
 
-const parameters = [
+interface Element {
+    min?: number,
+    max?: number,
+    tip?: string
+    step?: number,
+}
+
+interface Parameters {
+    name: string,
+    type: "checkbox" | "number" | "range" | "tip",
+    element?: Element
+}
+
+const parameters: Parameters[] = [
     {name: "seed", type: "number", element: {tip: "Seed for the random number generator."}},
     {name: "width", type: "number", element: {tip: "Map width in pixels"}},
     {name: "height", type: "number", element: {tip: "Map height in pixels"}},
@@ -168,7 +181,7 @@ function rebuildForm() {
     let form = document.getElementById("form");
     form.innerHTML = "";
 
-    for (let {name, type, element} of parameters) {
+    for (let {name, type, element}: Parameters of parameters) {
         element = element || {};
         tips[name] = element.tip;
         switch (type) {
@@ -204,7 +217,7 @@ function saveSettings() {
 }
 
 function applySettings() {
-    for (let {name, type} of parameters) {
+    for (const {name, type}: Parameters of parameters) {
         if (type == "tip") continue;
         let element = document.getElementById(name);
         settings[name] =
