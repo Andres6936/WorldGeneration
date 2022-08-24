@@ -1,104 +1,104 @@
 // @ts-nocheck
 
 const parameters = [
-    ["seed", "number", {tip: "Seed for the random number generator."}],
-    ["width", "number", {tip: "Map width in pixels"}],
-    ["height", "number", {tip: "Map height in pixels"}],
-    [
-        "noiseSmoothness",
-        "range",
-        {max: 10, step: 0.5, tip: "Smootheness of the elevation noise"},
-    ],
-    [
-        "tectonicSmoothness",
-        "range",
-        {
+    {name: "seed", type: "number", element: {tip: "Seed for the random number generator."}},
+    {name: "width", type: "number", element: {tip: "Map width in pixels"}},
+    {name: "height", type: "number", element: {tip: "Map height in pixels"}},
+    {
+        name: "noiseSmoothness",
+        type: "range",
+        element: {max: 10, step: 0.5, tip: "Smootheness of the elevation noise"},
+    },
+    {
+        name: "tectonicSmoothness",
+        type: "range",
+        element: {
             max: 10,
             step: 0.5,
             tip:
                 "Smootheness of the noise that is used for tectonic plates simulation",
         },
-    ],
-    [
-        "noiseFactor",
-        "range",
-        {
+    },
+    {
+        name: "noiseFactor",
+        type: "range",
+        element: {
             min: -5,
             max: 20,
             step: 0.5,
             tip: "Weight of the 'general purpose' elevation noise",
         },
-    ],
-    [
-        "crustFactor",
-        "range",
-        {
+    },
+    {
+        name: "crustFactor",
+        type: "range",
+        element: {
             min: -5,
             max: 20,
             step: 0.5,
             tip:
                 "Weight of the 'tectonic plates' noise. Increase to have more mountains on the edge on continents, reduce to have them inside.",
         },
-    ],
-    [
-        "tectonicFactor",
-        "range",
-        {
+    },
+    {
+        name: "tectonicFactor",
+        type: "range",
+        element: {
             min: -1,
             max: 3,
             step: 0.1,
             tip: "Amount of mountains and island chains and such",
         },
-    ],
-    [
-        "pangaea",
-        "range",
-        {
+    },
+    {
+        name: "pangaea",
+        type: "range",
+        element: {
             min: -5,
             max: 5,
             tip:
                 "Increasing this will make land gravitate the centre of the map, and vice versa",
         },
-    ],
-    ["seaRatio", "range", {tip: "Sea percentage"}],
-    [
-        "flatness",
-        "range",
-        {tip: "Initial flatness of the non-mountain areas"},
-    ],
-    ["randomiseHumidity", "checkbox"],
-    ["averageTemperature", "range", {min: -30, max: 50, step: 1}],
-    [
-        "erosion",
-        "range",
-        {max: 100000, tip: "How long water-caused erosion will be simulated"},
-    ],
-    [
-        "riversShown",
-        "range",
-        {
+    },
+    {name: "seaRatio", type: "range", element: {tip: "Sea percentage"}},
+    {
+        name: "flatness",
+        type: "range",
+        element: {tip: "Initial flatness of the non-mountain areas"},
+    },
+    {name: "randomiseHumidity", type: "checkbox"},
+    {name: "averageTemperature", type: "range", element: {min: -30, max: 50, step: 1}},
+    {
+        name: "erosion",
+        type: "range",
+        element: {max: 100000, tip: "How long water-caused erosion will be simulated"},
+    },
+    {
+        name: "riversShown",
+        type: "range",
+        element: {
             max: 1000,
             tip:
                 "Amount of rivers and lakes shown on elevation, humidity and biome maps",
         },
-    ],
-    ["biomeScrambling", "range", {tip: "Adds randomness to biomes"}],
-    ["SET gameMapScale TO NOT 0 IF YOU WANT A GAME MAP", "tip"],
-    ["squareGrid", "checkbox"],
-    ["gameMapScale", "range", {min: 0, max: 4, step: 1}],
-    [
-        "gameMapRivers",
-        "range",
-        {
+    },
+    {name: "biomeScrambling", type: "range", element: {tip: "Adds randomness to biomes"}},
+    {name: "SET gameMapScale TO NOT 0 IF YOU WANT A GAME MAP", type: "tip"},
+    {name: "squareGrid", type: "checkbox"},
+    {name: "gameMapScale", type: "range", element: {min: 0, max: 4, step: 1}},
+    {
+        name: "gameMapRivers",
+        type: "range",
+        element: {
             max: 50000,
             step: 1000,
             tip: "How many rivers will there be on the low-res (hex) map",
         },
-    ],
-    ["Graphical repesenation settings", "tip"],
-    ["generatePhoto", "checkbox"],
-    ["discreteHeights", "range", {max: 40, step: 1}],
-    ["terrainTypeColoring", "checkbox"],
+    },
+    {name: "Graphical repesenation settings", type: "tip"},
+    {name: "generatePhoto", type: "checkbox"},
+    {name: "discreteHeights", type: "range", element: {max: 40, step: 1}},
+    {name: "terrainTypeColoring", type: "checkbox"},
 ];
 
 let defaultSettings = JSON.stringify({
@@ -168,28 +168,27 @@ function rebuildForm() {
     let form = document.getElementById("form");
     form.innerHTML = "";
 
-    for (let param of parameters) {
-        let [id, type, also] = param;
-        also = also || {};
-        tips[id] = also.tip;
+    for (let {name, type, element} of parameters) {
+        element = element || {};
+        tips[name] = element.tip;
         switch (type) {
             case "tip":
-                form.innerHTML += `<div class="tip">${id}</div>`;
+                form.innerHTML += `<div class="tip">${name}</div>`;
                 break;
             case "checkbox":
-                form.innerHTML += `<div>${id}</div><input class="checkbox" type="checkbox" id="${id}" ${
-                    settings[id] ? "checked" : ""
+                form.innerHTML += `<div>${name}</div><input class="checkbox" type="checkbox" id="${name}" ${
+                    settings[name] ? "checked" : ""
                 } />`;
                 break;
             case "number":
-                form.innerHTML += `<div>${id}</div><input class="number" type="number" id="${id}" value="${settings[id]}" />`;
+                form.innerHTML += `<div>${name}</div><input class="number" type="number" id="${name}" value="${settings[name]}" />`;
                 break;
             case "range":
-                let min = also.min || 0;
-                let max = also.max || 1;
-                let step = also.step || (max - min) / 100;
-                form.innerHTML += `<div>${id}</div><input class="range" type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${settings[id]}"/>
-        <div id="${id}_value"></div>
+                let min = element.min || 0;
+                let max = element.max || 1;
+                let step = element.step || (max - min) / 100;
+                form.innerHTML += `<div>${name}</div><input class="range" type="range" id="${name}" min="${min}" max="${max}" step="${step}" value="${settings[name]}"/>
+        <div id="${name}_value"></div>
         `;
                 break;
         }
@@ -205,17 +204,16 @@ function saveSettings() {
 }
 
 function applySettings() {
-    for (let [id, type] of parameters) {
+    for (let {name, type} of parameters) {
         if (type == "tip") continue;
-        let element = document.getElementById(id);
-        settings[id] =
+        let element = document.getElementById(name);
+        settings[name] =
             element.type == "checkbox" ? element.checked : Number(element.value);
-        let id_value = document.getElementById(id + "_value");
-        if (id_value) id_value.innerText = String(settings[id]).substr(0, 8);
+        let id_value = document.getElementById(name + "_value");
+        if (id_value) id_value.innerText = String(settings[name]).substr(0, 8);
     }
 
     saveSettings();
-
     generate(settings);
 }
 
