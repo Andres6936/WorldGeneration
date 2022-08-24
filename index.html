@@ -68,13 +68,15 @@
       <div id="minimaps"></div>
     </div>
   </div>
-  <canvas id="gameMap" />
+  <canvas id="gameMap"/>
 </body>
 
 <script src="src/Geometry.js"></script>
 <script src="src/CanvasContext.js"></script>
 <script src="src/UtilImage.js"></script>
 <script src="src/Noise.js"></script>
+<script src="src/Humidity.js"></script>
+<script src="src/River.js"></script>
 <script src="worldgen.js"></script>
 <script src="hexdraw.js"></script>
 
@@ -84,7 +86,7 @@
   let mouseOffset = [0, 0];
 
   const parameters = [
-    ["seed", "number", { tip: "Seed for the random number generator." }],
+    ["seed", "number", {tip: "Seed for the random number generator."}],
     ["width", "number", { tip: "Map width in pixels" }],
     ["height", "number", { tip: "Map height in pixels" }],
     [

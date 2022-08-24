@@ -248,70 +248,6 @@ function generateMap({
   };
 }
 
-function generateHumidity({ width, height, elevation, wind }) : Float32Array {
-  console.time("humidity");
-  const mapDiagonal = Math.sqrt(width * width + height * height);
-
-  let border = width / 2;
-
-  let humidityImage = data2image(elevation, width, (v, i) => [
-    0,
-    0,
-    0,
-    v <= 0 ? 100 : 0,
-  ]);
-  let wetness = createCanvasCtx(width + border * 2, height + border * 2);
-
-  wetness.ctx.beginPath();
-  wetness.ctx.rect(border / 2, border / 2, width + border, height + border);
-  wetness.ctx.lineWidth = border / 2;
-  wetness.ctx.stroke();
-
-  wetness.ctx.drawImage(humidityImage, width / 2, height / 2);
-
-  wetness.ctx.filter = "opacity(15%)";
-  const spotSize = mapDiagonal / 10;
-  for (let i = 0; i < 1200; i++) {
-    let start = [random() * width, random() * height];
-    // @ts-ignore
-    let windThere = wind[coord2ind(start, width)];
-    let end = [
-      start[0] + (windThere * (random() - 0.2) * width) / 8,
-      start[1] + (Math.abs(windThere) * (random() - 0.5) * height) / 12,
-    ];
-    wetness.ctx.drawImage(
-      wetness.canvas,
-      start[0] + border,
-      start[1] + border,
-      spotSize,
-      spotSize,
-      end[0] + border,
-      end[1] + border,
-      spotSize,
-      spotSize
-    );
-  }
-
-  context2d(humidityImage).filter = "blur(10px)";
-  context2d(humidityImage).drawImage(
-    wetness.canvas,
-    border,
-    border,
-    width,
-    height,
-    0,
-    0,
-    width,
-    height
-  );
-
-  let humidity: Float32Array = image2alpha(humidityImage);
-
-  console.timeEnd("humidity");
-
-  return humidity;
-}
-
 interface ParametersRiversErosion {
   width: number,
   height: number,
@@ -320,64 +256,6 @@ interface ParametersRiversErosion {
   tectonic?: Float32Array,
   erosion: number,
   riversShown: number,
-}
-
-function generateRiversAndErosion({
-  width,
-  height,
-  elevation,
-  humidity,
-  erosion,
-  riversShown,
-} : ParametersRiversErosion): Float32Array {
-  console.time("rivers");
-
-  const rivers = new Float32Array(width * height);
-  let neighbors = createNeighborDeltas(width, SQUARE8)[0];
-
-  for (
-    let streamIndex = 0;
-    streamIndex < erosion + riversShown;
-    streamIndex++
-  ) {
-    let current = Math.floor(random() * width * height);
-    if (elevation[current] < random()) continue;
-
-    if (humidity && humidity[current] < random()) continue;
-
-    let limit = 10000;
-
-    while (elevation[current] > -0.15 && limit-- > 0) {
-      if (streamIndex > erosion) {
-        rivers[current] += 1;
-      }
-      let currentElevation = elevation[current];
-
-      let lowestNeighbor = 0,
-        lowestNeighborElevation = 100;
-
-      for (let neighborIndex = 0; neighborIndex < 8; neighborIndex++) {
-        let neighborDelta = neighbors[neighborIndex];
-        if (elevation[current + neighborDelta] <= lowestNeighborElevation) {
-          lowestNeighbor = current + neighborDelta;
-          lowestNeighborElevation = elevation[lowestNeighbor];
-        }
-      }
-
-      if (lowestNeighborElevation < currentElevation) {
-        elevation[current] -= (currentElevation - lowestNeighborElevation) / 5;
-        //if (rivers[lowestNeighbor]) limit -= 10;
-      } else {
-        elevation[current] = lowestNeighborElevation + 0.02;
-      }
-
-      current = lowestNeighbor;
-    }
-  }
-
-  console.timeEnd("rivers");
-
-  return rivers;
 }
 
 const DESERT = 1,
@@ -454,41 +332,3 @@ const contrastColors = mapToList({
 
 
 
-
-/**
- * Returns a matrix of rivers sizes and directions per cell
- * @param {number[]} heights
- * @param {number[]} neighborDeltas
- * @returns {number[]}
- */
-function generatePrettyRivers(heights, probability, attempts, neighborDeltas, columns) {
-  let hlen = heights.length;
-  let courseAt = 0;
-  let course = new Int32Array(100);
-  let riverDepth = new Int32Array(hlen);
-  let flowsTo = new Int32Array(hlen);
-  for (let riveri = 0; riveri < attempts; riveri++) {
-    let at = Math.floor(random() * hlen);
-    if (heights[at] <= 0 || probability[at] < random()) continue;
-    courseAt = 0;    
-    while (heights[at] > 0 && courseAt < 100) {
-      let row = Math.floor(at / columns);
-      let lowestNeighborDelta = neighborDeltas[row%2].reduce((a, b) =>
-        heights[at + a] - riverDepth[at + a] <
-        heights[at + b] - riverDepth[at + b]
-          ? a
-          : b
-      );
-      if (heights[at + lowestNeighborDelta] >= heights[at]) break;
-      at = at + lowestNeighborDelta;
-      course[courseAt++] = at;
-    }
-    if (courseAt > 2 && heights[at] <= 0) {
-      for (let i = 0; i < courseAt; i++) {
-        riverDepth[course[i]]++;
-        flowsTo[course[i]] = course[i + 1];
-      }
-    }
-  }
-  return { riverDepth, flowsTo };
-}
