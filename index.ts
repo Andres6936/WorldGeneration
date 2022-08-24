@@ -1,6 +1,3 @@
-// @ts-nocheck
-
-
 let defaultSettings = JSON.stringify({
     mapMode: 0,
     seed: 1,
@@ -68,7 +65,7 @@ function rebuildForm() {
     let form = document.getElementById("form");
     form.innerHTML = "";
 
-    for (let {name, type, element}: Parameters of parameters) {
+    for (let {name, type, element} of parameters) {
         element = element || {};
         tips[name] = element.tip;
         switch (type) {
@@ -104,11 +101,15 @@ function saveSettings() {
 }
 
 function applySettings() {
-    for (const {name, type}: Parameters of parameters) {
+    for (const {name, type} of parameters) {
         if (type == "tip") continue;
-        let element = document.getElementById(name);
-        settings[name] =
-            element.type == "checkbox" ? element.checked : Number(element.value);
+        const element = document.getElementById(name) as HTMLInputElement;
+        if (element.type == "checkbox") {
+            settings[name] = element.checked;
+        } else {
+            settings[name] = Number(element.value);
+        }
+
         let id_value = document.getElementById(name + "_value");
         if (id_value) id_value.innerText = String(settings[name]).substr(0, 8);
     }
