@@ -101,8 +101,6 @@ const parameters = [
     ["terrainTypeColoring", "checkbox"],
 ];
 
-let miniMapSize = 200;
-
 let defaultSettings = JSON.stringify({
     mapMode: 0,
     seed: 1,
@@ -224,27 +222,3 @@ function applySettings() {
 let maps = [],
     miniMaps = [];
 
-function showMap(data, title, fun, scale = 1 / 4) {
-    let image = data2image(data, settings.width, fun);
-    let mini = rescaleImage(image, image.width * scale, image.height * scale);
-    let ctx = context2d(mini);
-    ctx.font = "14px Verdana";
-    ctx.fillStyle = "white";
-    ctx.strokeText(title, 5, 15);
-    ctx.fillText(title, 4, 14);
-    document.getElementById("minimaps").appendChild(mini);
-    let id = maps.length;
-
-    if (id == settings.mapMode)
-        document.getElementById("map").appendChild(image);
-
-    mini.id = "mini_" + id;
-    maps.push(image);
-    miniMaps.push(mini);
-    mini.onclick = () => {
-        settings.mapMode = id;
-        saveSettings();
-        document.getElementById("map").innerHTML = "";
-        document.getElementById("map").appendChild(image);
-    };
-}
