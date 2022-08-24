@@ -1,3 +1,13 @@
+interface ParametersRiversErosion {
+    width: number,
+    height: number,
+    elevation: Float32Array,
+    humidity?: any[],
+    tectonic?: Float32Array,
+    erosion: number,
+    riversShown: number,
+}
+
 function generateRiversAndErosion({
                                       width,
                                       height,
