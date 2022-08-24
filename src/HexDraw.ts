@@ -1,26 +1,6 @@
 "use strict";
 
 /**
- * @returns {CanvasRenderingContext2D}
- */
-function context2d(canvas) {
-  return canvas.getContext("2d");
-}
-
-/**
- * @param {number} width
- * @param {number} height
- * @returns {{canvas:HTMLCanvasElement, ctx:CanvasRenderingContext2D}}
- */
-function createCanvasCtx(width, height) {
-  let canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  let ctx = context2d(canvas);
-  return {canvas, ctx};
-}
-
-/**
  * Creates a sectored masks for cutting up hexes (or squares)
  * @param {number} size - tile size in pixels
  * @param {number} layout
