@@ -39,8 +39,8 @@ function createMask(size = 32, layout) {
   return canvases.map((c) => c.canvas);
 }
 
-function cutImageToSectors(image, left, top, masks) {
-  let imagePieces = [];
+function cutImageToSectors(image, left, top, masks): HTMLCanvasElement[] {
+  let imagePieces: HTMLCanvasElement[] = [];
   let size = masks[0].width;
   let r = size / 2;
 
@@ -90,8 +90,8 @@ function cutImageUp(
     fragmentHeight,
     left = 0,
     top = 0
-) {
-  let imagePieces = [];
+): HTMLCanvasElement[] {
+  let imagePieces: HTMLCanvasElement[] = [];
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
       let {canvas, ctx} = createCanvasCtx(fragmentWidth, fragmentHeight);

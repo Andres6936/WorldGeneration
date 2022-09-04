@@ -27,7 +27,9 @@ let defaultSettings = JSON.stringify({
     squareGrid: false,
 });
 
-let settings = null;
+let maps = [];
+let miniMaps = [];
+let settings = {};
 
 function init() {
     if (document.location.hash) {
@@ -63,6 +65,9 @@ let tips = {};
 
 function rebuildForm() {
     let form = document.getElementById("form");
+    if (form === null) {
+        throw new Error("Cannot found the Form in the DOM.")
+    }
     form.innerHTML = "";
 
     for (let {name, type, element} of parameters) {
@@ -117,7 +122,3 @@ function applySettings() {
     saveSettings();
     generate(settings);
 }
-
-let maps = [],
-    miniMaps = [];
-

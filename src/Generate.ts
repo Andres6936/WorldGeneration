@@ -114,7 +114,7 @@ function generate(settings) {
         gameCanvas.width = settings.width * settings.gameMapScale + 32;
         gameCanvas.height = settings.height * settings.gameMapScale;
 
-        gameCanvas.style = `display:block;width:${gameCanvas.width}px;height:${gameCanvas.height}px;`;
+        gameCanvas.setAttribute('style', `display:block;width:${gameCanvas.width}px;height:${gameCanvas.height}px;`)
 
         randomSeed = settings.seed;
 
@@ -380,7 +380,7 @@ function generate(settings) {
             layout
         );
     } else {
-        gameCanvas.style = `display:none;`;
+        gameCanvas.setAttribute('style', `display:none;`)
     }
 
     console.timeEnd("gamemap");

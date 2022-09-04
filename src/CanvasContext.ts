@@ -7,7 +7,12 @@ interface CanvasContext {
  * @returns {CanvasRenderingContext2D}
  */
 function context2d(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
-    return canvas.getContext("2d");
+    const canvasContext = canvas.getContext("2d");
+    if (canvasContext === null) {
+        throw new Error("The canvas context is null, fail in the canvas object.")
+    } else {
+        return canvasContext;
+    }
 }
 
 /**

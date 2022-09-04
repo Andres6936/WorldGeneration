@@ -1,8 +1,8 @@
-const SQUARE = 0,
-    ODDR = 1,
-    WIDTH2 = 2,
-    AXIAL = 3,
-    SQUARE8 = 4;
+const SQUARE: number = 0;
+const ODDR: number = 1;
+const WIDTH2: number = 2;
+const AXIAL: number = 3;
+const SQUARE8: number = 4;
 
 interface RescaleCoordinate {
     indices: number[],
