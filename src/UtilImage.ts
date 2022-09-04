@@ -30,6 +30,14 @@ function colorFromRGBString(color) {
     return [Math.floor(n / 65536), Math.floor(n / 256) % 256, n % 256, 256];
 }
 
+interface ElevationImageParams {
+    discreteHeights?: number,
+    terrainTypeColoring?: boolean,
+    hillRatio?: number,
+    mountainRatio?: number,
+    green?: boolean,
+}
+
 /**
  * Returns elevation image with higher elevation being brighter
  */
@@ -41,10 +49,10 @@ function elevation2Image(
         hillRatio = 0.1,
         mountainRatio = 0.02,
         green = true,
-    }
+    }: ElevationImageParams
 ) {
-    let hillElevation = approximateQuantile(elevation, 1 - hillRatio);
-    let mountainElevation = approximateQuantile(elevation, 1 - mountainRatio);
+    let hillElevation: number = approximateQuantile(elevation, 1 - hillRatio);
+    let mountainElevation: number = approximateQuantile(elevation, 1 - mountainRatio);
 
     return (v, i) => {
         if (rivers[i] && v > 0) {

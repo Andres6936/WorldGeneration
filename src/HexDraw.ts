@@ -1,11 +1,9 @@
-"use strict";
-
 /**
  * Creates a sectored masks for cutting up hexes (or squares)
  * @param {number} size - tile size in pixels
  * @param {number} layout
  */
-function createMask(size = 32, layout) {
+function createMask(size: number = 32, layout): HTMLCanvasElement[] {
   let sectorsNumber = layout == SQUARE ? 8 : 12;
 
   let canvases = [...Array(sectorsNumber + 1)].map(() => {
@@ -121,12 +119,12 @@ function cutImageUp(
  * 3 - horizontally and vertically
  * 4 - nor horizontally or vertically, but diagonally
  */
-const partsOrder = "334433443223100110013223"
+const partsOrder: number[] = "334433443223100110013223"
     .split("")
     .map((s, i) => Number(s) * 4 + (i % 2) + (Math.floor(i / 4) % 2) * 2);
 
 function cutImagetoSquares(img, left, top) {
-  let partsUnordered = cutImageUp(img, 4, 6, 16, 16, left, top);
+  let partsUnordered: HTMLCanvasElement[] = cutImageUp(img, 4, 6, 16, 16, left, top);
   let tile = [];
   partsOrder.forEach((v, i) => (tile[v] = partsUnordered[i]));
   return tile;
@@ -139,7 +137,7 @@ const pathNeighbors = [
   [1, -1],
 ];
 
-const pathDisplacement = -0.1
+const pathDisplacement: number = -0.1
 
 /**
  *
@@ -149,13 +147,13 @@ const pathDisplacement = -0.1
  * @param {number} columns - number of columns
  * @param {(pos:number) => boolean} connect
  */
-function drawPath(ctx, tile, pos, columns, connect) {
+function drawPath(ctx: CanvasRenderingContext2D, tile, pos: number, columns: number, connect: (pos: number) => boolean) {
   let tileWidth = tile[0].width;
   let [tileX, tileY] = screenPos(pos, columns, SQUARE, tileWidth);
   let pixelPathDisplacement = Math.floor(tileWidth * pathDisplacement)
   ctx.drawImage(tile[1], tileX + pixelPathDisplacement, tileY + pixelPathDisplacement);
   for (let i = 0; i < 4; i++) {
-    let connected = connect(
+    let connected: boolean = connect(
         pos + pathNeighbors[i][0] + pathNeighbors[i][1] * columns
     );
     if (connected)
@@ -167,7 +165,7 @@ function drawPath(ctx, tile, pos, columns, connect) {
   }
 }
 
-function drawSquareTile(ctx, tile, pos, columns, connect) {
+function drawSquareTile(ctx: CanvasRenderingContext2D, tile, pos: number, columns: number, connect: (pos: number) => boolean) {
   if (tile.length == 6) return drawPath(ctx, tile, pos, columns, connect);
 
   let [tileX, tileY] = screenPos(pos, columns, SQUARE, tile[0].width * 2);

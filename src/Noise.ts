@@ -10,8 +10,8 @@ function gradientNoise(
     radius: number = 100,
     alpha: number = 0.01,
     gradientCircles: boolean = true
-) {
-    let {canvas, ctx} = createCanvasCtx(width, height);
+): HTMLCanvasElement {
+    let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
 
     if (gradientCircles) {
         let g = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
