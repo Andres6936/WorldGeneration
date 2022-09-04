@@ -1,3 +1,32 @@
+interface Settings {
+    mapMode: number,
+    seed: number,
+    width: number,
+    height: number,
+    scale: number,
+    noiseFactor: number,
+    crustFactor: number,
+    tectonicFactor: number,
+    noiseSmoothness: number,
+    tectonicSmoothness: number,
+    pangaea: number,
+    seaRatio: number,
+    flatness: number,
+    randomiseHumidity: boolean,
+    averageTemperature: number,
+    erosion: number,
+    riversShown: number,
+    biomeScrambling: number,
+    terrainTypeColoring: boolean,
+    discreteHeights: number,
+    hillRatio: number,
+    mountainRatio: number,
+    gameMapRivers: number,
+    gameMapScale: number,
+    generatePhoto: boolean,
+    squareGrid: boolean,
+}
+
 let defaultSettings = JSON.stringify({
     mapMode: 0,
     seed: 1,
@@ -29,7 +58,7 @@ let defaultSettings = JSON.stringify({
 
 let maps = [];
 let miniMaps = [];
-let settings = {};
+let settings: Partial<Settings> = {};
 
 function init() {
     if (document.location.hash) {
