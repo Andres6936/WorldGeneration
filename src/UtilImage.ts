@@ -1,3 +1,5 @@
+import {CanvasContext, createCanvasCtx} from "./CanvasContext";
+
 /**
  * Returns canvas rescaled to the new size
  * @param {HTMLCanvasElement} source
@@ -25,7 +27,7 @@ function subImage(image: HTMLCanvasElement, left: number, top: number, width: nu
     return canvas;
 }
 
-function colorFromRGBString(color) {
+export function colorFromRGBString(color) {
     let n = parseInt(color, 16);
     return [Math.floor(n / 65536), Math.floor(n / 256) % 256, n % 256, 256];
 }

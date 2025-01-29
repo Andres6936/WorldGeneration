@@ -1,3 +1,6 @@
+import {generate} from "./Generate";
+import {parameters} from "./Parameters";
+
 interface Settings {
     mapMode: number,
     seed: number,

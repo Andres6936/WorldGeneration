@@ -1,6 +1,9 @@
 "use strict";
 
 
+import {addFilter, data2image, image2alpha} from "./CanvasContext";
+import {colorFromRGBString} from "./UtilImage";
+
 interface GenerateMap {
   elevation: Float32Array,
   noise: Float32Array,
@@ -18,7 +21,7 @@ interface GenerateMap {
  * @param {number} width
  * @param {number} height
  */
-function generateMap({
+export function generateMap({
   width,
   height,
   seed,

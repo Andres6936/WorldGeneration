@@ -1,6 +1,8 @@
 // @ts-nocheck
 
-function generate(settings) {
+import {generateMap} from "./Mapper";
+
+export function generate(settings) {
     console.time("generation");
     let generatedMap = generateMap(settings);
     let {

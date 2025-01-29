@@ -1,85 +1,88 @@
-<style>
-  .all {
-    display: flex;
-    flex-flow: row;
-  }
-  .number,
-  .checkbox {
-    width: 5em;
-    grid-column: span 2;
-  }
-  .tip {
-    grid-column: span 3;
-    font-style: italic;
-    text-align: center;
-  }
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
 
-  .range {
-    width: 25em;
-  }
+    <style>
+        .all {
+            display: flex;
+            flex-flow: row;
+        }
 
-  form {
-    margin: 1em;
-    width: 40em;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  #minimaps {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    cursor: pointer;
-  }
-  #tooltip {
-    position: fixed;
-    display: none;
-    grid-template-columns: 0fr 1fr;
-    background: rgba(255, 255, 255, 0.6);
-    padding: 1em;
-    box-shadow: 2px 2px 2px black;
-    width: 260px;
-    pointer-events: none;
-  }
-  #tooltip div {
-    padding-left: 5px;
-  }
+        .number,
+        .checkbox {
+            width: 5em;
+            grid-column: span 2;
+        }
 
-  #tooltip div:nth-child(odd) {
-    text-align: right;
-  }
+        .tip {
+            grid-column: span 3;
+            font-style: italic;
+            text-align: center;
+        }
 
-  .tilesheet {
-    display: none;
-  }
-</style>
+        .range {
+            width: 25em;
+        }
 
+        form {
+            margin: 1em;
+            width: 40em;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        #minimaps {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            cursor: pointer;
+        }
+
+        #tooltip {
+            position: fixed;
+            display: none;
+            grid-template-columns: 0fr 1fr;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1em;
+            box-shadow: 2px 2px 2px black;
+            width: 260px;
+            pointer-events: none;
+        }
+
+        #tooltip div {
+            padding-left: 5px;
+        }
+
+        #tooltip div:nth-child(odd) {
+            text-align: right;
+        }
+
+        .tilesheet {
+            display: none;
+        }
+    </style>
+</head>
 <body>
-  <img class="tilesheet" id="hexSheet" src="tilesets/hexSheet.png" />
-  <img class="tilesheet" id="squareSheet" src="tilesets/squareSheet.png" />
-  <div id="tooltip">tooltip</div>
-  Worldgen by <a href="https://twitter.com/baturinsky">@baturinsky</a> -
-  <a href="https://github.com/baturinsky/worldgen">source at github</a>
-  <div class="all">
-    <div>
-      <form id="form" onchange="applySettings()"></form>
-      <button onclick="resetSettings()">Reset to default</button>
-    </div>
-    <div>
-      <div id="map"></div>
-      <div id="minimaps"></div>
-    </div>
-  </div>
-  <canvas id="gameMap"/>
-</body>
 
-<script src="src/Parameters.js"></script>
-<script src="src/Util.js"></script>
-<script src="src/Geometry.js"></script>
-<script src="src/CanvasContext.js"></script>
-<script src="src/UtilImage.js"></script>
-<script src="src/Noise.js"></script>
-<script src="src/Humidity.js"></script>
-<script src="src/River.js"></script>
-<script src="src/Mapper.js"></script>
-<script src="src/HexDraw.js"></script>
-<script src="src/Generate.js"></script>
-<script src="index.js"></script>
+<img class="tilesheet" id="hexSheet" src="tilesets/hexSheet.png"/>
+<img class="tilesheet" id="squareSheet" src="tilesets/squareSheet.png"/>
+<div id="tooltip">tooltip</div>
+Worldgen by <a href="https://twitter.com/baturinsky">@baturinsky</a> -
+<a href="https://github.com/baturinsky/worldgen">source at github</a>
+<div class="all">
+    <div>
+        <form id="form" onchange="applySettings()"></form>
+        <button onclick="resetSettings()">Reset to default</button>
+    </div>
+    <div>
+        <div id="map"></div>
+        <div id="minimaps"></div>
+    </div>
+</div>
+<canvas id="gameMap"/>
+<script type="module" src="/src/index.ts"></script>
+
+</body>
+</html>

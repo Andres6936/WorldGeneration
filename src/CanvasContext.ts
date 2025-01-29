@@ -1,4 +1,4 @@
-interface CanvasContext {
+export interface CanvasContext {
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D
 }
@@ -6,7 +6,7 @@ interface CanvasContext {
 /**
  * @returns {CanvasRenderingContext2D}
  */
-function context2d(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
+export function context2d(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
     const canvasContext = canvas.getContext("2d");
     if (canvasContext === null) {
         throw new Error("The canvas context is null, fail in the canvas object.")
@@ -21,7 +21,7 @@ function context2d(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
  * @param {number} height
  * @returns {{canvas:HTMLCanvasElement, ctx:CanvasRenderingContext2D}}
  */
-function createCanvasCtx(width: number, height: number): CanvasContext {
+export function createCanvasCtx(width: number, height: number): CanvasContext {
     let canvas: HTMLCanvasElement = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
@@ -29,7 +29,7 @@ function createCanvasCtx(width: number, height: number): CanvasContext {
     return {canvas, ctx};
 }
 
-function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCanvasElement {
+export function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCanvasElement {
     let {canvas, ctx}: CanvasContext = createCanvasCtx(srcCanvas.width, srcCanvas.height);
     ctx.filter = filter;
     ctx.drawImage(srcCanvas, 0, 0);
@@ -43,7 +43,7 @@ function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCanvasElem
  * @param {(v:number, i:number) => [number,number,number,number]} converter
  * @returns {HTMLCanvasElement}
  */
-function data2image(values: Float32Array, width: number, converter: (v: number, i: number) => [number, number, number, number]): HTMLCanvasElement {
+export function data2image(values: Float32Array, width: number, converter: (v: number, i: number) => [number, number, number, number]): HTMLCanvasElement {
     let height: number = values.length / width;
     let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
     let idata: ImageData = ctx.createImageData(width, height);
@@ -59,7 +59,7 @@ function data2image(values: Float32Array, width: number, converter: (v: number, 
  * @param {HTMLCanvasElement} canvas
  * @returns {values:Float32Array[]}
  */
-function image2alpha(canvas: HTMLCanvasElement): Float32Array {
+export function image2alpha(canvas: HTMLCanvasElement): Float32Array {
     let ctx: CanvasRenderingContext2D = context2d(canvas);
     let idata: ImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let data: Uint8ClampedArray = idata.data;

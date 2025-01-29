@@ -1,7 +1,9 @@
 {
   "name": "worldgeneration",
-  "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "vite dev"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "vite": "^6.0.11"

@@ -11,7 +11,7 @@ interface FormParameters {
     element?: FormElement
 }
 
-const parameters: FormParameters[] = [
+export const parameters: FormParameters[] = [
     {name: "seed", type: "number", element: {tip: "Seed for the random number generator."}},
     {name: "width", type: "number", element: {tip: "Map width in pixels"}},
     {name: "height", type: "number", element: {tip: "Map height in pixels"}},
