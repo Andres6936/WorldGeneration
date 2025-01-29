@@ -1,5 +1,6 @@
 import {generate} from "./Generate";
 import {parameters} from "./Parameters";
+import {saveSettings} from "./settings";
 
 let defaultSettings = JSON.stringify({
     mapMode: 0,
@@ -100,13 +101,7 @@ function rebuildForm() {
     }
 }
 
-function saveSettings() {
-    document.location.hash = Object.keys(window.settings)
-        .map((k) => `${k}=${window.settings[k]}`)
-        .join("&");
 
-    localStorage.mapGenSettings = JSON.stringify(window.settings);
-}
 
 function applySettings() {
     for (const {name, type} of parameters) {

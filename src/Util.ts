@@ -1,8 +1,8 @@
-let randomSeed = 6;
+window.randomSeed = 6;
 
 export function random() {
-    let x = Math.sin(randomSeed) * 10000;
-    randomSeed = (randomSeed + Math.E) % 1e8;
+    let x = Math.sin(window.randomSeed) * 10000;
+    window.randomSeed = (window.randomSeed + Math.E) % 1e8;
     return x - Math.floor(x);
 }
 

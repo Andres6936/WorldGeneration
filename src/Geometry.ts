@@ -148,7 +148,7 @@ function screenPos(ind: number, columns: number, layout: number, tileWidth: numb
     ];
 }
 
-function distanceBetweenCells(a: number, b: number, columns: number, layout: number = AXIAL): number {
+export function distanceBetweenCells(a: number, b: number, columns: number, layout: number = AXIAL): number {
     let dx = (b % columns) - (a % columns);
     let dy = Math.floor(b / columns) - Math.floor(a / columns);
     let dist = 0;

@@ -44,7 +44,7 @@ export function generateMap({
   randomiseHumidity,
   generatePhoto
 }) : GenerateMap {
-  // randomSeed = seed;
+  window.randomSeed = seed;
 
   const mapSize = width * height;
   const mapDiagonal = Math.sqrt(width * width + height * height);

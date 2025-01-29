@@ -1,7 +1,18 @@
 import {generateMap, contrastColors} from "./Mapper";
 import {elevation2Image, rescaleImage} from './UtilImage'
 import {data2image, context2d} from './CanvasContext'
-import {SQUARE, AXIAL, WIDTH2, ODDR, SQUARE8, rescaleCoordinates, createNeighborDeltas, shortestPath} from './Geometry'
+import {
+    SQUARE,
+    AXIAL,
+    WIDTH2,
+    ODDR,
+    SQUARE8,
+    rescaleCoordinates,
+    createNeighborDeltas,
+    shortestPath,
+    distanceBetweenCells
+} from './Geometry'
+import {saveSettings} from "./settings";
 
 export function generate(settings) {
     console.time("generation");
@@ -119,7 +130,7 @@ export function generate(settings) {
 
         gameCanvas.setAttribute('style', `display:block;width:${gameCanvas.width}px;height:${gameCanvas.height}px;`)
 
-        randomSeed = settings.seed;
+        window.randomSeed = settings.seed;
 
         let {riverDepth, flowsTo} = generatePrettyRivers(
             hexCoords.map((i) => elevation[i]),
