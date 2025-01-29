@@ -1,8 +1,8 @@
-const SQUARE: number = 0;
-const ODDR: number = 1;
-const WIDTH2: number = 2;
-const AXIAL: number = 3;
-const SQUARE8: number = 4;
+export const SQUARE: number = 0;
+export const ODDR: number = 1;
+export const WIDTH2: number = 2;
+export const AXIAL: number = 3;
+export const SQUARE8: number = 4;
 
 interface RescaleCoordinate {
     indices: number[],
@@ -61,7 +61,7 @@ function rescaleCoordinates(width: number, height: number, scale: number, layout
  * @param {*} columns
  * @param {*} geometry - one of SQUARE, ODDR or AXIAL
  */
-function createNeighborDeltas(columns: number, geometry: number) {
+export function createNeighborDeltas(columns: number, geometry: number) {
     let r;
     switch (geometry) {
         case SQUARE:

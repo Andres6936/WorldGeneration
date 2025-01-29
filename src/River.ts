@@ -1,3 +1,6 @@
+import {random} from "./Util";
+import {createNeighborDeltas, SQUARE8} from "./Geometry";
+
 interface ParametersRiversErosion {
     width: number,
     height: number,
@@ -8,7 +11,7 @@ interface ParametersRiversErosion {
     riversShown: number,
 }
 
-function generateRiversAndErosion({
+export function generateRiversAndErosion({
                                       width,
                                       height,
                                       elevation,

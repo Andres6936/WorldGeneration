@@ -6,7 +6,7 @@ export function random() {
     return x - Math.floor(x);
 }
 
-function spread(range) {
+export function spread(range) {
     return range * (random() - 0.5);
 }
 
@@ -14,7 +14,7 @@ function spread(range) {
  * @param {number} x
  * @param {number} y
  */
-function coord2ind([x, y], width) {
+export function coord2ind([x, y], width) {
     return [Math.floor(x) + Math.floor(y * width)];
 }
 

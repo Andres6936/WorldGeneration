@@ -5,6 +5,8 @@ import {addFilter, data2image, image2alpha} from "./CanvasContext";
 import {colorFromRGBString} from "./UtilImage";
 import {gradientNoise} from "./Noise";
 import {approximateQuantile, normalizeValues} from "./Util";
+import {generateRiversAndErosion} from "./River";
+import {generateHumidity} from "./Humidity";
 
 interface GenerateMap {
   elevation: Float32Array,

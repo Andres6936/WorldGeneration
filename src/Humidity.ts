@@ -1,4 +1,7 @@
-function generateHumidity({width, height, elevation, wind}): Float32Array {
+import {context2d, createCanvasCtx, data2image, image2alpha} from "./CanvasContext";
+import {random, coord2ind} from "./Util";
+
+export function generateHumidity({width, height, elevation, wind}): Float32Array {
     console.time("humidity");
     const mapDiagonal = Math.sqrt(width * width + height * height);
 
