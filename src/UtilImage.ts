@@ -22,7 +22,7 @@ export function rescaleImage(source: HTMLCanvasElement, width: number, height: n
  * @param {number} width
  * @param {number} height
  */
-function subImage(image: HTMLCanvasElement, left: number, top: number, width: number, height: number) {
+export function subImage(image: HTMLCanvasElement, left: number, top: number, width: number, height: number) {
     let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
     ctx.drawImage(image, left, top, width, height, 0, 0, width, height);
     return canvas;

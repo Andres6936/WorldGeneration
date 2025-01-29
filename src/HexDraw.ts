@@ -1,3 +1,7 @@
+import {createNeighborDeltas, screenPos, SQUARE} from "./Geometry";
+import {context2d, createCanvasCtx} from "./CanvasContext";
+import {subImage} from "./UtilImage";
+
 /**
  * Creates a sectored masks for cutting up hexes (or squares)
  * @param {number} size - tile size in pixels
@@ -228,7 +232,7 @@ function drawTile(ctx, tile, pos, layout, columns, neighborDeltas, connect) {
   }
 }
 
-const ISPATH = 1;
+export const ISPATH = 1;
 
 function createSprites(tileset, layout) {
   let tileSize = tileset.tilesSize;
@@ -285,7 +289,7 @@ function createSprites(tileset, layout) {
  * @param {Tileset} tileset
  * @param {number} layout
  */
-function drawTerrain(ctx, grid, directional, columns, tileset, layout) {
+export function drawTerrain(ctx, grid, directional, columns, tileset, layout) {
   let neighborDeltas = createNeighborDeltas(columns, layout);
   let rows = grid.length / columns;
 

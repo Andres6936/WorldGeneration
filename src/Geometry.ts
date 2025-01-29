@@ -132,7 +132,7 @@ function ind2xy(ind: number, columns: number): [number, number] {
     return [x, y];
 }
 
-function screenPos(ind: number, columns: number, layout: number, tileWidth: number, tileHeight: number = 0): [number, number] {
+export function screenPos(ind: number, columns: number, layout: number, tileWidth: number, tileHeight: number = 0): [number, number] {
     let [x, y]: [number, number] = ind2xy(ind, columns);
     return [
         (x +

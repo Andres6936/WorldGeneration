@@ -1,19 +1,19 @@
-import {generateMap, contrastColors} from "./Mapper";
+import {biomeNames, contrastColors, generateMap} from "./Mapper";
 import {elevation2Image, rescaleImage} from './UtilImage'
-import {data2image, context2d} from './CanvasContext'
+import {context2d, data2image} from './CanvasContext'
 import {
-    SQUARE,
     AXIAL,
-    WIDTH2,
-    ODDR,
-    SQUARE8,
-    rescaleCoordinates,
     createNeighborDeltas,
+    distanceBetweenCells,
+    rescaleCoordinates,
     shortestPath,
-    distanceBetweenCells
+    SQUARE,
+    SQUARE8
 } from './Geometry'
 import {saveSettings} from "./settings";
 import {generatePrettyRivers} from "./River";
+import {drawTerrain, ISPATH} from "./HexDraw";
+import {random, spread} from "./Util";
 
 export function generate(settings) {
     console.time("generation");

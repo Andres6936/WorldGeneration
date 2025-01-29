@@ -241,7 +241,7 @@ const biomeTable = [
   [TAIGA, CONIFEROUS_FOREST, DENSE_FOREST, RAIN_FOREST],
 ];
 
-const biomeNames = [
+export const biomeNames = [
   "unknown",
   "desert",
   "grassland",
