@@ -1,35 +1,6 @@
 import {generate} from "./Generate";
 import {parameters} from "./Parameters";
 
-interface Settings {
-    mapMode: number,
-    seed: number,
-    width: number,
-    height: number,
-    scale: number,
-    noiseFactor: number,
-    crustFactor: number,
-    tectonicFactor: number,
-    noiseSmoothness: number,
-    tectonicSmoothness: number,
-    pangaea: number,
-    seaRatio: number,
-    flatness: number,
-    randomiseHumidity: boolean,
-    averageTemperature: number,
-    erosion: number,
-    riversShown: number,
-    biomeScrambling: number,
-    terrainTypeColoring: boolean,
-    discreteHeights: number,
-    hillRatio: number,
-    mountainRatio: number,
-    gameMapRivers: number,
-    gameMapScale: number,
-    generatePhoto: boolean,
-    squareGrid: boolean,
-}
-
 let defaultSettings = JSON.stringify({
     mapMode: 0,
     seed: 1,
@@ -59,27 +30,27 @@ let defaultSettings = JSON.stringify({
     squareGrid: false,
 });
 
-let maps = [];
-let miniMaps = [];
-let settings: Partial<Settings> = {};
+window.maps = [];
+window.miniMaps = [];
+window.settings = {};
 
 function init() {
     if (document.location.hash) {
-        settings = {};
+        window.settings = {};
         let records = document.location.hash
             .substr(1)
             .split("&")
             .map((s) => s.split("="));
         console.log(records);
         for (let ss of records) {
-            settings[ss[0]] =
+            window.settings[ss[0]] =
                 ss[1] == "false" ? false : ss[1] == "true" ? true : Number(ss[1]);
         }
-        console.log(settings);
+        console.log(window.settings);
     }
 
-    if (!settings || settings.width == 0)
-        settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
+    if (!window.settings || window.settings.width == 0)
+        window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
 
     rebuildForm();
     applySettings();
@@ -88,12 +59,12 @@ function init() {
 window.onload = init;
 
 function resetSettings() {
-    settings = JSON.parse(defaultSettings);
+    window.settings = JSON.parse(defaultSettings);
     rebuildForm();
     applySettings();
 }
 
-let tips = {};
+window.tips = {};
 
 function rebuildForm() {
     let form = document.getElementById("form");
@@ -104,14 +75,14 @@ function rebuildForm() {
 
     for (let {name, type, element} of parameters) {
         element = element || {};
-        tips[name] = element.tip;
+        window.tips[name] = element.tip;
         switch (type) {
             case "tip":
                 form.innerHTML += `<div class="tip">${name}</div>`;
                 break;
             case "checkbox":
                 form.innerHTML += `<div>${name}</div><input class="checkbox" type="checkbox" id="${name}" ${
-                    settings[name] ? "checked" : ""
+                    window.settings[name] ? "checked" : ""
                 } />`;
                 break;
             case "number":
@@ -130,11 +101,11 @@ function rebuildForm() {
 }
 
 function saveSettings() {
-    document.location.hash = Object.keys(settings)
-        .map((k) => `${k}=${settings[k]}`)
+    document.location.hash = Object.keys(window.settings)
+        .map((k) => `${k}=${window.settings[k]}`)
         .join("&");
 
-    localStorage.mapGenSettings = JSON.stringify(settings);
+    localStorage.mapGenSettings = JSON.stringify(window.settings);
 }
 
 function applySettings() {
@@ -142,15 +113,15 @@ function applySettings() {
         if (type == "tip") continue;
         const element = document.getElementById(name) as HTMLInputElement;
         if (element.type == "checkbox") {
-            settings[name] = element.checked;
+            window.settings[name] = element.checked;
         } else {
-            settings[name] = Number(element.value);
+            window.settings[name] = Number(element.value);
         }
 
         let id_value = document.getElementById(name + "_value");
-        if (id_value) id_value.innerText = String(settings[name]).substr(0, 8);
+        if (id_value) id_value.innerText = String(window.settings[name]).substr(0, 8);
     }
 
     saveSettings();
-    generate(settings);
+    generate(window.settings);
 }

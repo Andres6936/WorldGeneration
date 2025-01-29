@@ -1,6 +1,8 @@
 // @ts-nocheck
 
 import {generateMap} from "./Mapper";
+import {elevation2Image, rescaleImage} from './UtilImage'
+import {data2image, context2d} from './CanvasContext'
 
 export function generate(settings) {
     console.time("generation");
@@ -29,7 +31,7 @@ export function generate(settings) {
 
         let isCanvas = e.target.tagName == "CANVAS";
         let id = e.target.id;
-        tooltip.style.display = isCanvas ? "grid" : tips[id] ? "block" : "none";
+        tooltip.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
 
         if (isCanvas) {
             let localX = (e.offsetX / target.width) * settings.width;
@@ -54,8 +56,8 @@ export function generate(settings) {
     console.time("draw");
     document.getElementById("map").innerHTML = "";
     document.getElementById("minimaps").innerHTML = "";
-    maps = [];
-    miniMaps = [];
+    window.maps = [];
+    window.miniMaps = [];
 
     showMap(
         elevation,

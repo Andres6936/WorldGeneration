@@ -1,4 +1,5 @@
 import {CanvasContext, createCanvasCtx} from "./CanvasContext";
+import {approximateQuantile} from "./Util";
 
 /**
  * Returns canvas rescaled to the new size
@@ -7,7 +8,7 @@ import {CanvasContext, createCanvasCtx} from "./CanvasContext";
  * @param {number} height
  * @returns {HTMLCanvasElement}
  */
-function rescaleImage(source: HTMLCanvasElement, width: number, height: number) {
+export function rescaleImage(source: HTMLCanvasElement, width: number, height: number) {
     let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
     ctx.drawImage(source, 0, 0, source.width, source.height, 0, 0, width, height);
     return canvas;
@@ -43,7 +44,7 @@ interface ElevationImageParams {
 /**
  * Returns elevation image with higher elevation being brighter
  */
-function elevation2Image(
+export function elevation2Image(
     {elevation, rivers},
     {
         discreteHeights = 10,
