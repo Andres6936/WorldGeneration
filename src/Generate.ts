@@ -13,6 +13,7 @@ import {
     distanceBetweenCells
 } from './Geometry'
 import {saveSettings} from "./settings";
+import {generatePrettyRivers} from "./River";
 
 export function generate(settings) {
     console.time("generation");

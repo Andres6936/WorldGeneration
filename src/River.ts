@@ -76,7 +76,7 @@ export function generateRiversAndErosion({
  * @param {number[]} neighborDeltas
  * @returns {number[]}
  */
-function generatePrettyRivers(heights, probability, attempts, neighborDeltas, columns) {
+export function generatePrettyRivers(heights, probability, attempts, neighborDeltas, columns) {
     let hlen = heights.length;
     let courseAt = 0;
     let course = new Int32Array(100);
