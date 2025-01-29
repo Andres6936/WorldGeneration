@@ -25,14 +25,14 @@ function coord2ind([x, y], width) {
  * @param {number} picks
  * @param {number} level
  */
-function approximateQuantile(values: Float32Array, level: number = 0.5, picks: number = 1000): number {
+export function approximateQuantile(values: Float32Array, level: number = 0.5, picks: number = 1000): number {
     let l = values.length;
     let picked: number[] = [...Array(picks)].map(() => values[Math.floor(random() * l)]);
     picked = picked.sort();
     return picked[Math.floor(level * picked.length)];
 }
 
-function normalizeValues(values: Float32Array, picks: number = 1000): Float32Array {
+export function normalizeValues(values: Float32Array, picks: number = 1000): Float32Array {
     let l = values.length;
     let picked: number[] = [...Array(picks)].map(() => values[Math.floor(random() * l)]);
     let max = 0;
