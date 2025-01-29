@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 import {generateMap, contrastColors} from "./Mapper";
 import {elevation2Image, rescaleImage} from './UtilImage'
 import {data2image, context2d} from './CanvasContext'
-import {SQUARE, AXIAL, WIDTH2, ODDR, SQUARE8, rescaleCoordinates} from './Geometry'
+import {SQUARE, AXIAL, WIDTH2, ODDR, SQUARE8, rescaleCoordinates, createNeighborDeltas, shortestPath} from './Geometry'
 
 export function generate(settings) {
     console.time("generation");
@@ -392,7 +390,7 @@ export function generate(settings) {
 }
 
 function showMap(data, title, fun, scale = 1 / 4) {
-    let image = data2image(data, settings.width, fun);
+    let image = data2image(data, window.settings.width, fun);
     let mini = rescaleImage(image, image.width * scale, image.height * scale);
     let ctx = context2d(mini);
     ctx.font = "14px Verdana";
@@ -400,16 +398,16 @@ function showMap(data, title, fun, scale = 1 / 4) {
     ctx.strokeText(title, 5, 15);
     ctx.fillText(title, 4, 14);
     document.getElementById("minimaps").appendChild(mini);
-    let id = maps.length;
+    let id = window.maps.length;
 
-    if (id == settings.mapMode)
+    if (id == window.settings.mapMode)
         document.getElementById("map").appendChild(image);
 
     mini.id = "mini_" + id;
-    maps.push(image);
-    miniMaps.push(mini);
+    window.maps.push(image);
+    window.miniMaps.push(mini);
     mini.onclick = () => {
-        settings.mapMode = id;
+        window.settings.mapMode = id;
         saveSettings();
         document.getElementById("map").innerHTML = "";
         document.getElementById("map").appendChild(image);

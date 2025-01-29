@@ -169,7 +169,7 @@ function distanceBetweenCells(a: number, b: number, columns: number, layout: num
     return dist;
 }
 
-function shortestPath(world, start, end, columns, neighborDeltas, cellCost) {
+export function shortestPath(world, start, end, columns, neighborDeltas, cellCost) {
     let bag = [start];
     let wayCost = [];
     wayCost[start] = 0;
