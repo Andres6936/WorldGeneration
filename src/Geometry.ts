@@ -21,7 +21,7 @@ interface RescaleCoordinate {
  * WIDTH2 returns a hex grid with column equal to double x
  * AXIAL returns a hex grid with row shifted left by 0.5 more with each row
  */
-function rescaleCoordinates(width: number, height: number, scale: number, layout: number): RescaleCoordinate {
+export function rescaleCoordinates(width: number, height: number, scale: number, layout: number): RescaleCoordinate {
     let verticalScale: number = layout == 0 ? scale : scale * 0.75;
 
     let rows: number = Math.floor(height / verticalScale);

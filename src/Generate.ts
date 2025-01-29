@@ -1,8 +1,9 @@
 // @ts-nocheck
 
-import {generateMap} from "./Mapper";
+import {generateMap, contrastColors} from "./Mapper";
 import {elevation2Image, rescaleImage} from './UtilImage'
 import {data2image, context2d} from './CanvasContext'
+import {SQUARE, AXIAL, WIDTH2, ODDR, SQUARE8, rescaleCoordinates} from './Geometry'
 
 export function generate(settings) {
     console.time("generation");

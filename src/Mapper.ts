@@ -269,7 +269,7 @@ function mapToList(m) {
 }
 
 
-const contrastColors = mapToList({
+export const contrastColors = mapToList({
   [DESERT]: "ffff00",
   [GRASSLAND]: "40ff40",
   [TUNDRA]: "c0c0a0",
