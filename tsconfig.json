@@ -5,6 +5,7 @@
     "alwaysStrict": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
-    "module": "ESNext"
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
   }
 }
