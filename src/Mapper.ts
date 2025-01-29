@@ -3,6 +3,7 @@
 
 import {addFilter, data2image, image2alpha} from "./CanvasContext";
 import {colorFromRGBString} from "./UtilImage";
+import {gradientNoise} from "./Noise";
 
 interface GenerateMap {
   elevation: Float32Array,
@@ -40,7 +41,7 @@ export function generateMap({
   randomiseHumidity,
   generatePhoto
 }) : GenerateMap {
-  randomSeed = seed;
+  // randomSeed = seed;
 
   const mapSize = width * height;
   const mapDiagonal = Math.sqrt(width * width + height * height);

@@ -1,6 +1,6 @@
 let randomSeed = 6;
 
-function random() {
+export function random() {
     let x = Math.sin(randomSeed) * 10000;
     randomSeed = (randomSeed + Math.E) % 1e8;
     return x - Math.floor(x);
