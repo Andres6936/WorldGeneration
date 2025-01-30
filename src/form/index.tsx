@@ -78,6 +78,10 @@ export function Form() {
                     )
                 }
             })}
+
+            <button className="blue">
+                Reset to default
+            </button>
         </form>
     )
 }
