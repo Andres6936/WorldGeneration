@@ -15,6 +15,8 @@ button.blue {
     background-color: var(--indigo-7);
     border: 1px solid var(--indigo-9);
     border-radius: var(--radius-round);
+    padding-block: var(--size-1);
+    padding-inline: var(--size-3);
 
     &:hover {
         background-color: var(--indigo-9);
