@@ -1,5 +1,6 @@
 import {parameters} from "../Parameters.ts";
 import {useEffect} from "react";
+import {generate} from "../Generate.ts";
 
 export function Form() {
     useEffect(() => {
@@ -9,6 +10,10 @@ export function Form() {
 
         localStorage.mapGenSettings = JSON.stringify(window.settings);
     }, [window.settings]);
+
+    useEffect(() => {
+        generate(window.settings)
+    }, []);
 
     return (
         <form>

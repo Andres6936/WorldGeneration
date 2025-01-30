@@ -1,7 +1,5 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
-
-import {generate} from "./Generate";
 import {parameters} from "./Parameters";
 import {Form} from "./form";
 
@@ -56,8 +54,6 @@ function init() {
     if (!window.settings || window.settings.width == 0)
         window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
 
-
-    applySettings();
 }
 
 window.onload = init;
@@ -104,24 +100,6 @@ function rebuildForm() {
     }
 }
 
-
-
-function applySettings() {
-    for (const {name, type} of parameters) {
-        if (type == "tip") continue;
-        const element = document.getElementById(name) as HTMLInputElement;
-        if (element.type == "checkbox") {
-            window.settings[name] = element.checked;
-        } else {
-            window.settings[name] = Number(element.value);
-        }
-
-        let id_value = document.getElementById(name + "_value");
-        if (id_value) id_value.innerText = String(window.settings[name]).substr(0, 8);
-    }
-
-    generate(window.settings);
-}
 
 createRoot(document.getElementById('root-form')!).render(
     <StrictMode>
