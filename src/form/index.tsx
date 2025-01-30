@@ -19,8 +19,9 @@ export function Form() {
             console.log(window.settings);
         }
 
-        if (!window.settings || window.settings.width == 0)
+        if (!window.settings || window.settings.width == 0) {
             window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
+        }
 
         document.location.hash = Object.keys(window.settings)
             .map((k) => `${k}=${window.settings[k]}`)
