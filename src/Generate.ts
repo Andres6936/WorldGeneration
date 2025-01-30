@@ -402,7 +402,7 @@ export function generate(settings) {
 }
 
 function showMap(data, title, fun, scale = 1 / 4) {
-    let image = data2image(data, window.settings.width, fun);
+    let image = data2image(data, globalThis.settings.width, fun);
     let mini = rescaleImage(image, image.width * scale, image.height * scale);
     let ctx = context2d(mini);
     ctx.font = "14px Verdana";
@@ -412,14 +412,14 @@ function showMap(data, title, fun, scale = 1 / 4) {
     document.getElementById("minimaps").appendChild(mini);
     let id = window.maps.length;
 
-    if (id == window.settings.mapMode)
+    if (id == globalThis.settings.mapMode)
         document.getElementById("map").appendChild(image);
 
     mini.id = "mini_" + id;
     window.maps.push(image);
     window.miniMaps.push(mini);
     mini.onclick = () => {
-        window.settings.mapMode = id;
+        globalThis.settings.mapMode = id;
         saveSettings();
         document.getElementById("map").innerHTML = "";
         document.getElementById("map").appendChild(image);

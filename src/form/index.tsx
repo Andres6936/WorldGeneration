@@ -18,9 +18,11 @@ export function Form() {
                 localSettings[ss[0]] =
                     ss[1] == "false" ? false : ss[1] == "true" ? true : Number(ss[1]);
             }
+            globalThis.settings = localSettings;
             setSettings(localSettings);
             generate(localSettings);
         } else {
+            globalThis.settings = defaultSettings;
             setSettings(defaultSettings);
             generate(defaultSettings);
         }
@@ -43,7 +45,7 @@ export function Form() {
                                     {name}
                                 </div>
                                 <input
-                                    onChange={({target}) => window.settings[name] = target.checked}
+                                    onChange={({target}) => globalThis.settings[name] = target.checked}
                                     checked={settings[name]}
                                     className="checkbox"
                                     type="checkbox"
@@ -58,7 +60,7 @@ export function Form() {
                                     {name}
                                 </div>
                                 <input
-                                    onChange={({target}) => window.settings[name] = target.valueAsNumber}
+                                    onChange={({target}) => globalThis.settings[name] = target.valueAsNumber}
                                     className="number"
                                     type="number"
                                     id={name}

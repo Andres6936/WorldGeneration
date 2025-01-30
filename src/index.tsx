@@ -5,7 +5,6 @@ import {Form} from "./form";
 window.tips = {};
 window.maps = [];
 window.miniMaps = [];
-window.settings = {};
 
 createRoot(document.getElementById('root-form')!).render(
     <StrictMode>

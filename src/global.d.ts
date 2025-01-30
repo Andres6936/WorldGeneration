@@ -27,9 +27,9 @@ export interface Settings {
     squareGrid: boolean,
 }
 
-export interface Window {
-    maps: any[],
-    miniMaps: any[],
-    tips: Record<string, any>,
-    settings: Settings,
+declare module globalThis {
+    let maps: any[];
+    let miniMaps: any[];
+    let tips: Record<string, any>;
+    let settings: Settings;
 }
