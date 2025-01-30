@@ -2,6 +2,10 @@ import {parameters} from "../Parameters.ts";
 import {useEffect, useState} from "react";
 import {generate} from "../Generate.ts";
 import {defaultSettings} from "../settings.ts";
+import {RangeInput} from "./range.tsx";
+import {NumberInput} from "./number.tsx";
+import {CheckboxInput} from "./checkbox.tsx";
+import {TipInput} from "./tip.tsx";
 
 export function Form() {
     const [settings, setSettings] = useState<Record<string, string | number | boolean>>({})
@@ -35,64 +39,44 @@ export function Form() {
                 switch (type) {
                     case "tip":
                         return (
-                            <div className="tip">
-                                {name}
-                            </div>
+                            <TipInput
+                                key={name}
+                                name={name}
+                                type={type}
+                                element={element}
+                                settings={settings}
+                            />
                         )
                     case "checkbox":
                         return (
-                            <>
-                                <div>
-                                    {name}
-                                </div>
-                                <input
-                                    onChange={({target}) => globalThis.settings[name] = target.checked}
-                                    checked={settings[name]}
-                                    className="checkbox"
-                                    type="checkbox"
-                                    id={name}
-                                />
-                            </>
+                            <CheckboxInput
+                                key={name}
+                                name={name}
+                                type={type}
+                                element={element}
+                                settings={settings}
+                            />
                         )
                     case "number":
                         return (
-                            <>
-                                <div>
-                                    {name}
-                                </div>
-                                <input
-                                    onChange={({target}) => globalThis.settings[name] = target.valueAsNumber}
-                                    className="number"
-                                    type="number"
-                                    id={name}
-                                    value={settings[name]}
-                                />
-                            </>
+                            <NumberInput
+                                key={name}
+                                name={name}
+                                type={type}
+                                element={element}
+                                settings={settings}
+                            />
                         )
-                    case "range": {
-                        const min = element.min || 0;
-                        const max = element.max || 1;
-                        const step = element.step || (max - min) / 100;
+                    case "range":
                         return (
-                            <>
-                                <div>
-                                    {name}
-                                </div>
-                                <input
-                                    className="range"
-                                    type="range"
-                                    id={name}
-                                    min={min}
-                                    max={max}
-                                    step={step}
-                                    value={settings[name]}
-                                />
-                                <div id={name + '_value'}>
-                                    {settings[name]}
-                                </div>
-                            </>
+                            <RangeInput
+                                key={name}
+                                name={name}
+                                type={type}
+                                element={element}
+                                settings={settings}
+                            />
                         )
-                    }
                 }
             })}
         </form>

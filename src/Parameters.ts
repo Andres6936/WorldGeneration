@@ -1,12 +1,10 @@
-type FormParameters = {
+export type CheckboxForm = {
     name: string,
     type: "checkbox",
     element?: undefined,
-} | {
-    name: string,
-    type: "number",
-    element: { tip: string }
-} | {
+}
+
+export type RangeForm = {
     name: string,
     type: "range",
     element: {
@@ -15,11 +13,23 @@ type FormParameters = {
         tip?: string,
         min?: number,
     }
-} | {
+}
+
+export type NumberForm = {
+    name: string,
+    type: "number",
+    element: { tip: string }
+}
+
+export type TipForm = {
     name: string,
     type: "tip",
     element?: undefined,
 }
+
+
+export type FormParameters = CheckboxForm | NumberForm | RangeForm | TipForm
+
 
 export const parameters: FormParameters[] = [
     {name: "seed", type: "number", element: {tip: "Seed for the random number generator."}},
