@@ -1,4 +1,4 @@
-export const defaultSettings = JSON.stringify({
+export const defaultSettings = {
     mapMode: 0,
     seed: 1,
     width: 640,
@@ -25,7 +25,7 @@ export const defaultSettings = JSON.stringify({
     gameMapScale: 2,
     generatePhoto: true,
     squareGrid: false,
-});
+};
 
 export function saveSettings() {
     document.location.hash = Object.keys(window.settings)

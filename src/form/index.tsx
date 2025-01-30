@@ -1,35 +1,29 @@
 import {parameters} from "../Parameters.ts";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {generate} from "../Generate.ts";
 import {defaultSettings} from "../settings.ts";
 
 export function Form() {
+    const [settings, setSettings] = useState<Record<string, string | number | boolean>>({})
+
     useEffect(() => {
         if (document.location.hash) {
-            window.settings = {};
             let records = document.location.hash
                 .substr(1)
                 .split("&")
                 .map((s) => s.split("="));
-            console.log(records);
+
+            const localSettings: Record<string, string | number | boolean> = {}
             for (let ss of records) {
-                window.settings[ss[0]] =
+                localSettings[ss[0]] =
                     ss[1] == "false" ? false : ss[1] == "true" ? true : Number(ss[1]);
             }
-            console.log(window.settings);
+            setSettings(localSettings);
+            generate(localSettings);
+        } else {
+            setSettings(defaultSettings);
+            generate(defaultSettings);
         }
-
-        if (!window.settings || window.settings.width == 0) {
-            window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
-        }
-
-        document.location.hash = Object.keys(window.settings)
-            .map((k) => `${k}=${window.settings[k]}`)
-            .join("&");
-
-        localStorage.mapGenSettings = JSON.stringify(window.settings);
-
-        generate(window.settings)
     }, []);
 
     return (
@@ -50,7 +44,7 @@ export function Form() {
                                 </div>
                                 <input
                                     onChange={({target}) => window.settings[name] = target.checked}
-                                    checked={window.settings[name]}
+                                    checked={settings[name]}
                                     className="checkbox"
                                     type="checkbox"
                                     id={name}
@@ -68,7 +62,7 @@ export function Form() {
                                     className="number"
                                     type="number"
                                     id={name}
-                                    value={window.settings[name]}
+                                    value={settings[name]}
                                 />
                             </>
                         )
@@ -88,10 +82,10 @@ export function Form() {
                                     min={min}
                                     max={max}
                                     step={step}
-                                    value={window.settings[name]}
+                                    value={settings[name]}
                                 />
                                 <div id={name + '_value'}>
-                                    {window.settings[name]}
+                                    {settings[name]}
                                 </div>
                             </>
                         )
