@@ -1,6 +1,7 @@
 import {parameters} from "../Parameters.ts";
 import {useEffect} from "react";
 import {generate} from "../Generate.ts";
+import {defaultSettings} from "../settings.ts";
 
 export function Form() {
     useEffect(() => {
