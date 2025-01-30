@@ -1,0 +1,68 @@
+@import "https://unpkg.com/open-props";
+
+html {
+    --text-1: var(--gray-9);
+    --text-2: var(--gray-7);
+
+    @media (--OSdark) {
+        --text-1: var(--gray-1);
+        --text-2: var(--gray-2);
+    }
+}
+
+.all {
+    display: flex;
+    flex-flow: row;
+}
+
+.number,
+.checkbox {
+    width: 5em;
+    grid-column: span 2;
+}
+
+.tip {
+    grid-column: span 3;
+    font-style: italic;
+    text-align: center;
+}
+
+.range {
+    width: 25em;
+}
+
+form {
+    margin: 1em;
+    width: 40em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#minimaps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    cursor: pointer;
+}
+
+#tooltip {
+    position: fixed;
+    display: none;
+    grid-template-columns: 0fr 1fr;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1em;
+    box-shadow: 2px 2px 2px black;
+    width: 260px;
+    pointer-events: none;
+}
+
+#tooltip div {
+    padding-left: 5px;
+}
+
+#tooltip div:nth-child(odd) {
+    text-align: right;
+}
+
+.tilesheet {
+    display: none;
+}
