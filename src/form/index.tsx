@@ -1,6 +1,15 @@
 import {parameters} from "../Parameters.ts";
+import {useEffect} from "react";
 
 export function Form() {
+    useEffect(() => {
+        document.location.hash = Object.keys(window.settings)
+            .map((k) => `${k}=${window.settings[k]}`)
+            .join("&");
+
+        localStorage.mapGenSettings = JSON.stringify(window.settings);
+    }, [window.settings]);
+
     return (
         <form>
             {parameters.map(({name, type, element}) => {

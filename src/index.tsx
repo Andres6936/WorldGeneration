@@ -3,7 +3,6 @@ import {createRoot} from 'react-dom/client'
 
 import {generate} from "./Generate";
 import {parameters} from "./Parameters";
-import {saveSettings} from "./settings";
 import {Form} from "./form";
 
 let defaultSettings = JSON.stringify({
@@ -57,7 +56,7 @@ function init() {
     if (!window.settings || window.settings.width == 0)
         window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
 
-    rebuildForm();
+
     applySettings();
 }
 
@@ -121,7 +120,6 @@ function applySettings() {
         if (id_value) id_value.innerText = String(window.settings[name]).substr(0, 8);
     }
 
-    saveSettings();
     generate(window.settings);
 }
 
