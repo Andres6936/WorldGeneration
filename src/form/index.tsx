@@ -24,7 +24,7 @@ export function Form() {
             setSettings(defaultSettings);
             generate(defaultSettings);
         }
-    }, []);
+    }, [setSettings]);
 
     return (
         <form>
