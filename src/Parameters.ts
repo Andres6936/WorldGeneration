@@ -1,6 +1,7 @@
 type FormParameters = {
     name: string,
     type: "checkbox",
+    element?: undefined,
 } | {
     name: string,
     type: "number",
@@ -17,6 +18,7 @@ type FormParameters = {
 } | {
     name: string,
     type: "tip",
+    element?: undefined,
 }
 
 export const parameters: FormParameters[] = [
