@@ -57,7 +57,9 @@ export function Form() {
                                     step={step}
                                     value={window.settings[name]}
                                 />
-                                <div id={name + '_value'}></div>
+                                <div id={name + '_value'}>
+                                    {window.settings[name]}
+                                </div>
                             </>
                         )
                     }
