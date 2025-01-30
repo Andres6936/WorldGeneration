@@ -18,6 +18,7 @@ export function Form() {
                                     {name}
                                 </div>
                                 <input
+                                    onChange={({target}) => window.settings[name] = target.checked}
                                     checked={window.settings[name]}
                                     className="checkbox"
                                     type="checkbox"
@@ -32,6 +33,7 @@ export function Form() {
                                     {name}
                                 </div>
                                 <input
+                                    onChange={({target}) => window.settings[name] = target.valueAsNumber}
                                     className="number"
                                     type="number"
                                     id={name}
