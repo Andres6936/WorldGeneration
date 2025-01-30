@@ -36,47 +36,46 @@ export function Form() {
     return (
         <form>
             {parameters.map(({name, type, element}) => {
-                switch (type) {
-                    case "tip":
-                        return (
-                            <TipInput
-                                key={name}
-                                name={name}
-                                type={type}
-                                element={element}
-                                settings={settings}
-                            />
-                        )
-                    case "checkbox":
-                        return (
-                            <CheckboxInput
-                                key={name}
-                                name={name}
-                                type={type}
-                                element={element}
-                                settings={settings}
-                            />
-                        )
-                    case "number":
-                        return (
-                            <NumberInput
-                                key={name}
-                                name={name}
-                                type={type}
-                                element={element}
-                                settings={settings}
-                            />
-                        )
-                    case "range":
-                        return (
-                            <RangeInput
-                                key={name}
-                                name={name}
-                                type={type}
-                                element={element}
-                                settings={settings}
-                            />
-                        )
+                if (type === "tip") {
+                    return (
+                        <TipInput
+                            key={name}
+                            name={name}
+                            type={type}
+                            element={element}
+                            settings={settings}
+                        />
+                    )
+                } else if (type === "checkbox") {
+                    return (
+                        <CheckboxInput
+                            key={name}
+                            name={name}
+                            type={type}
+                            element={element}
+                            settings={settings}
+                        />
+                    )
+                } else if (type === "number") {
+                    return (
+                        <NumberInput
+                            key={name}
+                            name={name}
+                            type={type}
+                            element={element}
+                            settings={settings}
+                        />
+                    )
+                } else if (type === "range") {
+                    return (
+                        <RangeInput
+                            key={name}
+                            name={name}
+                            type={type}
+                            element={element}
+                            settings={settings}
+                        />
+                    )
                 }
             })}
         </form>
