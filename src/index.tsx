@@ -1,6 +1,10 @@
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
+
 import {generate} from "./Generate";
 import {parameters} from "./Parameters";
 import {saveSettings} from "./settings";
+import {Form} from "./form";
 
 let defaultSettings = JSON.stringify({
     mapMode: 0,
@@ -120,3 +124,9 @@ function applySettings() {
     saveSettings();
     generate(window.settings);
 }
+
+createRoot(document.getElementById('root-form')!).render(
+    <StrictMode>
+        <Form/>
+    </StrictMode>,
+)
