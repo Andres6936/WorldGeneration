@@ -14,8 +14,9 @@ import {saveSettings} from "./settings";
 import {generatePrettyRivers} from "./River";
 import {drawTerrain, ISPATH} from "./HexDraw";
 import {random, spread} from "./Util";
+import {Settings} from "./global";
 
-export function generate(settings) {
+export function generate(settings: Settings) {
     console.time("generation");
     let generatedMap = generateMap(settings);
     let {
