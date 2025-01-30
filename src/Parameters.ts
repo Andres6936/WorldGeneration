@@ -1,14 +1,22 @@
-interface FormElement {
-    min?: number,
-    max?: number,
-    tip?: string
-    step?: number,
-}
-
-interface FormParameters {
+type FormParameters = {
     name: string,
-    type: "checkbox" | "number" | "range" | "tip",
-    element?: FormElement
+    type: "checkbox",
+} | {
+    name: string,
+    type: "number",
+    element: { tip: string }
+} | {
+    name: string,
+    type: "range",
+    element: {
+        max?: number,
+        step?: number,
+        tip?: string,
+        min?: number,
+    }
+} | {
+    name: string,
+    type: "tip",
 }
 
 export const parameters: FormParameters[] = [
