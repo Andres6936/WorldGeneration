@@ -35,28 +35,6 @@ window.tips = {};
 window.maps = [];
 window.miniMaps = [];
 window.settings = {};
-window.onload = init;
-
-function init() {
-    if (document.location.hash) {
-        window.settings = {};
-        let records = document.location.hash
-            .substr(1)
-            .split("&")
-            .map((s) => s.split("="));
-        console.log(records);
-        for (let ss of records) {
-            window.settings[ss[0]] =
-                ss[1] == "false" ? false : ss[1] == "true" ? true : Number(ss[1]);
-        }
-        console.log(window.settings);
-    }
-
-    if (!window.settings || window.settings.width == 0)
-        window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
-
-}
-
 
 createRoot(document.getElementById('root-form')!).render(
     <StrictMode>

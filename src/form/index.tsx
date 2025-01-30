@@ -4,16 +4,31 @@ import {generate} from "../Generate.ts";
 
 export function Form() {
     useEffect(() => {
+        if (document.location.hash) {
+            window.settings = {};
+            let records = document.location.hash
+                .substr(1)
+                .split("&")
+                .map((s) => s.split("="));
+            console.log(records);
+            for (let ss of records) {
+                window.settings[ss[0]] =
+                    ss[1] == "false" ? false : ss[1] == "true" ? true : Number(ss[1]);
+            }
+            console.log(window.settings);
+        }
+
+        if (!window.settings || window.settings.width == 0)
+            window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
+
         document.location.hash = Object.keys(window.settings)
             .map((k) => `${k}=${window.settings[k]}`)
             .join("&");
 
         localStorage.mapGenSettings = JSON.stringify(window.settings);
-    }, [window.settings]);
 
-    useEffect(() => {
         generate(window.settings)
-    }, []);
+    }, [window.settings]);
 
     return (
         <form>
