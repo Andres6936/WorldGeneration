@@ -23,11 +23,6 @@ button.blue {
     }
 }
 
-.all {
-    display: flex;
-    flex-flow: row;
-}
-
 .number,
 .checkbox {
     width: 5em;
@@ -42,13 +37,6 @@ button.blue {
 
 .range {
     width: 25em;
-}
-
-form {
-    margin: 1em;
-    width: 40em;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #minimaps {

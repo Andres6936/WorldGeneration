@@ -11,7 +11,7 @@ export const RangeInput = React.memo(({element, name, settings}: Props) => {
     const step = element.step || (max - min) / 100;
 
     return (
-        <>
+        <div className="flex flex:row gap:1rem">
             <div>
                 {name}
             </div>
@@ -27,6 +27,6 @@ export const RangeInput = React.memo(({element, name, settings}: Props) => {
             <div id={name + '_value'}>
                 {settings[name]}
             </div>
-        </>
+        </div>
     )
 })

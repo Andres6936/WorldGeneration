@@ -7,7 +7,7 @@ type Props = CheckboxForm & {
 
 export const CheckboxInput = React.memo(({name, settings}: Props) => {
     return (
-        <>
+        <div className="flex flex:row gap:1rem">
             <div>
                 {name}
             </div>
@@ -18,6 +18,6 @@ export const CheckboxInput = React.memo(({name, settings}: Props) => {
                 type="checkbox"
                 id={name}
             />
-        </>
+        </div>
     )
 })

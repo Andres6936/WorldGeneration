@@ -7,7 +7,7 @@ type Props = NumberForm & {
 
 export const NumberInput = React.memo(({name, settings}: Props) => {
     return (
-        <>
+        <div className="flex flex:row gap:1rem">
             <div>
                 {name}
             </div>
@@ -18,6 +18,6 @@ export const NumberInput = React.memo(({name, settings}: Props) => {
                 id={name}
                 value={settings[name]}
             />
-        </>
+        </div>
     )
 })
