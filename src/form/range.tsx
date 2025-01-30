@@ -12,11 +12,11 @@ export const RangeInput = React.memo(({element, name, settings}: Props) => {
 
     return (
         <div className="flex flex:row gap:1rem">
-            <div>
+            <div className="w:8rem">
                 {name}
             </div>
             <input
-                className="range"
+                className="w:8rem"
                 type="range"
                 id={name}
                 min={min}
@@ -24,7 +24,7 @@ export const RangeInput = React.memo(({element, name, settings}: Props) => {
                 step={step}
                 value={settings[name]}
             />
-            <div id={name + '_value'}>
+            <div className="w:4rem">
                 {settings[name]}
             </div>
         </div>

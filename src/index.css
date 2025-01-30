@@ -35,10 +35,6 @@ button.blue {
     text-align: center;
 }
 
-.range {
-    width: 25em;
-}
-
 #minimaps {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
