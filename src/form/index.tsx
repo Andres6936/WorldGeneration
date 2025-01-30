@@ -30,7 +30,7 @@ export function Form() {
         localStorage.mapGenSettings = JSON.stringify(window.settings);
 
         generate(window.settings)
-    }, [window.settings]);
+    }, []);
 
     return (
         <form>
