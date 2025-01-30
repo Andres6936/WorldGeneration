@@ -1,6 +1,5 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
-import {parameters} from "./Parameters";
 import {Form} from "./form";
 
 let defaultSettings = JSON.stringify({
@@ -32,9 +31,11 @@ let defaultSettings = JSON.stringify({
     squareGrid: false,
 });
 
+window.tips = {};
 window.maps = [];
 window.miniMaps = [];
 window.settings = {};
+window.onload = init;
 
 function init() {
     if (document.location.hash) {
@@ -54,50 +55,6 @@ function init() {
     if (!window.settings || window.settings.width == 0)
         window.settings = JSON.parse(localStorage.mapGenSettings || defaultSettings);
 
-}
-
-window.onload = init;
-
-function resetSettings() {
-    window.settings = JSON.parse(defaultSettings);
-    rebuildForm();
-    applySettings();
-}
-
-window.tips = {};
-
-function rebuildForm() {
-    let form = document.getElementById("form");
-    if (form === null) {
-        throw new Error("Cannot found the Form in the DOM.")
-    }
-    form.innerHTML = "";
-
-    for (let {name, type, element} of parameters) {
-        element = element || {};
-        window.tips[name] = element.tip;
-        switch (type) {
-            case "tip":
-                form.innerHTML += `<div class="tip">${name}</div>`;
-                break;
-            case "checkbox":
-                form.innerHTML += `<div>${name}</div><input class="checkbox" type="checkbox" id="${name}" ${
-                    window.settings[name] ? "checked" : ""
-                } />`;
-                break;
-            case "number":
-                form.innerHTML += `<div>${name}</div><input class="number" type="number" id="${name}" value="${settings[name]}" />`;
-                break;
-            case "range":
-                let min = element.min || 0;
-                let max = element.max || 1;
-                let step = element.step || (max - min) / 100;
-                form.innerHTML += `<div>${name}</div><input class="range" type="range" id="${name}" min="${min}" max="${max}" step="${step}" value="${settings[name]}"/>
-        <div id="${name}_value"></div>
-        `;
-                break;
-        }
-    }
 }
 
 
