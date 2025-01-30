@@ -13,11 +13,12 @@ export function Form() {
                 .split("&")
                 .map((s) => s.split("="));
 
-            const localSettings: Record<string, string | number | boolean> = {}
-            for (let ss of records) {
-                localSettings[ss[0]] =
-                    ss[1] == "false" ? false : ss[1] == "true" ? true : Number(ss[1]);
-            }
+            const localSettings = Object.fromEntries(
+                records.map(([key, value]) => [
+                    key,
+                    value === "false" ? false : value === "true" ? true : Number(value)
+                ])
+            );
             globalThis.settings = localSettings;
             setSettings(localSettings);
             generate(localSettings);
