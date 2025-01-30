@@ -79,7 +79,7 @@ export function Form() {
                 }
             })}
 
-            <button className="blue">
+            <button className="mt:1rem blue">
                 Reset to default
             </button>
         </form>
