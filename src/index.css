@@ -10,6 +10,17 @@ html {
     }
 }
 
+button.blue {
+    color: var(--blue-1);
+    background-color: var(--indigo-7);
+    border: 1px solid var(--indigo-9);
+    border-radius: var(--radius-round);
+
+    &:hover {
+        background-color: var(--indigo-9);
+    }
+}
+
 .all {
     display: flex;
     flex-flow: row;
