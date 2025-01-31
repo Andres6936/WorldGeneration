@@ -6,9 +6,12 @@ type State = {
     settings: Settings,
 }
 
-type Actions = {}
+type Actions = {
+    setSettings: (settings: Settings) => void,
+}
 
-export const useSettings = create<State & Actions>(() => ({
+export const useSettings = create<State & Actions>((set) => ({
     settings: defaultSettings,
+    setSettings: () => set({settings: defaultSettings}),
 }))
 
