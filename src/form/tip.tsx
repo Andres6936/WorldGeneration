@@ -1,10 +1,7 @@
 import React from "react";
 import {TipForm} from "../Parameters.ts";
-import {Settings} from "../global";
 
-type Props = TipForm & {
-    settings: Settings,
-}
+type Props = TipForm & {}
 
 export const TipInput = React.memo(({name}: Props) => {
     return (

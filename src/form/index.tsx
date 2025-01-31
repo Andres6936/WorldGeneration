@@ -27,7 +27,6 @@ export function Form() {
                             name={name}
                             type={type}
                             element={element}
-                            settings={settings}
                         />
                     )
                 } else if (type === "checkbox") {
