@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useMemo} from "react";
 import {NumberForm} from "../Parameters.ts";
 import {useSettings} from "../store/useSettings.ts";
 
@@ -6,6 +6,10 @@ type Props = NumberForm & {}
 
 export const NumberInput = React.memo(({name}: Props) => {
     const [settings, setSettings] = useSettings(state => [state.settings, state.setSettings])
+
+    const value = useMemo(() => {
+        return settings[name] as number
+    }, [settings])
 
     const onChange = useCallback((valueAsNumber: number) => {
         setSettings({
@@ -24,7 +28,7 @@ export const NumberInput = React.memo(({name}: Props) => {
                 className="number"
                 type="number"
                 id={name}
-                value={settings[name] as number}
+                value={value}
             />
         </div>
     )
