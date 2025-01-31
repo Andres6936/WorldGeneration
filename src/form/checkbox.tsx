@@ -1,8 +1,9 @@
 import React from "react";
 import {CheckboxForm} from "../Parameters.ts";
+import {Settings} from "../global";
 
 type Props = CheckboxForm & {
-    settings: Record<string, string | number | boolean>,
+    settings: Settings,
 }
 
 export const CheckboxInput = React.memo(({name, settings}: Props) => {
@@ -12,7 +13,7 @@ export const CheckboxInput = React.memo(({name, settings}: Props) => {
                 {name}
             </div>
             <input
-                onChange={({target}) => globalThis.settings[name] = target.checked}
+                onChange={({target}) => settings[name] = target.checked}
                 checked={settings[name]}
                 className="checkbox"
                 type="checkbox"

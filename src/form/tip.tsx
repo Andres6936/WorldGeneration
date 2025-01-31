@@ -1,11 +1,12 @@
 import React from "react";
 import {TipForm} from "../Parameters.ts";
+import {Settings} from "../global";
 
 type Props = TipForm & {
-    settings: Record<string, string | number | boolean>,
+    settings: Settings,
 }
 
-export const TipInput = React.memo(({name, settings}: Props) => {
+export const TipInput = React.memo(({name}: Props) => {
     return (
         <div className="tip">
             {name}
