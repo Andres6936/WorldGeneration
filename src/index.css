@@ -60,7 +60,3 @@ button.blue {
 #tooltip div:nth-child(odd) {
     text-align: right;
 }
-
-.tilesheet {
-    display: none;
-}
