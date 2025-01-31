@@ -12,6 +12,6 @@ type Actions = {
 
 export const useSettings = create<State & Actions>((set) => ({
     settings: defaultSettings,
-    setSettings: () => set({settings: defaultSettings}),
+    setSettings: (newSettings) => set({settings: newSettings}),
 }))
 
