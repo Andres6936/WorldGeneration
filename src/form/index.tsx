@@ -15,7 +15,7 @@ export function Form() {
         globalThis.settings = defaultSettings;
         setSettings(defaultSettings);
         generate(defaultSettings);
-    }, [setSettings]);
+    }, []);
 
     return (
         <form className="border:1px|solid|#CCC p:1rem r:0.5rem">
