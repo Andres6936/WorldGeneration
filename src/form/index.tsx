@@ -12,26 +12,9 @@ export function Form() {
     const [settings, setSettings] = useSettings(state => [state.settings, state.setSettings])
 
     useEffect(() => {
-        if (document.location.hash) {
-            let records = document.location.hash
-                .substr(1)
-                .split("&")
-                .map((s) => s.split("="));
-
-            const localSettings = Object.fromEntries(
-                records.map(([key, value]) => [
-                    key,
-                    value === "false" ? false : value === "true" ? true : Number(value)
-                ])
-            );
-            globalThis.settings = localSettings;
-            setSettings(localSettings);
-            generate(localSettings);
-        } else {
-            globalThis.settings = defaultSettings;
-            setSettings(defaultSettings);
-            generate(defaultSettings);
-        }
+        globalThis.settings = defaultSettings;
+        setSettings(defaultSettings);
+        generate(defaultSettings);
     }, [setSettings]);
 
     return (
