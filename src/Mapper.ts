@@ -7,6 +7,7 @@ import {gradientNoise} from "./Noise";
 import {approximateQuantile, normalizeValues} from "./Util";
 import {generateRiversAndErosion} from "./River";
 import {generateHumidity} from "./Humidity";
+import {Settings} from "./global";
 
 interface GenerateMap {
   elevation: Float32Array,
@@ -43,7 +44,7 @@ export function generateMap({
   riversShown,
   randomiseHumidity,
   generatePhoto
-}) : GenerateMap {
+                            }: Settings): GenerateMap {
   window.randomSeed = seed;
 
   const mapSize = width * height;
