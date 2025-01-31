@@ -1,8 +1,9 @@
 import React from "react";
 import {RangeForm} from "../Parameters.ts";
+import {Settings} from "../global";
 
 type Props = RangeForm & {
-    settings: Record<string, string | number | boolean>,
+    settings: Settings,
 }
 
 export const RangeInput = React.memo(({element, name, settings}: Props) => {
@@ -22,7 +23,7 @@ export const RangeInput = React.memo(({element, name, settings}: Props) => {
                 min={min}
                 max={max}
                 step={step}
-                value={settings[name]}
+                value={settings[name] as number}
             />
             <div className="w:4rem">
                 {settings[name]}

@@ -14,7 +14,7 @@ export const CheckboxInput = React.memo(({name, settings}: Props) => {
             </div>
             <input
                 onChange={({target}) => settings[name] = target.checked}
-                checked={settings[name]}
+                checked={settings[name] as boolean}
                 className="checkbox"
                 type="checkbox"
                 id={name}

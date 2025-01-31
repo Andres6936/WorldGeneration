@@ -1,11 +1,13 @@
+import {Settings} from "./global";
+
 export type CheckboxForm = {
-    name: string,
+    name: keyof Settings,
     type: "checkbox",
     element?: undefined,
 }
 
 export type RangeForm = {
-    name: string,
+    name: keyof Settings,
     type: "range",
     element: {
         max?: number,
@@ -16,7 +18,7 @@ export type RangeForm = {
 }
 
 export type NumberForm = {
-    name: string,
+    name: keyof Settings,
     type: "number",
     element: { tip: string }
 }
