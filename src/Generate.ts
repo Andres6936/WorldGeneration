@@ -10,7 +10,6 @@ import {
     SQUARE,
     SQUARE8
 } from './Geometry'
-import {saveSettings} from "./settings";
 import {generatePrettyRivers} from "./River";
 import {drawTerrain, ISPATH} from "./HexDraw";
 import {random, spread} from "./Util";
@@ -421,7 +420,6 @@ function showMap(data, title, fun, scale = 1 / 4) {
     window.miniMaps.push(mini);
     mini.onclick = () => {
         globalThis.settings.mapMode = id;
-        saveSettings();
         document.getElementById("map").innerHTML = "";
         document.getElementById("map").appendChild(image);
     };

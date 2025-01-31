@@ -26,11 +26,3 @@ export const defaultSettings = {
     generatePhoto: true,
     squareGrid: false,
 };
-
-export function saveSettings() {
-    document.location.hash = Object.keys(globalThis.settings)
-        .map((k) => `${k}=${globalThis.settings[k]}`)
-        .join("&");
-
-    localStorage.mapGenSettings = JSON.stringify(globalThis.settings);
-}
