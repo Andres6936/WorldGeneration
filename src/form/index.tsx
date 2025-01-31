@@ -1,14 +1,15 @@
 import {parameters} from "../Parameters.ts";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {generate} from "../Generate.ts";
 import {defaultSettings} from "../settings.ts";
 import {RangeInput} from "./range.tsx";
 import {NumberInput} from "./number.tsx";
 import {CheckboxInput} from "./checkbox.tsx";
 import {TipInput} from "./tip.tsx";
+import {useSettings} from "../store/useSettings.ts";
 
 export function Form() {
-    const [settings, setSettings] = useState<Record<string, string | number | boolean>>({})
+    const [settings, setSettings] = useSettings(state => [state.settings, state.setSettings])
 
     useEffect(() => {
         if (document.location.hash) {
