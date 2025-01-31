@@ -6,14 +6,9 @@ import {RangeInput} from "./range.tsx";
 import {NumberInput} from "./number.tsx";
 import {CheckboxInput} from "./checkbox.tsx";
 import {TipInput} from "./tip.tsx";
-import {useSettings} from "../store/useSettings.ts";
 
 export function Form() {
-    const [settings, setSettings] = useSettings(state => [state.settings, state.setSettings])
-
     useEffect(() => {
-        globalThis.settings = defaultSettings;
-        setSettings(defaultSettings);
         generate(defaultSettings);
     }, []);
 
@@ -36,7 +31,6 @@ export function Form() {
                             name={name}
                             type={type}
                             element={element}
-                            settings={settings}
                         />
                     )
                 } else if (type === "number") {
@@ -46,7 +40,6 @@ export function Form() {
                             name={name}
                             type={type}
                             element={element}
-                            settings={settings}
                         />
                     )
                 } else if (type === "range") {
@@ -56,7 +49,6 @@ export function Form() {
                             name={name}
                             type={type}
                             element={element}
-                            settings={settings}
                         />
                     )
                 }

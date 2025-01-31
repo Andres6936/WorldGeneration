@@ -1,12 +1,12 @@
 import React from "react";
 import {RangeForm} from "../Parameters.ts";
-import {Settings} from "../global";
+import {useSettings} from "../store/useSettings.ts";
 
-type Props = RangeForm & {
-    settings: Settings,
-}
+type Props = RangeForm & {}
 
-export const RangeInput = React.memo(({element, name, settings}: Props) => {
+export const RangeInput = React.memo(({element, name}: Props) => {
+    const [settings] = useSettings(state => [state.settings])
+
     const min = element.min || 0;
     const max = element.max || 1;
     const step = element.step || (max - min) / 100;
