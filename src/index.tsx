@@ -1,8 +1,9 @@
+import './index.css'
+
 import React, {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 import {Form} from "./form";
-
-import './index.css'
+import {Draw} from "./draw";
 
 window.tips = {};
 window.maps = [];
@@ -16,10 +17,7 @@ const App = React.memo(() => {
             <div id="tooltip">tooltip</div>
             <div className="flex flex:row gap:1rem">
                 <Form/>
-                <div>
-                    <div id="map"></div>
-                    <div id="minimaps"></div>
-                </div>
+                <Draw/>
             </div>
             <canvas id="gameMap"/>
         </>
