@@ -28,7 +28,7 @@ export function subImage(image: HTMLCanvasElement, left: number, top: number, wi
     return canvas;
 }
 
-export function colorFromRGBString(color) {
+export function colorFromRGBString(color: string) {
     let n = parseInt(color, 16);
     return [Math.floor(n / 65536), Math.floor(n / 256) % 256, n % 256, 256];
 }
@@ -45,7 +45,7 @@ interface ElevationImageParams {
  * Returns elevation image with higher elevation being brighter
  */
 export function elevation2Image(
-    {elevation, rivers},
+    {elevation, rivers}: { elevation: Float32Array, rivers: Float32Array },
     {
         discreteHeights = 10,
         terrainTypeColoring = false,
@@ -57,7 +57,7 @@ export function elevation2Image(
     let hillElevation: number = approximateQuantile(elevation, 1 - hillRatio);
     let mountainElevation: number = approximateQuantile(elevation, 1 - mountainRatio);
 
-    return (v, i) => {
+    return (v: number, i: number) => {
         if (rivers[i] && v > 0) {
             return [0, v * 400, 200, 255];
         }
