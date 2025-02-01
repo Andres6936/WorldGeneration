@@ -15,7 +15,7 @@ import {drawTerrain, ISPATH} from "./HexDraw";
 import {random, spread} from "./Util";
 import {Settings} from "./global";
 
-export function generate(settings: Settings) {
+export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings: Settings) {
     console.time("generation");
     let generatedMap = generateMap(settings);
     let {
