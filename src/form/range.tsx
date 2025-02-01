@@ -5,7 +5,7 @@ import {useSettings} from "../store/useSettings.ts";
 type Props = RangeForm & {}
 
 export const RangeInput = React.memo(({element, name}: Props) => {
-    const [settings] = useSettings(state => [state.settings])
+    const settings = useSettings(state => state.settings)
 
     const min = element.min || 0;
     const max = element.max || 1;

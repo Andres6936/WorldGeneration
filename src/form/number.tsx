@@ -5,7 +5,8 @@ import {useSettings} from "../store/useSettings.ts";
 type Props = NumberForm & {}
 
 export const NumberInput = React.memo(({name}: Props) => {
-    const [settings, setSettings] = useSettings(state => [state.settings, state.setSettings])
+    const settings = useSettings(state => state.settings)
+    const setSettings = useSettings(state => state.setSettings)
 
     const value = useMemo(() => {
         return settings[name] as number

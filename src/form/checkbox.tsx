@@ -5,14 +5,15 @@ import {useSettings} from "../store/useSettings.ts";
 type Props = CheckboxForm & {}
 
 export const CheckboxInput = React.memo(({name}: Props) => {
-    const [settings, setSettings] = useSettings(state => [state.settings, state.setSettings])
+    const settings = useSettings(state => state.settings)
+    const setSettings = useSettings(state => state.setSettings)
 
     const onChange = useCallback((checked: boolean) => {
         setSettings({
             ...settings,
             [name]: checked,
         })
-    }, [])
+    }, [setSettings])
 
     return (
         <div className="flex flex:row gap:1rem">
