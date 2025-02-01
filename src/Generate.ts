@@ -73,24 +73,38 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     window.miniMaps = [];
 
     showMap(
+        drawAt,
+        mapAt,
         elevation,
         "elevation",
         elevation2Image({elevation, rivers}, settings)
         //(v,i) => v>0?[v * 400, 250 - v*150, (v - elevation[i-12*settings.width])*500, 255]:[0,0,100+v*200,255]
     );
 
-    showMap(tectonic, "tectonics", (v, i) => [0, 0, 0, v * 255]);
+    showMap(
+        drawAt,
+        mapAt,
+        tectonic, "tectonics", (v, i) => [0, 0, 0, v * 255]);
 
-    showMap(temperature, "temperature", (v, i) => [
+    showMap(
+        drawAt,
+        mapAt,
+        temperature, "temperature", (v, i) => [
         v * 5 + 100,
         255 - Math.abs(v - 5) * 10,
         155 - v * 5,
         255,
     ]);
 
-    showMap(wind, "wind", (v, i) => [v * 100, 0, -v * 100, 255]);
+    showMap(
+        drawAt,
+        mapAt,
+        wind, "wind", (v, i) => [v * 100, 0, -v * 100, 255]);
 
-    showMap(humidity, "humidity", (v, i) =>
+    showMap(
+        drawAt,
+        mapAt,
+        humidity, "humidity", (v, i) =>
         rivers[i] && elevation[i] > 0
             ? [0, 0, 0, 255]
             : i % settings.width < 20
@@ -100,7 +114,10 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
                     : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
     );
 
-    showMap(biome, "biome", (v, i) =>
+    showMap(
+        drawAt,
+        mapAt,
+        biome, "biome", (v, i) =>
         elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
     );
 
@@ -403,7 +420,7 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     console.timeEnd("gamemap");
 }
 
-function showMap(data, title, fun, scale = 1 / 4) {
+function showMap(drawAt: HTMLDivElement, mapAt: HTMLDivElement, data, title, fun, scale = 1 / 4) {
     let image = data2image(data, globalThis.settings.width, fun);
     let mini = rescaleImage(image, image.width * scale, image.height * scale);
     let ctx = context2d(mini);
@@ -411,18 +428,18 @@ function showMap(data, title, fun, scale = 1 / 4) {
     ctx.fillStyle = "white";
     ctx.strokeText(title, 5, 15);
     ctx.fillText(title, 4, 14);
-    document.getElementById("minimaps").appendChild(mini);
+    mapAt.appendChild(mini);
     let id = window.maps.length;
 
     if (id == globalThis.settings.mapMode)
-        document.getElementById("map").appendChild(image);
+        drawAt.appendChild(image);
 
     mini.id = "mini_" + id;
     window.maps.push(image);
     window.miniMaps.push(mini);
     mini.onclick = () => {
         globalThis.settings.mapMode = id;
-        document.getElementById("map").innerHTML = "";
-        document.getElementById("map").appendChild(image);
+        drawAt.innerHTML = "";
+        drawAt.appendChild(image);
     };
 }
