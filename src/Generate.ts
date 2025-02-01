@@ -73,6 +73,7 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     window.miniMaps = [];
 
     showMap(
+        settings,
         drawAt,
         mapAt,
         elevation,
@@ -82,11 +83,13 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     );
 
     showMap(
+        settings,
         drawAt,
         mapAt,
         tectonic, "tectonics", (v, i) => [0, 0, 0, v * 255]);
 
     showMap(
+        settings,
         drawAt,
         mapAt,
         temperature, "temperature", (v, i) => [
@@ -97,11 +100,13 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     ]);
 
     showMap(
+        settings,
         drawAt,
         mapAt,
         wind, "wind", (v, i) => [v * 100, 0, -v * 100, 255]);
 
     showMap(
+        settings,
         drawAt,
         mapAt,
         humidity, "humidity", (v, i) =>
@@ -115,13 +120,14 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     );
 
     showMap(
+        settings,
         drawAt,
         mapAt,
         biome, "biome", (v, i) =>
         elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
     );
 
-    if (settings.generatePhoto) showMap(photo, "photo", (v, i) => v);
+    if (settings.generatePhoto) showMap(settings, drawAt, mapAt, photo, "photo", (v, i) => v);
 
     console.timeEnd("draw");
 
@@ -420,8 +426,17 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     console.timeEnd("gamemap");
 }
 
-function showMap(drawAt: HTMLDivElement, mapAt: HTMLDivElement, data, title, fun, scale = 1 / 4) {
-    let image = data2image(data, globalThis.settings.width, fun);
+function showMap(
+    settings: Settings,
+    drawAt: HTMLDivElement,
+    mapAt: HTMLDivElement,
+    data,
+    title,
+    fun,
+    scale = 1 / 4,
+) {
+
+    let image = data2image(data, settings.width, fun);
     let mini = rescaleImage(image, image.width * scale, image.height * scale);
     let ctx = context2d(mini);
     ctx.font = "14px Verdana";
@@ -431,14 +446,14 @@ function showMap(drawAt: HTMLDivElement, mapAt: HTMLDivElement, data, title, fun
     mapAt.appendChild(mini);
     let id = window.maps.length;
 
-    if (id == globalThis.settings.mapMode)
+    if (id == settings.mapMode)
         drawAt.appendChild(image);
 
     mini.id = "mini_" + id;
     window.maps.push(image);
     window.miniMaps.push(mini);
     mini.onclick = () => {
-        globalThis.settings.mapMode = id;
+        settings.mapMode = id;
         drawAt.innerHTML = "";
         drawAt.appendChild(image);
     };
