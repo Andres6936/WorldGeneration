@@ -65,6 +65,10 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     };
 
     console.time("draw");
+
+    drawAt.innerHTML = "";
+    mapAt.innerHTML = "";
+
     window.maps = [];
     window.miniMaps = [];
 
