@@ -20,8 +20,6 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     let generatedMap = generateMap(settings);
     let {
         elevation,
-        noise,
-        crust,
         tectonic,
         rivers,
         wind,
