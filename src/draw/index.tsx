@@ -12,7 +12,8 @@ export const Draw = React.memo(() => {
         if (drawAt.current === null || mapAt.current === null) return;
         // Draw the map
         generate(drawAt.current, mapAt.current, settings);
-    }, []);
+
+    }, [settings]);
 
     return (
         <div>

@@ -49,7 +49,7 @@ export const Tooltip = React.memo(() => {
         return () => {
             window.removeEventListener('mousemove', handleMouseMove)
         }
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={tooltipAt} id="tooltip"/>
