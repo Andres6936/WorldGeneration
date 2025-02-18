@@ -30,7 +30,7 @@ export const Canvas = React.memo(() => {
             humidity,
         } = maps;
 
-        console.time("gamemap");
+        console.time("Drawing Canvas Map");
 
         let layout = settings.squareGrid ? SQUARE : AXIAL;
 
@@ -322,7 +322,7 @@ export const Canvas = React.memo(() => {
             gameCanvas.setAttribute('style', `display:none;`)
         }
 
-        console.timeEnd("gamemap");
+        console.timeEnd("Drawing Canvas Map");
 
     }, [maps, settings]);
 
