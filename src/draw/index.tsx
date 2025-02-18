@@ -85,30 +85,41 @@ export const Draw = React.memo(() => {
             settings,
             drawContainer,
             mapContainer,
-            tectonic, "tectonics", (v, i) => [0, 0, 0, v * 255]);
+            tectonic,
+            "tectonics",
+            (v, i) => [0, 0, 0, v * 255]
+        );
 
         showMap(
             settings,
             drawContainer,
             mapContainer,
-            temperature, "temperature", (v, i) => [
+            temperature,
+            "temperature",
+            (v, i) => [
                 v * 5 + 100,
                 255 - Math.abs(v - 5) * 10,
                 155 - v * 5,
                 255,
-            ]);
+            ]
+        );
 
         showMap(
             settings,
             drawContainer,
             mapContainer,
-            wind, "wind", (v, i) => [v * 100, 0, -v * 100, 255]);
+            wind,
+            "wind",
+            (v, i) => [v * 100, 0, -v * 100, 255]
+        );
 
         showMap(
             settings,
             drawContainer,
             mapContainer,
-            humidity, "humidity", (v, i) =>
+            humidity,
+            "humidity",
+            (v, i) =>
                 rivers[i] && elevation[i] > 0
                     ? [0, 0, 0, 255]
                     : i % settings.width < 20
@@ -122,8 +133,9 @@ export const Draw = React.memo(() => {
             settings,
             drawContainer,
             mapContainer,
-            biome, "biome", (v, i) =>
-                elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
+            biome,
+            "biome",
+            (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
         );
 
         if (settings.generatePhoto) {
