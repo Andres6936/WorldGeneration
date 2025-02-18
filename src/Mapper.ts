@@ -9,7 +9,7 @@ import {generateRiversAndErosion} from "./River";
 import {generateHumidity} from "./Humidity";
 import {Settings} from "./global";
 
-interface GenerateMap {
+export type GenerateMap = {
   elevation: Float32Array,
   noise: Float32Array,
   crust: Float32Array,
