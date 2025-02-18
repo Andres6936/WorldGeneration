@@ -28,8 +28,10 @@ const App = React.memo(() => {
     const setMaps = useMaps(state => state.setMaps)
 
     useEffect(() => {
+        console.time("Generation Map")
         // Generate the map with the current settings
         setMaps(generateMap(settings))
+        console.timeEnd("Generation Map")
 
     }, [settings, setMaps]);
 
