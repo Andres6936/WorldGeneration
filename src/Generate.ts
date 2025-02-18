@@ -1,6 +1,4 @@
-import {contrastColors, generateMap} from "./Mapper";
-import {elevation2Image, rescaleImage} from './UtilImage'
-import {context2d, data2image} from './CanvasContext'
+import {generateMap} from "./Mapper";
 import {
     AXIAL,
     createNeighborDeltas,
@@ -29,73 +27,6 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     } = generateMap(settings);
 
     console.timeEnd("generation");
-
-    console.time("draw");
-
-    drawAt.innerHTML = "";
-    mapAt.innerHTML = "";
-
-    window.maps = [];
-    window.miniMaps = [];
-
-    showMap(
-        settings,
-        drawAt,
-        mapAt,
-        elevation,
-        "elevation",
-        elevation2Image({elevation, rivers}, settings)
-        //(v,i) => v>0?[v * 400, 250 - v*150, (v - elevation[i-12*settings.width])*500, 255]:[0,0,100+v*200,255]
-    );
-
-    showMap(
-        settings,
-        drawAt,
-        mapAt,
-        tectonic, "tectonics", (v, i) => [0, 0, 0, v * 255]);
-
-    showMap(
-        settings,
-        drawAt,
-        mapAt,
-        temperature, "temperature", (v, i) => [
-        v * 5 + 100,
-        255 - Math.abs(v - 5) * 10,
-        155 - v * 5,
-        255,
-    ]);
-
-    showMap(
-        settings,
-        drawAt,
-        mapAt,
-        wind, "wind", (v, i) => [v * 100, 0, -v * 100, 255]);
-
-    showMap(
-        settings,
-        drawAt,
-        mapAt,
-        humidity, "humidity", (v, i) =>
-        rivers[i] && elevation[i] > 0
-            ? [0, 0, 0, 255]
-            : i % settings.width < 20
-                ? [wind[i] * 100, 0, -wind[i] * 100, 255]
-                : elevation[i] < 0
-                    ? [0, 0, 0, 255]
-                    : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
-    );
-
-    showMap(
-        settings,
-        drawAt,
-        mapAt,
-        biome, "biome", (v, i) =>
-        elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
-    );
-
-    if (settings.generatePhoto) showMap(settings, drawAt, mapAt, photo, "photo", (v, i) => v);
-
-    console.timeEnd("draw");
 
     console.time("gamemap");
 
@@ -392,35 +323,3 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     console.timeEnd("gamemap");
 }
 
-function showMap(
-    settings: Settings,
-    drawAt: HTMLDivElement,
-    mapAt: HTMLDivElement,
-    data,
-    title,
-    fun,
-    scale = 1 / 4,
-) {
-
-    let image = data2image(data, settings.width, fun);
-    let mini = rescaleImage(image, image.width * scale, image.height * scale);
-    let ctx = context2d(mini);
-    ctx.font = "14px Verdana";
-    ctx.fillStyle = "white";
-    ctx.strokeText(title, 5, 15);
-    ctx.fillText(title, 4, 14);
-    mapAt.appendChild(mini);
-    let id = window.maps.length;
-
-    if (id == settings.mapMode)
-        drawAt.appendChild(image);
-
-    mini.id = "mini_" + id;
-    window.maps.push(image);
-    window.miniMaps.push(mini);
-    mini.onclick = () => {
-        settings.mapMode = id;
-        drawAt.innerHTML = "";
-        drawAt.appendChild(image);
-    };
-}
