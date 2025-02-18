@@ -28,7 +28,7 @@ export function subImage(image: HTMLCanvasElement, left: number, top: number, wi
     return canvas;
 }
 
-export function colorFromRGBString(color: string) {
+export function colorFromRGBString(color: string): [number, number, number, number] {
     let n = parseInt(color, 16);
     return [Math.floor(n / 65536), Math.floor(n / 256) % 256, n % 256, 256];
 }

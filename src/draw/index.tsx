@@ -145,7 +145,7 @@ export const Draw = React.memo(() => {
                 mapContainer,
                 photo,
                 "photo",
-                (v, i) => v
+                (v) => v
             );
         }
 

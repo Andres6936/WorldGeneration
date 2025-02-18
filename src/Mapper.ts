@@ -261,12 +261,12 @@ export const biomeNames = [
   "beach",
 ];
 
-function mapToList(m) {
-  let l = [];
-  for (let k in m) {
-    l[k] = m[k];
+function mapToList(map: Record<string, string>) {
+  let list: string[] = [];
+  for (let key in map) {
+    list[key] = map[key];
   }
-  return l;
+  return list;
 }
 
 
