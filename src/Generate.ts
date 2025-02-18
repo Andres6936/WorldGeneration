@@ -17,7 +17,8 @@ import {Settings} from "./global";
 
 export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings: Settings) {
     console.time("generation");
-    const {
+    let generatedMap = generateMap(settings);
+    let {
         elevation,
         tectonic,
         rivers,
@@ -26,7 +27,7 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
         humidity,
         biome,
         photo,
-    } = generateMap(settings);
+    } = generatedMap;
 
     console.timeEnd("generation");
 
