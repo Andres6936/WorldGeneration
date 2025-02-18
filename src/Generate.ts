@@ -1,4 +1,4 @@
-import {biomeNames, contrastColors, generateMap} from "./Mapper";
+import {contrastColors, generateMap} from "./Mapper";
 import {elevation2Image, rescaleImage} from './UtilImage'
 import {context2d, data2image} from './CanvasContext'
 import {
@@ -30,37 +30,6 @@ export function generate(drawAt: HTMLDivElement, mapAt: HTMLDivElement, settings
     } = generatedMap;
 
     console.timeEnd("generation");
-
-    document.onmousemove = (e) => {
-        let mouseOffset = [e.offsetX, e.offsetY];
-        let target = e.target;
-        let tooltip = document.getElementById("tooltip");
-        tooltip.style.left = Math.min(window.innerWidth - 300, e.screenX + 20);
-        tooltip.style.top = Math.min(window.innerHeight - 200, e.screenY - 40);
-
-        let isCanvas = e.target.tagName == "CANVAS";
-        let id = e.target.id;
-        tooltip.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
-
-        if (isCanvas) {
-            let localX = (e.offsetX / target.width) * settings.width;
-            let localY = (e.offsetY / target.height) * settings.height;
-            let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
-            tooltip.innerHTML = Object.keys(generatedMap)
-                .map((key) =>
-                    key == "photo"
-                        ? ""
-                        : `<div>${key}</div><div>${
-                            key == "biome"
-                                ? biomeNames[generatedMap[key][ind]].toUpperCase()
-                                : generatedMap[key][ind]
-                        }</div>`
-                )
-                .join("");
-        } else if (tips[id]) {
-            tooltip.innerHTML = tips[id];
-        }
-    };
 
     console.time("draw");
 
