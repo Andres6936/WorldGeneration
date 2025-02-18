@@ -10,9 +10,9 @@ function showMap(
     settings: Settings,
     drawAt: HTMLDivElement,
     mapAt: HTMLDivElement,
-    data,
-    title,
-    fun,
+    data: Float32Array,
+    title: string,
+    fun: (v: number, i: number) => [number, number, number, number],
     scale = 1 / 4,
 ) {
 
@@ -87,7 +87,7 @@ export const Draw = React.memo(() => {
             mapContainer,
             tectonic,
             "tectonics",
-            (v, i) => [0, 0, 0, v * 255]
+            (v) => [0, 0, 0, v * 255]
         );
 
         showMap(
@@ -96,7 +96,7 @@ export const Draw = React.memo(() => {
             mapContainer,
             temperature,
             "temperature",
-            (v, i) => [
+            (v) => [
                 v * 5 + 100,
                 255 - Math.abs(v - 5) * 10,
                 155 - v * 5,
@@ -110,7 +110,7 @@ export const Draw = React.memo(() => {
             mapContainer,
             wind,
             "wind",
-            (v, i) => [v * 100, 0, -v * 100, 255]
+            (v) => [v * 100, 0, -v * 100, 255]
         );
 
         showMap(

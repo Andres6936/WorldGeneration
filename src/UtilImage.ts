@@ -53,7 +53,7 @@ export function elevation2Image(
         mountainRatio = 0.02,
         green = true,
     }: ElevationImageParams
-) {
+): (v: number, i: number) => [number, number, number, number] {
     let hillElevation: number = approximateQuantile(elevation, 1 - hillRatio);
     let mountainElevation: number = approximateQuantile(elevation, 1 - mountainRatio);
 
