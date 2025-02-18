@@ -7,7 +7,7 @@ type State = {
 }
 
 type Actions = {
-    setSettings: (settings: Settings) => void,
+    setSettings: (settings: State['settings']) => void,
 }
 
 export const useSettings = create<State & Actions>((set) => ({
