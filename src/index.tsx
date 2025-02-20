@@ -27,7 +27,7 @@ const Main = React.memo(() => {
     const showCanvasMap = useSettings(state => state.showCanvasMap);
 
     return (
-        <div className="flex flex:1 flex:row bg:red h:100vh w:100vw">
+        <div className="flex flex:1 flex:row h:100vh w:100vw">
             <Form/>
             {showCanvasMap ? <Canvas/> : <Draw/>}
         </div>
