@@ -1,40 +1,4 @@
 @import '@master/normal.css';
-@import "https://unpkg.com/open-props";
-
-html {
-    --text-1: var(--gray-9);
-    --text-2: var(--gray-7);
-
-    @media (--OSdark) {
-        --text-1: var(--gray-1);
-        --text-2: var(--gray-2);
-    }
-}
-
-button.blue {
-    color: var(--blue-1);
-    background-color: var(--indigo-7);
-    border: 1px solid var(--indigo-9);
-    border-radius: var(--radius-round);
-    padding-block: var(--size-1);
-    padding-inline: var(--size-3);
-
-    &:hover {
-        background-color: var(--indigo-9);
-    }
-}
-
-.number,
-.checkbox {
-    width: 5em;
-    grid-column: span 2;
-}
-
-.tip {
-    grid-column: span 3;
-    font-style: italic;
-    text-align: center;
-}
 
 #tooltip {
     position: fixed;
