@@ -1,6 +1,4 @@
-import React, {useEffect, useRef} from "react";
-import {useSettings} from "../store/useSettings.ts";
-import {useMaps} from "../store/useMaps.ts";
+import React from "react";
 import {Elevation} from "../maps/elevation.tsx";
 import {Tectonics} from "../maps/tectonics.tsx";
 import {Temperature} from "../maps/temperature.tsx";
@@ -11,30 +9,6 @@ import {Photo} from "../maps/photo.tsx";
 
 
 export const Draw = React.memo(() => {
-    const maps = useMaps(state => state.maps);
-    const settings = useSettings(state => state.settings);
-
-    const drawAt = useRef<HTMLDivElement | null>(null);
-    const mapAt = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        if (drawAt.current === null || mapAt.current === null || maps === null) return;
-
-        const mapContainer = mapAt.current;
-        const drawContainer = drawAt.current;
-
-        console.time("Drawing & Show Map")
-
-        drawContainer.innerHTML = "";
-        mapContainer.innerHTML = "";
-
-        window.maps = [];
-        window.miniMaps = [];
-
-        console.timeEnd("Drawing & Show Map")
-
-    }, [maps, settings]);
-
     return (
         <div className="relative flex flex:col flex:1 bl:2px|dotted|#0F0D0E">
             <div
