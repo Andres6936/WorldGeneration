@@ -1,9 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import {useSettings} from "../store/useSettings.ts";
-import {elevation2Image} from "../UtilImage.ts";
-import {contrastColors} from "../Mapper.ts";
 import {useMaps} from "../store/useMaps.ts";
-import {showMap} from "../core/draw.ts";
 
 
 export const Draw = React.memo(() => {
@@ -18,16 +15,6 @@ export const Draw = React.memo(() => {
 
         const mapContainer = mapAt.current;
         const drawContainer = drawAt.current;
-        const {
-            elevation,
-            tectonic,
-            rivers,
-            wind,
-            temperature,
-            humidity,
-            biome,
-            photo
-        } = maps;
 
         console.time("Drawing & Show Map")
 
@@ -36,84 +23,6 @@ export const Draw = React.memo(() => {
 
         window.maps = [];
         window.miniMaps = [];
-
-        showMap(
-            settings,
-            drawContainer,
-            mapContainer,
-            elevation,
-            "elevation",
-            elevation2Image({elevation, rivers}, settings)
-            //(v,i) => v>0?[v * 400, 250 - v*150, (v - elevation[i-12*settings.width])*500, 255]:[0,0,100+v*200,255]
-        );
-
-        showMap(
-            settings,
-            drawContainer,
-            mapContainer,
-            tectonic,
-            "tectonics",
-            (v) => [0, 0, 0, v * 255]
-        );
-
-        showMap(
-            settings,
-            drawContainer,
-            mapContainer,
-            temperature,
-            "temperature",
-            (v) => [
-                v * 5 + 100,
-                255 - Math.abs(v - 5) * 10,
-                155 - v * 5,
-                255,
-            ]
-        );
-
-        showMap(
-            settings,
-            drawContainer,
-            mapContainer,
-            wind,
-            "wind",
-            (v) => [v * 100, 0, -v * 100, 255]
-        );
-
-        showMap(
-            settings,
-            drawContainer,
-            mapContainer,
-            humidity,
-            "humidity",
-            (v, i) =>
-                rivers[i] && elevation[i] > 0
-                    ? [0, 0, 0, 255]
-                    : i % settings.width < 20
-                        ? [wind[i] * 100, 0, -wind[i] * 100, 255]
-                        : elevation[i] < 0
-                            ? [0, 0, 0, 255]
-                            : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
-        );
-
-        showMap(
-            settings,
-            drawContainer,
-            mapContainer,
-            biome,
-            "biome",
-            (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
-        );
-
-        if (settings.generatePhoto) {
-            showMap(
-                settings,
-                drawContainer,
-                mapContainer,
-                photo,
-                "photo",
-                (v) => v
-            );
-        }
 
         console.timeEnd("Drawing & Show Map")
 
