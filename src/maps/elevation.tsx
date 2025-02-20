@@ -18,13 +18,13 @@ export const Elevation = React.memo(() => {
             rivers,
         } = maps;
 
-        const canvas = showMap(
+        const {canvasOriginalSize} = showMap(
             settings,
             elevation,
             "elevation",
             elevation2Image({elevation, rivers}, settings)
         );
-        container.replaceWith(canvas);
+        container.replaceWith(canvasOriginalSize);
     }, [maps, settings]);
 
     return (

@@ -19,7 +19,7 @@ export const Humidity = React.memo(() => {
             humidity,
         } = maps;
 
-        const canvas = showMap(
+        const {canvasOriginalSize} = showMap(
             settings,
             humidity,
             "humidity",
@@ -32,7 +32,7 @@ export const Humidity = React.memo(() => {
                             ? [0, 0, 0, 255]
                             : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
         );
-        container.replaceWith(canvas);
+        container.replaceWith(canvasOriginalSize);
     }, [maps, settings]);
 
     return (

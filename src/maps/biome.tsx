@@ -19,13 +19,13 @@ export const Biome = React.memo(() => {
             biome,
         } = maps;
 
-        const canvas = showMap(
+        const {canvasOriginalSize} = showMap(
             settings,
             biome,
             "biome",
             (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
         );
-        container.replaceWith(canvas);
+        container.replaceWith(canvasOriginalSize);
     }, [maps, settings]);
 
     return (

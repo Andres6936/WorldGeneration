@@ -8,7 +8,7 @@ export function showMap(
     title: string,
     fun: (v: number, i: number) => [number, number, number, number],
     scale = 1 / 4,
-): HTMLCanvasElement {
+): { canvasOriginalSize: HTMLCanvasElement, canvasReduceSize: HTMLCanvasElement } {
 
     let image = data2image(data, settings.width, fun);
     let mini = rescaleImage(image, image.width * scale, image.height * scale);
@@ -17,5 +17,9 @@ export function showMap(
     ctx.fillStyle = "white";
     ctx.strokeText(title, 5, 15);
     ctx.fillText(title, 4, 14);
-    return mini;
+
+    return {
+        canvasOriginalSize: image,
+        canvasReduceSize: mini,
+    };
 }

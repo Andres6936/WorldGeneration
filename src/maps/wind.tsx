@@ -16,13 +16,13 @@ export const Wind = React.memo(() => {
             wind,
         } = maps;
 
-        const canvas = showMap(
+        const {canvasOriginalSize} = showMap(
             settings,
             wind,
             "wind",
             (v) => [v * 100, 0, -v * 100, 255]
         );
-        container.replaceWith(canvas);
+        container.replaceWith(canvasOriginalSize);
     }, [maps, settings]);
 
     return (

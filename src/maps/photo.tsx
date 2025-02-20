@@ -17,13 +17,13 @@ export const Photo = React.memo(() => {
         } = maps;
 
         if (settings.generatePhoto) {
-            const canvas = showMap(
+            const {canvasOriginalSize} = showMap(
                 settings,
                 photo,
                 "photo",
                 (v) => v
             );
-            container.replaceWith(canvas);
+            container.replaceWith(canvasOriginalSize);
         }
     }, [maps, settings]);
 

@@ -16,7 +16,7 @@ export const Temperature = React.memo(() => {
             temperature,
         } = maps;
 
-        const canvas = showMap(
+        const {canvasOriginalSize} = showMap(
             settings,
             temperature,
             "temperature",
@@ -27,7 +27,7 @@ export const Temperature = React.memo(() => {
                 255,
             ]
         );
-        container.replaceWith(canvas);
+        container.replaceWith(canvasOriginalSize);
     }, [maps, settings]);
 
     return (
