@@ -92,16 +92,6 @@ export const Draw = React.memo(() => {
                         </Menu.Portal>
                     </Menu.Root>
                 </div>
-
-                {/*<div className="flex flex:row">*/}
-                {/*    <Elevation withReduceSize/>*/}
-                {/*    <Tectonics withReduceSize/>*/}
-                {/*    <Temperature withReduceSize/>*/}
-                {/*    <Wind withReduceSize/>*/}
-                {/*    <Humidity withReduceSize/>*/}
-                {/*    <Biome withReduceSize/>*/}
-                {/*    <Photo withReduceSize/>*/}
-                {/*</div>*/}
             </div>
         </div>
     )
