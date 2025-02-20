@@ -39,7 +39,7 @@ const App = React.memo(() => {
         <>
             <Meta/>
             <Tooltip/>
-            <div className="flex flex:row gap:1rem">
+            <div className="flex flex:1 flex:row bg:red h:100vh w:100vw">
                 <Form/>
                 <Draw/>
             </div>
