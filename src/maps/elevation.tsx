@@ -4,7 +4,11 @@ import {elevation2Image} from "../UtilImage.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
-export const Elevation = React.memo(() => {
+type Props = {
+    withReduceSize: boolean,
+}
+
+export const Elevation = React.memo(({withReduceSize}: Props) => {
     const maps = useMaps(state => state.maps);
     const settings = useSettings(state => state.settings);
 
@@ -18,13 +22,17 @@ export const Elevation = React.memo(() => {
             rivers,
         } = maps;
 
-        const {canvasOriginalSize} = showMap(
+        const {canvasOriginalSize, canvasReduceSize} = showMap(
             settings,
             elevation,
             "elevation",
             elevation2Image({elevation, rivers}, settings)
         );
-        container.replaceWith(canvasOriginalSize);
+        if (withReduceSize) {
+            container.replaceWith(canvasReduceSize);
+        } else {
+            container.replaceWith(canvasOriginalSize);
+        }
     }, [maps, settings]);
 
     return (

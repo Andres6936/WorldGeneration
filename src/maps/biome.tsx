@@ -4,7 +4,12 @@ import {contrastColors} from "../Mapper.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
-export const Biome = React.memo(() => {
+type Props = {
+    withReduceSize: boolean,
+}
+
+
+export const Biome = React.memo(({withReduceSize}: Props) => {
     const maps = useMaps(state => state.maps);
     const settings = useSettings(state => state.settings);
 
@@ -19,13 +24,17 @@ export const Biome = React.memo(() => {
             biome,
         } = maps;
 
-        const {canvasOriginalSize} = showMap(
+        const {canvasOriginalSize, canvasReduceSize} = showMap(
             settings,
             biome,
             "biome",
             (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
         );
-        container.replaceWith(canvasOriginalSize);
+        if (withReduceSize) {
+            container.replaceWith(canvasReduceSize);
+        } else {
+            container.replaceWith(canvasOriginalSize);
+        }
     }, [maps, settings]);
 
     return (

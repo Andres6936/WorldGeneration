@@ -3,7 +3,12 @@ import {showMap} from "../core/draw.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
-export const Tectonics = React.memo(() => {
+type Props = {
+    withReduceSize: boolean,
+}
+
+
+export const Tectonics = React.memo(({withReduceSize}: Props) => {
     const maps = useMaps(state => state.maps);
     const settings = useSettings(state => state.settings);
 
@@ -16,13 +21,17 @@ export const Tectonics = React.memo(() => {
             tectonic,
         } = maps;
 
-        const {canvasOriginalSize} = showMap(
+        const {canvasOriginalSize, canvasReduceSize} = showMap(
             settings,
             tectonic,
             "tectonics",
             (v) => [0, 0, 0, v * 255]
         );
-        container.replaceWith(canvasOriginalSize);
+        if (withReduceSize) {
+            container.replaceWith(canvasReduceSize);
+        } else {
+            container.replaceWith(canvasOriginalSize);
+        }
     }, [maps, settings]);
 
     return (
