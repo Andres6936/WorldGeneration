@@ -3,9 +3,6 @@ export interface CanvasContext {
     ctx: CanvasRenderingContext2D
 }
 
-/**
- * @returns {CanvasRenderingContext2D}
- */
 export function context2d(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
     const canvasContext = canvas.getContext("2d");
     if (canvasContext === null) {
@@ -17,9 +14,6 @@ export function context2d(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
 
 /**
  * Creates canvas of the required size and returns it and it's 2d context.
- * @param {number} width
- * @param {number} height
- * @returns {{canvas:HTMLCanvasElement, ctx:CanvasRenderingContext2D}}
  */
 export function createCanvasCtx(width: number, height: number): CanvasContext {
     let canvas: HTMLCanvasElement = document.createElement("canvas");
@@ -40,10 +34,6 @@ type ConverterFunc = (value: number, index: number) => [number, number, number, 
 
 /**
  * Convert data to image according to callback function
- * @param {any[]} values
- * @param {number} width
- * @param {(v:number, i:number) => [number,number,number,number]} converter
- * @returns {HTMLCanvasElement}
  */
 export function data2image(values: Float32Array, width: number, converter: ConverterFunc): HTMLCanvasElement {
     let height: number = values.length / width;
@@ -58,8 +48,6 @@ export function data2image(values: Float32Array, width: number, converter: Conve
 
 /**
  * Returns alpha channel of the image as numbers in 0-255 range.
- * @param {HTMLCanvasElement} canvas
- * @returns {values:Float32Array[]}
  */
 export function image2alpha(canvas: HTMLCanvasElement): Float32Array {
     let ctx: CanvasRenderingContext2D = context2d(canvas);
