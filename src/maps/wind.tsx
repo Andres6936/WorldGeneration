@@ -22,7 +22,7 @@ export const Wind = React.memo(() => {
             "wind",
             (v) => [v * 100, 0, -v * 100, 255]
         );
-        container.appendChild(canvas);
+        container.replaceWith(canvas);
     }, [maps, settings]);
 
     return (

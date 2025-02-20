@@ -27,7 +27,7 @@ export const Temperature = React.memo(() => {
                 255,
             ]
         );
-        container.appendChild(canvas);
+        container.replaceWith(canvas);
     }, [maps, settings]);
 
     return (

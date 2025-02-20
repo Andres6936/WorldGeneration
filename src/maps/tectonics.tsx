@@ -22,7 +22,7 @@ export const Tectonics = React.memo(() => {
             "tectonics",
             (v) => [0, 0, 0, v * 255]
         );
-        container.appendChild(canvas);
+        container.replaceWith(canvas);
     }, [maps, settings]);
 
     return (

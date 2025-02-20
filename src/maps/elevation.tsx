@@ -24,7 +24,7 @@ export const Elevation = React.memo(() => {
             "elevation",
             elevation2Image({elevation, rivers}, settings)
         );
-        container.appendChild(canvas);
+        container.replaceWith(canvas);
     }, [maps, settings]);
 
     return (

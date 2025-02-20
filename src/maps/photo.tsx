@@ -23,7 +23,7 @@ export const Photo = React.memo(() => {
                 "photo",
                 (v) => v
             );
-            container.appendChild(canvas);
+            container.replaceWith(canvas);
         }
     }, [maps, settings]);
 
