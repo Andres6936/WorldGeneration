@@ -1,14 +1,44 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {Elevation} from "../maps/elevation.tsx";
 import {Menu} from "@base-ui-components/react";
 import styles from './index.module.css';
+import {useSettings} from "../store/useSettings.ts";
+import {Layer} from "../core/enums.ts";
+import {Tectonics} from "../maps/tectonics.tsx";
+import {Temperature} from "../maps/temperature.tsx";
+import {Wind} from "../maps/wind.tsx";
+import {Humidity} from "../maps/humidity.tsx";
+import {Biome} from "../maps/biome.tsx";
+import {Photo} from "../maps/photo.tsx";
 
 export const Draw = React.memo(() => {
+    const currentLayer = useSettings(state => state.currentLayer)
+    const setCurrentLayer = useSettings(state => state.setCurrentLayer);
+
+    const drawCurrentLayer = useCallback(() => {
+        switch (currentLayer) {
+            case Layer.Elevation:
+                return <Elevation withReduceSize={false}/>
+            case Layer.Tectonics:
+                return <Tectonics withReduceSize={false}/>
+            case Layer.Temperature:
+                return <Temperature withReduceSize={false}/>
+            case Layer.Wind:
+                return <Wind withReduceSize={false}/>
+            case Layer.Humidity:
+                return <Humidity withReduceSize={false}/>
+            case Layer.Biome:
+                return <Biome withReduceSize={false}/>
+            case Layer.Photo:
+                return <Photo withReduceSize={false}/>
+        }
+    }, [currentLayer])
+
     return (
         <div className="relative flex flex:col flex:1 bl:2px|dotted|$(color-gray-900)">
             <div
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
-                <Elevation withReduceSize={false}/>
+                {drawCurrentLayer()}
 
                 <div className="abs bottom:1rem right:1rem">
                     <Menu.Root>
@@ -22,13 +52,41 @@ export const Draw = React.memo(() => {
                                         <ArrowSvg/>
                                     </Menu.Arrow>
 
-                                    <Menu.Item className={styles.Item}>Elevation</Menu.Item>
-                                    <Menu.Item className={styles.Item}>Tectonics</Menu.Item>
-                                    <Menu.Item className={styles.Item}>Temperature</Menu.Item>
-                                    <Menu.Item className={styles.Item}>Wind</Menu.Item>
-                                    <Menu.Item className={styles.Item}>Humidity</Menu.Item>
-                                    <Menu.Item className={styles.Item}>Biome</Menu.Item>
-                                    <Menu.Item className={styles.Item}>Photo</Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Elevation)}>
+                                        Elevation
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Tectonics)}>
+                                        Tectonics
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Temperature)}>
+                                        Temperature
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Wind)}>
+                                        Wind
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Humidity)}>
+                                        Humidity
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Biome)}>
+                                        Biome
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Photo)}>
+                                        Photo
+                                    </Menu.Item>
                                 </Menu.Popup>
                             </Menu.Positioner>
                         </Menu.Portal>
