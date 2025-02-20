@@ -7,7 +7,7 @@ import {ActionsButtons} from "./actions-buttons.tsx";
 
 export function Form() {
     return (
-        <form className="border:1px|solid|#CCC p:1rem r:0.5rem">
+        <form className="p:1rem">
             {parameters.map(({name, type, element}) => {
                 if (type === "tip") {
                     return (
