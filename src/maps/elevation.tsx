@@ -12,7 +12,7 @@ export const Elevation = React.memo(({withReduceSize}: Props) => {
     const maps = useMaps(state => state.maps);
     const settings = useSettings(state => state.settings);
 
-    const drawAt = useRef<HTMLDivElement | null>(null);
+    const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
         if (drawAt.current === null || maps === null) return;
@@ -36,6 +36,6 @@ export const Elevation = React.memo(({withReduceSize}: Props) => {
     }, [maps, settings]);
 
     return (
-        <div ref={drawAt}/>
+        <canvas ref={drawAt}/>
     )
 })
