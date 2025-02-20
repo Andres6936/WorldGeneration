@@ -154,8 +154,8 @@ export const Draw = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div className="flex flex:col flex:1 bg:blue">
-            <div className="absolute top:0 left:0 right:0 bottom:0 bg:black flex flex:1 flex:col overflow:scroll">
+        <div className="flex flex:col flex:1">
+            <div className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col overflow:scroll">
                 <div ref={drawAt} id="map"></div>
                 <div ref={mapAt} id="minimaps"></div>
             </div>
