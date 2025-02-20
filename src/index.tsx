@@ -24,10 +24,12 @@ const Meta = React.memo(() => {
 })
 
 const LayoutMain = React.memo(() => {
+    const showCanvasMap = useSettings(state => state.showCanvasMap);
+
     return (
         <div className="flex flex:1 flex:row bg:red h:100vh w:100vw">
             <Form/>
-            <Draw/>
+            {showCanvasMap ? <Canvas/> : <Draw/>}
         </div>
     )
 })
@@ -49,7 +51,6 @@ const App = React.memo(() => {
             <Meta/>
             <Tooltip/>
             <LayoutMain/>
-            <Canvas/>
         </>
     )
 })
