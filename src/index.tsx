@@ -23,7 +23,7 @@ const Meta = React.memo(() => {
     )
 })
 
-const LayoutMain = React.memo(() => {
+const Main = React.memo(() => {
     const showCanvasMap = useSettings(state => state.showCanvasMap);
 
     return (
@@ -50,7 +50,7 @@ const App = React.memo(() => {
         <>
             <Meta/>
             <Tooltip/>
-            <LayoutMain/>
+            <Main/>
         </>
     )
 })
