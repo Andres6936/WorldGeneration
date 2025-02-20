@@ -1,6 +1,13 @@
 import React, {useEffect, useRef} from "react";
 import {useSettings} from "../store/useSettings.ts";
 import {useMaps} from "../store/useMaps.ts";
+import {Elevation} from "../maps/elevation.tsx";
+import {Tectonics} from "../maps/tectonics.tsx";
+import {Temperature} from "../maps/temperature.tsx";
+import {Wind} from "../maps/wind.tsx";
+import {Humidity} from "../maps/humidity.tsx";
+import {Biome} from "../maps/biome.tsx";
+import {Photo} from "../maps/photo.tsx";
 
 
 export const Draw = React.memo(() => {
@@ -33,7 +40,15 @@ export const Draw = React.memo(() => {
             <div
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:scroll">
                 <div ref={drawAt} id="map"></div>
-                <div ref={mapAt} id="minimaps"></div>
+                <div>
+                    <Elevation/>
+                    <Tectonics/>
+                    <Temperature/>
+                    <Wind/>
+                    <Humidity/>
+                    <Biome/>
+                    <Photo/>
+                </div>
             </div>
         </div>
     )
