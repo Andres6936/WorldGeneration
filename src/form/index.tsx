@@ -3,6 +3,7 @@ import {RangeInput} from "./range.tsx";
 import {NumberInput} from "./number.tsx";
 import {CheckboxInput} from "./checkbox.tsx";
 import {TipInput} from "./tip.tsx";
+import {ActionsButtons} from "./actions-buttons.tsx";
 
 export function Form() {
     return (
@@ -50,6 +51,8 @@ export function Form() {
             <button className="mt:1rem blue">
                 Reset to default
             </button>
+
+            <ActionsButtons/>
         </form>
     )
 }
