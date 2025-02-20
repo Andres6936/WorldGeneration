@@ -10,7 +10,7 @@ export const Draw = React.memo(() => {
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
                 <Elevation withReduceSize={false}/>
 
-                <div className="absolute bottom:0 right:0">
+                <div className="abs bottom:1rem right:1rem">
                     <Menu.Root>
                         <Menu.Trigger className={styles.Button}>
                             Layers <ChevronDownIcon className={styles.ButtonIcon}/>
