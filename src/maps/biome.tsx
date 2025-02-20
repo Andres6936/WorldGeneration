@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from "react";
-import {showMap} from "../core/draw.ts";
+import {drawAtContext} from "../core/draw.ts";
 import {contrastColors} from "../Mapper.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
@@ -24,7 +24,7 @@ export const Biome = React.memo(({withReduceSize}: Props) => {
             biome,
         } = maps;
 
-        const {canvasOriginalSize, canvasReduceSize} = showMap(
+        const {canvasOriginalSize, canvasReduceSize} = drawAtContext(
             settings,
             biome,
             "biome",

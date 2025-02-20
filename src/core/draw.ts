@@ -2,7 +2,7 @@ import {Settings} from "../global";
 import {context2d, data2image} from "../CanvasContext.ts";
 import {rescaleImage} from "../UtilImage.ts";
 
-export function showMap(
+export function drawAtContext(
     settings: Settings,
     data: Float32Array,
     title: string,

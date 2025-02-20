@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from "react";
-import {showMap} from "../core/draw.ts";
+import {drawAtContext} from "../core/draw.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
@@ -24,7 +24,7 @@ export const Humidity = React.memo(({withReduceSize}: Props) => {
             humidity,
         } = maps;
 
-        const {canvasOriginalSize, canvasReduceSize} = showMap(
+        const {canvasOriginalSize, canvasReduceSize} = drawAtContext(
             settings,
             humidity,
             "humidity",
