@@ -26,7 +26,7 @@ export const Biome = React.memo(() => {
             (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
         );
         container.appendChild(canvas);
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={drawAt}/>

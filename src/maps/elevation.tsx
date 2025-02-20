@@ -25,7 +25,7 @@ export const Elevation = React.memo(() => {
             elevation2Image({elevation, rivers}, settings)
         );
         container.appendChild(canvas);
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={drawAt}/>

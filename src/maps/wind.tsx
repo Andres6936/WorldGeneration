@@ -23,7 +23,7 @@ export const Wind = React.memo(() => {
             (v) => [v * 100, 0, -v * 100, 255]
         );
         container.appendChild(canvas);
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={drawAt}/>

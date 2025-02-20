@@ -33,7 +33,7 @@ export const Humidity = React.memo(() => {
                             : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
         );
         container.appendChild(canvas);
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={drawAt}/>

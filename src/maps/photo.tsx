@@ -25,7 +25,7 @@ export const Photo = React.memo(() => {
             );
             container.appendChild(canvas);
         }
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={drawAt}/>

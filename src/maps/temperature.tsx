@@ -28,7 +28,7 @@ export const Temperature = React.memo(() => {
             ]
         );
         container.appendChild(canvas);
-    }, []);
+    }, [maps, settings]);
 
     return (
         <div ref={drawAt}/>

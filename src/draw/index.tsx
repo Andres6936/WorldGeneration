@@ -40,7 +40,7 @@ export const Draw = React.memo(() => {
             <div
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:scroll">
                 <div ref={drawAt} id="map"></div>
-                <div>
+                <div className="flex flex:row">
                     <Elevation/>
                     <Tectonics/>
                     <Temperature/>
