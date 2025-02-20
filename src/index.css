@@ -1,6 +1,8 @@
 @import '@master/normal.css';
 
 :root {
+    color-scheme: light dark;
+
     --color-blue: oklch(45% 50% 264);
     --color-red: oklch(50% 55% 31);
 

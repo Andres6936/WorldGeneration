@@ -10,28 +10,30 @@ export const Draw = React.memo(() => {
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
                 <Elevation withReduceSize={false}/>
 
-                <Menu.Root>
-                    <Menu.Trigger className={styles.Button}>
-                        Layers <ChevronDownIcon className={styles.ButtonIcon}/>
-                    </Menu.Trigger>
-                    <Menu.Portal>
-                        <Menu.Positioner className={styles.Positioner} sideOffset={8}>
-                            <Menu.Popup className={styles.Popup}>
-                                <Menu.Arrow className={styles.Arrow}>
-                                    <ArrowSvg/>
-                                </Menu.Arrow>
+                <div className="absolute bottom:0 right:0">
+                    <Menu.Root>
+                        <Menu.Trigger className={styles.Button}>
+                            Layers <ChevronDownIcon className={styles.ButtonIcon}/>
+                        </Menu.Trigger>
+                        <Menu.Portal>
+                            <Menu.Positioner className={styles.Positioner} sideOffset={8}>
+                                <Menu.Popup className={styles.Popup}>
+                                    <Menu.Arrow className={styles.Arrow}>
+                                        <ArrowSvg/>
+                                    </Menu.Arrow>
 
-                                <Menu.Item className={styles.Item}>Elevation</Menu.Item>
-                                <Menu.Item className={styles.Item}>Tectonics</Menu.Item>
-                                <Menu.Item className={styles.Item}>Temperature</Menu.Item>
-                                <Menu.Item className={styles.Item}>Wind</Menu.Item>
-                                <Menu.Item className={styles.Item}>Humidity</Menu.Item>
-                                <Menu.Item className={styles.Item}>Biome</Menu.Item>
-                                <Menu.Item className={styles.Item}>Photo</Menu.Item>
-                            </Menu.Popup>
-                        </Menu.Positioner>
-                    </Menu.Portal>
-                </Menu.Root>
+                                    <Menu.Item className={styles.Item}>Elevation</Menu.Item>
+                                    <Menu.Item className={styles.Item}>Tectonics</Menu.Item>
+                                    <Menu.Item className={styles.Item}>Temperature</Menu.Item>
+                                    <Menu.Item className={styles.Item}>Wind</Menu.Item>
+                                    <Menu.Item className={styles.Item}>Humidity</Menu.Item>
+                                    <Menu.Item className={styles.Item}>Biome</Menu.Item>
+                                    <Menu.Item className={styles.Item}>Photo</Menu.Item>
+                                </Menu.Popup>
+                            </Menu.Positioner>
+                        </Menu.Portal>
+                    </Menu.Root>
+                </div>
 
                 {/*<div className="flex flex:row">*/}
                 {/*    <Elevation withReduceSize/>*/}
