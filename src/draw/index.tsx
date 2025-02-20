@@ -154,7 +154,7 @@ export const Draw = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div className="flex flex:col flex:1 bl:2px|dotted|#0F0D0E">
+        <div className="relative flex flex:col flex:1 bl:2px|dotted|#0F0D0E">
             <div
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:scroll">
                 <div ref={drawAt} id="map"></div>
