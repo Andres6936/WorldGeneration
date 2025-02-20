@@ -16,14 +16,13 @@ export const Tectonics = React.memo(() => {
             tectonic,
         } = maps;
 
-        showMap(
+        const canvas = showMap(
             settings,
-            drawContainer,
-            mapContainer,
             tectonic,
             "tectonics",
             (v) => [0, 0, 0, v * 255]
         );
+        container.appendChild(canvas);
     }, []);
 
     return (

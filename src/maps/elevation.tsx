@@ -18,15 +18,13 @@ export const Elevation = React.memo(() => {
             rivers,
         } = maps;
 
-        showMap(
+        const canvas = showMap(
             settings,
-            drawContainer,
-            mapContainer,
             elevation,
             "elevation",
             elevation2Image({elevation, rivers}, settings)
-            //(v,i) => v>0?[v * 400, 250 - v*150, (v - elevation[i-12*settings.width])*500, 255]:[0,0,100+v*200,255]
         );
+        container.appendChild(canvas);
     }, []);
 
     return (

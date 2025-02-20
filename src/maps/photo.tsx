@@ -17,14 +17,13 @@ export const Photo = React.memo(() => {
         } = maps;
 
         if (settings.generatePhoto) {
-            showMap(
+            const canvas = showMap(
                 settings,
-                drawContainer,
-                mapContainer,
                 photo,
                 "photo",
                 (v) => v
             );
+            container.appendChild(canvas);
         }
     }, []);
 

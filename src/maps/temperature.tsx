@@ -16,10 +16,8 @@ export const Temperature = React.memo(() => {
             temperature,
         } = maps;
 
-        showMap(
+        const canvas = showMap(
             settings,
-            drawContainer,
-            mapContainer,
             temperature,
             "temperature",
             (v) => [
@@ -29,6 +27,7 @@ export const Temperature = React.memo(() => {
                 255,
             ]
         );
+        container.appendChild(canvas);
     }, []);
 
     return (

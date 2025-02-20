@@ -16,14 +16,13 @@ export const Wind = React.memo(() => {
             wind,
         } = maps;
 
-        showMap(
+        const canvas = showMap(
             settings,
-            drawContainer,
-            mapContainer,
             wind,
             "wind",
             (v) => [v * 100, 0, -v * 100, 255]
         );
+        container.appendChild(canvas);
     }, []);
 
     return (
