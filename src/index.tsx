@@ -23,6 +23,15 @@ const Meta = React.memo(() => {
     )
 })
 
+const LayoutMain = React.memo(() => {
+    return (
+        <div className="flex flex:1 flex:row bg:red h:100vh w:100vw">
+            <Form/>
+            <Draw/>
+        </div>
+    )
+})
+
 const App = React.memo(() => {
     const settings = useSettings(state => state.settings);
     const setMaps = useMaps(state => state.setMaps)
@@ -39,10 +48,7 @@ const App = React.memo(() => {
         <>
             <Meta/>
             <Tooltip/>
-            <div className="flex flex:1 flex:row bg:red h:100vh w:100vw">
-                <Form/>
-                <Draw/>
-            </div>
+            <LayoutMain/>
             <Canvas/>
         </>
     )
