@@ -36,6 +36,8 @@ export function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCan
     return canvas;
 }
 
+type ConverterFunc = (value: number, index: number) => [number, number, number, number];
+
 /**
  * Convert data to image according to callback function
  * @param {any[]} values
@@ -43,7 +45,7 @@ export function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCan
  * @param {(v:number, i:number) => [number,number,number,number]} converter
  * @returns {HTMLCanvasElement}
  */
-export function data2image(values: Float32Array, width: number, converter: (v: number, i: number) => [number, number, number, number]): HTMLCanvasElement {
+export function data2image(values: Float32Array, width: number, converter: ConverterFunc): HTMLCanvasElement {
     let height: number = values.length / width;
     let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
     let idata: ImageData = ctx.createImageData(width, height);
