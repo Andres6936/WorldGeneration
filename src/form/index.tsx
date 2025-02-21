@@ -8,7 +8,7 @@ import {ButtonReset} from "./components/button-reset.tsx";
 
 export function Form() {
     return (
-        <form className="p:1rem">
+        <form className="p:1rem" onSubmit={e => e.preventDefault()}>
             {parameters.map(({name, type, element}) => {
                 if (type === "tip") {
                     return (
