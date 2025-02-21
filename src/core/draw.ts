@@ -23,5 +23,7 @@ export function drawAtContext(
         rescaledContext.fillStyle = "white";
         rescaledContext.strokeText(title, 5, 15);
         rescaledContext.fillText(title, 4, 14);
+
+        context.drawImage(rescaledCanvas, 0, 0);
     }
 }
