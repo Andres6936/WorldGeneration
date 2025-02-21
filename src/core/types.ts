@@ -13,8 +13,5 @@ export type Cell = {
     vegetation: number; // 0 or FOREST
     road: number; // 0 or ROAD
     building: number; // 0 or CITY
+    empty: boolean;
 };
-
-export type CellEmpty = {
-    empty: true;
-}
