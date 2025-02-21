@@ -18,7 +18,7 @@ export type GenerateMap = {
   temperature: Float32Array,
   humidity: Float32Array,
   biome: Float32Array,
-  photo: [number, number, number, number][],
+  photo: [number, number, number, number][] | undefined,
 }
 
 export function generateMap({
@@ -161,7 +161,7 @@ export function generateMap({
   });
   console.timeEnd("biome");
 
-  let photo: [number, number, number, number][] = [];
+  let photo: [number, number, number, number][] | undefined;
   if (generatePhoto) {
     console.time("photo");
     photo = [...humidity].map((w, i) => {
