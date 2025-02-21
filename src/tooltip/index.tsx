@@ -6,12 +6,12 @@ import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 import {useShallow} from "zustand/react/shallow";
 import {Popover} from "@base-ui-components/react";
-import {ArrowSvg} from "../components/icons/arrow-svg.tsx";
 
 export const Tooltip = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
     const settings = useSettings(useShallow(state => state.settings));
 
+    const [clientVector, setClientVector] = useState<[number, number]>([0, 0])
     const [isCanvas, setIsCanvas] = useState(true);
     const [elevation, setElevation] = useState(0);
     const [noise, setNoise] = useState(0);
@@ -28,9 +28,9 @@ export const Tooltip = React.memo(() => {
 
         const handleMouseMove = (e: MouseEvent) => {
             if (!e.target) return;
-
             if (e.target instanceof HTMLCanvasElement) {
                 setIsCanvas(true);
+                setClientVector([e.clientX, e.clientY]);
                 let localX = (e.offsetX / e.target.width) * settings.width;
                 let localY = (e.offsetY / e.target.height) * settings.height;
                 let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
@@ -71,11 +71,8 @@ export const Tooltip = React.memo(() => {
     return (
         <Popover.Root open={isCanvas}>
             <Popover.Portal>
-                <Popover.Positioner sideOffset={8}>
+                <Popover.Positioner sideOffset={8} style={{top: clientVector[1], left: clientVector[0]}}>
                     <Popover.Popup className={styles.Popup}>
-                        <Popover.Arrow className={styles.Arrow}>
-                            <ArrowSvg/>
-                        </Popover.Arrow>
                         <Popover.Title className={styles.Title}>Details</Popover.Title>
                         <Popover.Description className={styles.Description}>
                             <div>Elevation</div>
