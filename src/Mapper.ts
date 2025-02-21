@@ -18,7 +18,7 @@ export type GenerateMap = {
   temperature: Float32Array,
   humidity: Float32Array,
   biome: Float32Array,
-  photo,
+  photo: [number, number, number, number][],
 }
 
 export function generateMap({
@@ -161,21 +161,19 @@ export function generateMap({
   });
   console.timeEnd("biome");
 
-  /**@type {number[][]} */
-  let photo;
+  let photo: [number, number, number, number][] = [];
   if (generatePhoto) {
     console.time("photo");
-    // @ts-ignore
     photo = [...humidity].map((w, i) => {
       if (elevation[i] < 0)
-        return [0, (1 + elevation[i]) * 55, (1 + elevation[i]) * 155, 255];
+        return [0, (1 + elevation[i]) * 55, (1 + elevation[i]) * 155, 255] satisfies [number, number, number, number];
       else {
         let rgba = [
           temperature[i] * 15 - w * 1000,
           270 - w * 250,
           temperature[i] * 8 - w * 700,
           255,
-        ];
+        ] satisfies [number, number, number, number];
         for (let j = 0; j < 3; j++) {
           if (temperature[i] < 0) rgba[j] = 255;
           rgba[j] +=
@@ -190,7 +188,7 @@ export function generateMap({
                     elevation[i])
               );
         }
-        return rgba;
+        return rgba satisfies [number, number, number, number];
       }
     });
     console.timeEnd("photo");
