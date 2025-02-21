@@ -1,5 +1,6 @@
 import {create} from "zustand";
-import {GenerateMap} from "../Mapper.ts";
+
+import {GenerateMap} from "../core/types.ts";
 
 type State = {
     maps: GenerateMap | null,

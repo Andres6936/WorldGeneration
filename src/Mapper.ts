@@ -7,19 +7,7 @@ import {approximateQuantile, normalizeValues} from "./Util";
 import {generateRiversAndErosion} from "./River";
 import {generateHumidity} from "./Humidity";
 import {Settings} from "./global";
-
-export type GenerateMap = {
-  elevation: Float32Array,
-  noise: Float32Array,
-  crust: Float32Array,
-  tectonic: Float32Array,
-  rivers: Float32Array,
-  wind: Float32Array,
-  temperature: Float32Array,
-  humidity: Float32Array,
-  biome: Float32Array,
-  photo: [number, number, number, number][] | undefined,
-}
+import {GenerateMap} from "./core/types.ts";
 
 export function generateMap({
   width,

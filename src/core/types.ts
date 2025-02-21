@@ -15,3 +15,16 @@ export type Cell = {
     building: number; // 0 or CITY
     empty: boolean;
 };
+
+export type GenerateMap = {
+    elevation: Float32Array,
+    noise: Float32Array,
+    crust: Float32Array,
+    tectonic: Float32Array,
+    rivers: Float32Array,
+    wind: Float32Array,
+    temperature: Float32Array,
+    humidity: Float32Array,
+    biome: Float32Array,
+    photo: [number, number, number, number][] | undefined,
+}
