@@ -15,19 +15,18 @@ export const Tooltip = React.memo(() => {
         const container = tooltipAt.current;
 
         const handleMouseMove = (e: MouseEvent) => {
-            let target = e.target;
-            if (!target) return;
+            if (!e.target) return;
 
             container.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
             container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
 
-            let isCanvas = target.tagName == "CANVAS";
-            let id = target.id;
+            let isCanvas = e.target.tagName == "CANVAS";
+            let id = e.target.id;
             container.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
 
             if (isCanvas) {
-                let localX = (e.offsetX / target.width) * settings.width;
-                let localY = (e.offsetY / target.height) * settings.height;
+                let localX = (e.offsetX / e.target.width) * settings.width;
+                let localY = (e.offsetY / e.target.height) * settings.height;
                 let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
                 container.innerHTML = Object.keys(maps)
                     .map((key) =>
