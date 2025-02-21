@@ -155,9 +155,8 @@ export const Canvas = React.memo(() => {
             };
 
 
-            let gameMap: Cell[][] = hexCoords.map((i, hexi) => {
-                /** @type {Cell} */
-                let c = {};
+            let gameMap: (Cell | { empty: true })[] = hexCoords.map((i, hexi) => {
+                let cell: Cell = {};
 
                 let [e, h, t] = [elevation[i], humidity[i], temperature[i]];
 
@@ -165,16 +164,16 @@ export const Canvas = React.memo(() => {
                     return {empty: true};
                 }
 
-                c.cover = 0;
-                if (t < random() * 0.2 - 0.1) c.cover = SNOW;
-                else if (h < 0.25 && t > 20) c.cover = DESERT;
+                cell.cover = 0;
+                if (t < random() * 0.2 - 0.1) cell.cover = SNOW;
+                else if (h < 0.25 && t > 20) cell.cover = DESERT;
 
                 let water = e < 0;
 
-                c.highlands = 0;
+                cell.highlands = 0;
                 if (!water && tectonic[i] + e > 1.3 + spread(0.8)) {
-                    if (e > 0.6 + spread(0.2)) c.highlands = MOUNTAIN;
-                    else c.highlands = HILL;
+                    if (e > 0.6 + spread(0.2)) cell.highlands = MOUNTAIN;
+                    else cell.highlands = HILL;
                 }
 
                 let river = riverDepth[hexi] > 3;
@@ -183,18 +182,18 @@ export const Canvas = React.memo(() => {
                     h > 0.6 + spread(0.4) &&
                     !water &&
                     !river &&
-                    c.highlands != MOUNTAIN
+                    cell.highlands != MOUNTAIN
                 ) {
-                    c.vegetation = LIGHTFOREST;
+                    cell.vegetation = LIGHTFOREST;
                 }
 
-                if (!c.cover && !c.vegetation && h > 0.4) c.cover = GRASS;
+                if (!cell.cover && !cell.vegetation && h > 0.4) cell.cover = GRASS;
 
-                if (water) c.water = river ? RIVERDELTA : WATER;
+                if (water) cell.water = river ? RIVERDELTA : WATER;
 
-                if (river) c.river = flowsTo[hexi];
+                if (river) cell.river = flowsTo[hexi];
 
-                return c;
+                return cell;
             });
 
             let cities = [];
