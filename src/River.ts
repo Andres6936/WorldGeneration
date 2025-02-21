@@ -72,11 +72,8 @@ export function generateRiversAndErosion({
 
 /**
  * Returns a matrix of rivers sizes and directions per cell
- * @param {number[]} heights
- * @param {number[]} neighborDeltas
- * @returns {number[]}
  */
-export function generatePrettyRivers(heights, probability, attempts, neighborDeltas, columns) {
+export function generatePrettyRivers(heights: number[], probability: number[], attempts: number, neighborDeltas: number[][], columns: number) {
     let hlen = heights.length;
     let courseAt = 0;
     let course = new Int32Array(100);

@@ -45,7 +45,7 @@ export const Canvas = React.memo(() => {
             );
 
             let hexCoords = rescale.indices;
-            let {columns, row} = rescale;
+            let {columns} = rescale;
             let neighborDeltas = createNeighborDeltas(columns, typeLayout);
 
             console.log(rescale);

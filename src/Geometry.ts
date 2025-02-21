@@ -123,6 +123,8 @@ export function createNeighborDeltas(columns: number, geometry: number) {
                 [-1, -1],
             ].map(([dx, dy]) => dy * columns + dx);
             return [r, r];
+        default:
+            throw new Error("unknown geometry");
     }
 }
 
