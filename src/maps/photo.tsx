@@ -17,22 +17,21 @@ export const Photo = React.memo(({withReduceSize}: Props) => {
     useEffect(() => {
         if (drawAt.current === null || maps === null) return;
         const container = drawAt.current;
-        const {
-            photo
-        } = maps;
+        const {photo} = maps;
+        const size = {w: settings.width, h: photo.length / settings.width};
+        container.width = size.w;
+        container.height = size.h;
+        const context = container.getContext("2d");
+        if (context === null) return;
 
         if (settings.generatePhoto) {
-            const {canvasOriginalSize, canvasReduceSize} = drawAtContext(
-                settings,
+            drawAtContext(
+                context,
+                size,
                 photo,
                 "photo",
                 (v) => v
             );
-            if (withReduceSize) {
-                container.replaceWith(canvasReduceSize);
-            } else {
-                container.replaceWith(canvasOriginalSize);
-            }
         }
     }, [maps, settings]);
 

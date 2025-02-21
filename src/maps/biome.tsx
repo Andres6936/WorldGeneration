@@ -23,18 +23,19 @@ export const Biome = React.memo(({withReduceSize}: Props) => {
             rivers,
             biome,
         } = maps;
+        const size = {w: settings.width, h: biome.length / settings.width};
+        container.width = size.w;
+        container.height = size.h;
+        const context = container.getContext("2d");
+        if (context === null) return;
 
-        const {canvasOriginalSize, canvasReduceSize} = drawAtContext(
-            settings,
+        drawAtContext(
+            context,
+            size,
             biome,
             "biome",
             (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
         );
-        if (withReduceSize) {
-            container.replaceWith(canvasReduceSize);
-        } else {
-            container.replaceWith(canvasOriginalSize);
-        }
     }, [maps, settings]);
 
     return (

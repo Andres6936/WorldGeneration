@@ -23,9 +23,15 @@ export const Humidity = React.memo(({withReduceSize}: Props) => {
             wind,
             humidity,
         } = maps;
+        const size = {w: settings.width, h: humidity.length / settings.width};
+        container.width = size.w;
+        container.height = size.h;
+        const context = container.getContext("2d");
+        if (context === null) return;
 
-        const {canvasOriginalSize, canvasReduceSize} = drawAtContext(
-            settings,
+        drawAtContext(
+            context,
+            size,
             humidity,
             "humidity",
             (v, i) =>
@@ -37,11 +43,6 @@ export const Humidity = React.memo(({withReduceSize}: Props) => {
                             ? [0, 0, 0, 255]
                             : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
         );
-        if (withReduceSize) {
-            container.replaceWith(canvasReduceSize);
-        } else {
-            container.replaceWith(canvasOriginalSize);
-        }
     }, [maps, settings]);
 
     return (

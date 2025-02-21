@@ -1,3 +1,5 @@
+import {ConverterFunc, Size} from "./core/types.ts";
+
 export interface CanvasContext {
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D
@@ -30,7 +32,17 @@ export function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCan
     return canvas;
 }
 
-type ConverterFunc = (value: number, index: number) => [number, number, number, number];
+/**
+ * Convert data to image according to callback function
+ */
+export function drawValuesAtContext(values: Float32Array, context: CanvasRenderingContext2D, size: Size, converter: ConverterFunc): CanvasRenderingContext2D {
+    let idata: ImageData = context.createImageData(size.w, size.h);
+    for (let i = 0; i < values.length; i++) {
+        idata.data.set(converter(values[i], i), i * 4);
+    }
+    context.putImageData(idata, 0, 0);
+    return context;
+}
 
 /**
  * Convert data to image according to callback function

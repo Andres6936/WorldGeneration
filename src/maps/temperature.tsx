@@ -17,12 +17,16 @@ export const Temperature = React.memo(({withReduceSize}: Props) => {
     useEffect(() => {
         if (drawAt.current === null || maps === null) return;
         const container = drawAt.current;
-        const {
-            temperature,
-        } = maps;
+        const {temperature} = maps;
+        const size = {w: settings.width, h: temperature.length / settings.width};
+        container.width = size.w;
+        container.height = size.h;
+        const context = container.getContext("2d");
+        if (context === null) return;
 
-        const {canvasOriginalSize, canvasReduceSize} = drawAtContext(
-            settings,
+        drawAtContext(
+            context,
+            size,
             temperature,
             "temperature",
             (v) => [
@@ -32,11 +36,6 @@ export const Temperature = React.memo(({withReduceSize}: Props) => {
                 255,
             ]
         );
-        if (withReduceSize) {
-            container.replaceWith(canvasReduceSize);
-        } else {
-            container.replaceWith(canvasOriginalSize);
-        }
     }, [maps, settings]);
 
     return (
