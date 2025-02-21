@@ -1,5 +1,5 @@
-import {context2d, drawValuesAtContext} from "../CanvasContext.ts";
-import {rescaleImage} from "../UtilImage.ts";
+import {drawValuesAtContext} from "../CanvasContext.ts";
+import {rescaleContext} from "../UtilImage.ts";
 import {Size} from "./types.ts";
 
 export function drawAtContext(
@@ -8,14 +8,17 @@ export function drawAtContext(
     data: Float32Array,
     title: string,
     fun: (v: number, i: number) => [number, number, number, number],
-    scale = 1 / 4,
     withReduceSize: boolean = false,
+    scale = 1 / 4,
 ) {
     const image = drawValuesAtContext(data, context, size, fun);
 
     if (withReduceSize) {
-        let mini = rescaleImage(image, size.w * scale, size.h * scale);
-        let ctx = context2d(mini);
+        const rescaledCanvas = rescaleContext(image, size.w * scale, size.h * scale);
+        const ctx = rescaledCanvas.getContext("2d");
+        if (!ctx) {
+            throw new Error("Could not get context 2D of rescaled canvas");
+        }
         ctx.font = "14px Verdana";
         ctx.fillStyle = "white";
         ctx.strokeText(title, 5, 15);

@@ -29,7 +29,8 @@ export const Wind = React.memo(({withReduceSize}: Props) => {
             size,
             wind,
             "wind",
-            (v) => [v * 100, 0, -v * 100, 255]
+            (v) => [v * 100, 0, -v * 100, 255],
+            withReduceSize,
         );
     }, [maps, settings]);
 

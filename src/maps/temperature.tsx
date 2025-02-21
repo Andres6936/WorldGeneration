@@ -34,7 +34,8 @@ export const Temperature = React.memo(({withReduceSize}: Props) => {
                 255 - Math.abs(v - 5) * 10,
                 155 - v * 5,
                 255,
-            ]
+            ],
+            withReduceSize,
         );
     }, [maps, settings]);
 

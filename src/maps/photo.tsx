@@ -30,7 +30,8 @@ export const Photo = React.memo(({withReduceSize}: Props) => {
                 size,
                 photo,
                 "photo",
-                (v) => v
+                (v) => v,
+                withReduceSize,
             );
         }
     }, [maps, settings]);

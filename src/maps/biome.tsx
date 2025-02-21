@@ -34,7 +34,8 @@ export const Biome = React.memo(({withReduceSize}: Props) => {
             size,
             biome,
             "biome",
-            (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v]
+            (v, i) => elevation[i] < 0 || rivers[i] ? [0, 40, 80, 255] : contrastColors[v],
+            withReduceSize,
         );
     }, [maps, settings]);
 

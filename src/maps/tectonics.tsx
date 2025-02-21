@@ -29,7 +29,8 @@ export const Tectonics = React.memo(({withReduceSize}: Props) => {
             size,
             tectonic,
             "tectonics",
-            (v) => [0, 0, 0, v * 255]
+            (v) => [0, 0, 0, v * 255],
+            withReduceSize,
         );
     }, [maps, settings]);
 

@@ -41,7 +41,8 @@ export const Humidity = React.memo(({withReduceSize}: Props) => {
                         ? [wind[i] * 100, 0, -wind[i] * 100, 255]
                         : elevation[i] < 0
                             ? [0, 0, 0, 255]
-                            : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255]
+                            : [300 - v * 1000, elevation[i] * 200 + 50, v * 350 - 150, 255],
+            withReduceSize,
         );
     }, [maps, settings]);
 

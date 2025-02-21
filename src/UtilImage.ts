@@ -3,10 +3,6 @@ import {approximateQuantile} from "./Util";
 
 /**
  * Returns canvas rescaled to the new size
- * @param {HTMLCanvasElement} source
- * @param {number} width
- * @param {number} height
- * @returns {HTMLCanvasElement}
  */
 export function rescaleImage(source: HTMLCanvasElement, width: number, height: number) {
     let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
@@ -15,12 +11,16 @@ export function rescaleImage(source: HTMLCanvasElement, width: number, height: n
 }
 
 /**
+ * Returns canvas rescaled to the new size
+ */
+export function rescaleContext(source: CanvasRenderingContext2D, width: number, height: number) {
+    let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
+    ctx.drawImage(source.canvas, 0, 0, source.canvas.width, source.canvas.height, 0, 0, width, height);
+    return canvas;
+}
+
+/**
  * Returns canvas that is a fragment of the source canvas
- * @param {HTMLCanvasElement} image
- * @param {number} left
- * @param {number} top
- * @param {number} width
- * @param {number} height
  */
 export function subImage(image: HTMLCanvasElement, left: number, top: number, width: number, height: number) {
     let {canvas, ctx}: CanvasContext = createCanvasCtx(width, height);
