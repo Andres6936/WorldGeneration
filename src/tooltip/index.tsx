@@ -12,23 +12,23 @@ export const Tooltip = React.memo(() => {
 
     useEffect(() => {
         if (tooltipAt.current === null || maps === null) return;
-        const tooltip = tooltipAt.current;
+        const container = tooltipAt.current;
 
         const handleMouseMove = (e: MouseEvent) => {
             let target = e.target;
 
-            tooltip.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
-            tooltip.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
+            container.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
+            container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
 
             let isCanvas = e.target.tagName == "CANVAS";
             let id = e.target.id;
-            tooltip.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
+            container.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
 
             if (isCanvas) {
                 let localX = (e.offsetX / target.width) * settings.width;
                 let localY = (e.offsetY / target.height) * settings.height;
                 let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
-                tooltip.innerHTML = Object.keys(maps)
+                container.innerHTML = Object.keys(maps)
                     .map((key) =>
                         key == "photo"
                             ? ""
@@ -40,7 +40,7 @@ export const Tooltip = React.memo(() => {
                     )
                     .join("");
             } else if (tips[id]) {
-                tooltip.innerHTML = tips[id];
+                container.innerHTML = tips[id];
             }
         }
 
