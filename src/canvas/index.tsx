@@ -33,28 +33,27 @@ export const Canvas = React.memo(() => {
 
         console.time("Drawing Canvas Map");
 
-        let layout = settings.squareGrid ? SQUARE : AXIAL;
-
-        let gameCanvas = canvasAt.current;
+        let typeLayout = settings.squareGrid ? SQUARE : AXIAL;
+        let container = canvasAt.current;
 
         if (settings.gameMapScale) {
             let rescale = rescaleCoordinates(
                 settings.height,
                 settings.width,
                 32 / settings.gameMapScale,
-                layout
+                typeLayout
             );
 
             let hexCoords = rescale.indices;
             let {columns, row} = rescale;
-            let neighborDeltas = createNeighborDeltas(columns, layout);
+            let neighborDeltas = createNeighborDeltas(columns, typeLayout);
 
             console.log(rescale);
 
-            gameCanvas.width = settings.width * settings.gameMapScale + 32;
-            gameCanvas.height = settings.height * settings.gameMapScale;
+            container.width = settings.width * settings.gameMapScale + 32;
+            container.height = settings.height * settings.gameMapScale;
 
-            gameCanvas.setAttribute('style', `display:block;width:${gameCanvas.width}px;height:${gameCanvas.height}px;`)
+            container.setAttribute('style', `display:block;width:${container.width}px;height:${container.height}px;`)
 
             window.randomSeed = settings.seed;
 
@@ -229,7 +228,7 @@ export const Canvas = React.memo(() => {
                 }
                 if (quality / 400 > random()) {
                     for (let other of cities) {
-                        if (distanceBetweenCells(other, i, columns, layout) < 5) return;
+                        if (distanceBetweenCells(other, i, columns, typeLayout) < 5) return;
                     }
                     c.building = CITY;
                     c.road = ROAD;
@@ -239,7 +238,7 @@ export const Canvas = React.memo(() => {
             });
 
             console.time("roads");
-            let pathfindingDeltas = layout == SQUARE ? createNeighborDeltas(columns, SQUARE8) : neighborDeltas;
+            let pathfindingDeltas = typeLayout == SQUARE ? createNeighborDeltas(columns, SQUARE8) : neighborDeltas;
             for (let start of cities) {
                 let end = cities[Math.floor(random() * cities.length)];
                 let path = shortestPath(
@@ -312,15 +311,15 @@ export const Canvas = React.memo(() => {
             });
 
             drawTerrain(
-                gameCanvas.getContext("2d"),
+                container.getContext("2d"),
                 tiles,
                 {[RIVER]: flowsTo},
                 columns,
-                layout == SQUARE ? tilesetSquare : tilesetHex,
-                layout
+                typeLayout == SQUARE ? tilesetSquare : tilesetHex,
+                typeLayout
             );
         } else {
-            gameCanvas.setAttribute('style', `display:none;`)
+            container.setAttribute('style', `display:none;`)
         }
 
         console.timeEnd("Drawing Canvas Map");
