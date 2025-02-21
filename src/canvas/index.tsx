@@ -13,10 +13,11 @@ import {
 import {generatePrettyRivers} from "../River.ts";
 import {drawTerrain, ISPATH} from "../HexDraw.ts";
 import {random, spread} from "../Util.ts";
+import {useShallow} from "zustand/react/shallow";
 
 export const Canvas = React.memo(() => {
-    const maps = useMaps(state => state.maps);
-    const settings = useSettings(state => state.settings);
+    const maps = useMaps(useShallow(state => state.maps));
+    const settings = useSettings(useShallow(state => state.settings));
 
     const canvasAt = useRef<HTMLCanvasElement | null>(null);
 
