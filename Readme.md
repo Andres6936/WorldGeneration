@@ -168,3 +168,5 @@ We only cound hex a river if at least 4 streams have flown there, to avoid havin
 Town positioning uses very simple algorithm - it just adds some values for certain terrain traits (such as river, mountain etc) on and near the town cell, and make a random roll depending on it.
 
 Then from each city, a shortest path to the nearest town is found and road is build on it. This considers the movement costs, insluding effect of already present roads.
+
+###### Based on the work of [@baturinsky](https://github.com/baturinsky/worldgen)
