@@ -29,7 +29,8 @@ export const Elevation = React.memo(({withReduceSize}: Props) => {
             size,
             elevation,
             "elevation",
-            elevation2Image({elevation, rivers}, settings)
+            elevation2Image({elevation, rivers}, settings),
+            withReduceSize,
         );
     }, [maps, settings]);
 
