@@ -32,5 +32,3 @@ export type GenerateMap = {
     biome: Float32Array,
     photo: ArrayPhoto | undefined,
 }
-
-export type IsArrayPhoto<T> = T extends ArrayPhoto ? true : false;

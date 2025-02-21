@@ -1,4 +1,4 @@
-import {ConverterFunc, Size} from "./core/types.ts";
+import {ArrayPhoto, ConverterFunc, ConverterFuncPhoto, Size} from "./core/types.ts";
 
 export interface CanvasContext {
     canvas: HTMLCanvasElement,
@@ -35,7 +35,12 @@ export function addFilter(srcCanvas: HTMLCanvasElement, filter: string): HTMLCan
 /**
  * Convert data to image according to callback function
  */
-export function drawValuesAtContext(values: Float32Array, context: CanvasRenderingContext2D, size: Size, converter: ConverterFunc): CanvasRenderingContext2D {
+export function drawValuesAtContext<DataArray extends Float32Array | ArrayPhoto>(
+    values: DataArray,
+    context: CanvasRenderingContext2D,
+    size: Size,
+    converter: DataArray extends ArrayPhoto ? ConverterFuncPhoto : ConverterFunc
+): CanvasRenderingContext2D {
     let idata: ImageData = context.createImageData(size.w, size.h);
     for (let i = 0; i < values.length; i++) {
         idata.data.set(converter(values[i], i), i * 4);
