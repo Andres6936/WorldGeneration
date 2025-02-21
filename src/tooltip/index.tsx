@@ -4,6 +4,8 @@ import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 import {useShallow} from "zustand/react/shallow";
 
+import styles from "./index.module.css" with {type: "css"};
+
 export const Tooltip = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
     const settings = useSettings(useShallow(state => state.settings));
@@ -72,7 +74,7 @@ export const Tooltip = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div ref={tooltipAt}>
+        <div ref={tooltipAt} className={styles.Tooltip}>
             <div>Elevation</div>
             <div>{elevation}</div>
             <div>Noise</div>
