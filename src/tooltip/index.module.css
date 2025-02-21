@@ -6,3 +6,69 @@
     width: 260px;
     pointer-events: none;
 }
+
+.Popup {
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: canvas;
+    color: var(--color-gray-900);
+    transform-origin: var(--transform-origin);
+    transition: transform 150ms,
+    opacity 150ms;
+
+    &[data-starting-style],
+    &[data-ending-style] {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    @media (prefers-color-scheme: light) {
+        outline: 1px solid var(--color-gray-200);
+        box-shadow: 0 10px 15px -3px var(--color-gray-200),
+        0 4px 6px -4px var(--color-gray-200);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        outline: 1px solid var(--color-gray-300);
+        outline-offset: -1px;
+    }
+}
+
+.Arrow {
+    display: flex;
+
+    &[data-side='top'] {
+        bottom: -8px;
+        rotate: 180deg;
+    }
+
+    &[data-side='bottom'] {
+        top: -8px;
+        rotate: 0deg;
+    }
+
+    &[data-side='left'] {
+        right: -13px;
+        rotate: 90deg;
+    }
+
+    &[data-side='right'] {
+        left: -13px;
+        rotate: -90deg;
+    }
+}
+
+.Title {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+}
+
+.Description {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-gray-600);
+}

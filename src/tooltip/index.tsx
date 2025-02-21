@@ -1,10 +1,12 @@
+import styles from "./index.module.css" with {type: "css"};
+
 import React, {useEffect, useState} from "react";
 import {biomeNames} from "../Mapper.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 import {useShallow} from "zustand/react/shallow";
-
-import styles from "./index.module.css" with {type: "css"};
+import {Popover} from "@base-ui-components/react";
+import {ArrowSvg} from "../components/icons/arrow-svg.tsx";
 
 export const Tooltip = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
@@ -67,25 +69,37 @@ export const Tooltip = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div className={styles.Tooltip + (isCanvas ? " block " : " hidden ")}>
-            <div>Elevation</div>
-            <div>{elevation}</div>
-            <div>Noise</div>
-            <div>{noise}</div>
-            <div>Crust</div>
-            <div>{crust}</div>
-            <div>Tectonic</div>
-            <div>{tectonic}</div>
-            <div>Rivers</div>
-            <div>{rivers}</div>
-            <div>Wind</div>
-            <div>{wind}</div>
-            <div>Temperature</div>
-            <div>{temperature}</div>
-            <div>Humidity</div>
-            <div>{humidity}</div>
-            <div>Biome</div>
-            <div>{biome}</div>
-        </div>
+        <Popover.Root open={isCanvas}>
+            <Popover.Portal>
+                <Popover.Positioner sideOffset={8}>
+                    <Popover.Popup className={styles.Popup}>
+                        <Popover.Arrow className={styles.Arrow}>
+                            <ArrowSvg/>
+                        </Popover.Arrow>
+                        <Popover.Title className={styles.Title}>Details</Popover.Title>
+                        <Popover.Description className={styles.Description}>
+                            <div>Elevation</div>
+                            <div>{elevation}</div>
+                            <div>Noise</div>
+                            <div>{noise}</div>
+                            <div>Crust</div>
+                            <div>{crust}</div>
+                            <div>Tectonic</div>
+                            <div>{tectonic}</div>
+                            <div>Rivers</div>
+                            <div>{rivers}</div>
+                            <div>Wind</div>
+                            <div>{wind}</div>
+                            <div>Temperature</div>
+                            <div>{temperature}</div>
+                            <div>Humidity</div>
+                            <div>{humidity}</div>
+                            <div>Biome</div>
+                            <div>{biome}</div>
+                        </Popover.Description>
+                    </Popover.Popup>
+                </Popover.Positioner>
+            </Popover.Portal>
+        </Popover.Root>
     )
 })
