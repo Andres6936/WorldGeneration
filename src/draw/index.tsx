@@ -9,6 +9,7 @@ import {Wind} from "../maps/wind.tsx";
 import {Humidity} from "../maps/humidity.tsx";
 import {Biome} from "../maps/biome.tsx";
 import {Photo} from "../maps/photo.tsx";
+import {Layers} from "lucide-react";
 
 import styles from './index.module.css' with {type: 'css'};
 
@@ -44,7 +45,7 @@ export const Draw = React.memo(() => {
                 <div className="abs bottom:1rem right:1rem">
                     <Menu.Root>
                         <Menu.Trigger className={styles.Button}>
-                            Layers <ChevronDownIcon className={styles.ButtonIcon}/>
+                            <Layers/>
                         </Menu.Trigger>
                         <Menu.Portal>
                             <Menu.Positioner className={styles.Positioner} sideOffset={8}>
@@ -113,14 +114,6 @@ function ArrowSvg(props: React.ComponentProps<'svg'>) {
                 d="M10.3333 3.34539L5.47654 7.71648C4.55842 8.54279 3.36693 9 2.13172 9H0V8H2.13172C3.11989 8 4.07308 7.63423 4.80758 6.97318L9.66437 2.60207C10.0447 2.25979 10.622 2.2598 11.0023 2.60207L15.8591 6.97318C16.5936 7.63423 17.5468 8 18.5349 8H20V9H18.5349C17.2998 9 16.1083 8.54278 15.1901 7.71648L10.3333 3.34539Z"
                 className={styles.ArrowInnerStroke}
             />
-        </svg>
-    );
-}
-
-function ChevronDownIcon(props: React.ComponentProps<'svg'>) {
-    return (
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" {...props}>
-            <path d="M1 3.5L5 7.5L9 3.5" stroke="currentcolor" strokeWidth="1.5"/>
         </svg>
     );
 }
