@@ -16,10 +16,13 @@ export const Tooltip = React.memo(() => {
 
         const handleMouseMove = (e: MouseEvent) => {
             if (!e.target) return;
+            // Needed for access to tagName property safely
+            if (!(e.target instanceof Element)) return;
 
             container.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
             container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
 
+            console.log(e.target.tagName)
             let isCanvas = e.target.tagName == "CANVAS";
             let id = e.target.id;
             container.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
