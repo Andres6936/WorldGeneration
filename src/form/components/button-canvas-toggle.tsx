@@ -1,7 +1,7 @@
 import React from "react";
-import {useSettings} from "../store/useSettings.ts";
+import {useSettings} from "../../store/useSettings.ts";
 
-import styles from '../components/button/index.module.css' with {type: 'css'};
+import styles from '../../components/button/index.module.css' with {type: 'css'};
 
 export const ButtonCanvasToggle = React.memo(() => {
     const showCanvasMap = useSettings(state => state.showCanvasMap)
