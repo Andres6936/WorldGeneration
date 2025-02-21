@@ -4,6 +4,7 @@ import {NumberInput} from "./number.tsx";
 import {CheckboxInput} from "./checkbox.tsx";
 import {TipInput} from "./tip.tsx";
 import {ButtonCanvasToggle} from "./components/button-canvas-toggle.tsx";
+import {ButtonReset} from "./components/button-reset.tsx";
 
 export function Form() {
     return (
@@ -48,10 +49,7 @@ export function Form() {
                 }
             })}
 
-            <button className="mt:1rem blue">
-                Reset to default
-            </button>
-
+            <ButtonReset/>
             <ButtonCanvasToggle/>
         </form>
     )
