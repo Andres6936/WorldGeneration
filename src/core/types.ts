@@ -18,7 +18,7 @@ export type Cell = {
     empty: boolean;
 };
 
-type ArrayPhoto = [number, number, number, number][];
+export type ArrayPhoto = [number, number, number, number][];
 
 export type GenerateMap = {
     elevation: Float32Array,
@@ -32,3 +32,5 @@ export type GenerateMap = {
     biome: Float32Array,
     photo: ArrayPhoto | undefined,
 }
+
+export type IsArrayPhoto<T> = T extends ArrayPhoto ? true : false;
