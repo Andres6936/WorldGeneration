@@ -156,7 +156,15 @@ export const Canvas = React.memo(() => {
 
 
             let gameMap: (Cell | { empty: true })[] = hexCoords.map((i, hexi) => {
-                let cell: Cell = {};
+                let cell: Cell = {
+                    cover: 0,
+                    highlands: 0,
+                    water: 0,
+                    river: 0,
+                    vegetation: 0,
+                    road: 0,
+                    building: 0,
+                };
 
                 let [e, h, t] = [elevation[i], humidity[i], temperature[i]];
 
