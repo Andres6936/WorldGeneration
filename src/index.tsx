@@ -9,6 +9,7 @@ import {Tooltip} from "./tooltip";
 import {useMaps} from "./store/useMaps.ts";
 import {useSettings} from "./store/useSettings.ts";
 import {generateMap} from "./Mapper.ts";
+import {useShallow} from "zustand/react/shallow";
 
 const Meta = React.memo(() => {
     return (
@@ -31,8 +32,8 @@ const Main = React.memo(() => {
 })
 
 const App = React.memo(() => {
-    const settings = useSettings(state => state.settings);
-    const setMaps = useMaps(state => state.setMaps)
+    const settings = useSettings(useShallow(state => state.settings));
+    const setMaps = useMaps(useShallow(state => state.setMaps))
 
     useEffect(() => {
         console.time("Generation Map")
