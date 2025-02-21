@@ -14,6 +14,7 @@ import {generatePrettyRivers} from "../River.ts";
 import {drawTerrain, ISPATH} from "../HexDraw.ts";
 import {random, spread} from "../Util.ts";
 import {useShallow} from "zustand/react/shallow";
+import {Cell} from "../core/types.ts";
 
 export const Canvas = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
@@ -153,19 +154,8 @@ export const Canvas = React.memo(() => {
                 tilesheet: document.getElementById("squareSheet"),
             };
 
-            /**
-             * @typedef Cell
-             * @property {number} cover - 0, SNOW or DESERT
-             * @property {number} highlands - 0, HILL or MOUNTAIN
-             * @property {number} water - 0, WATER or RIVER
-             * @property {number} river - if river, next cells it flows to. otherwise, 0
-             * @property {number} vegetation - 0 or FOREST
-             * @property {number} road - 0 or ROAD
-             * @property {number} building - 0 or CITY
-             */
 
-            /** @type {Cell[]} */
-            let gameMap = hexCoords.map((i, hexi) => {
+            let gameMap: Cell[][] = hexCoords.map((i, hexi) => {
                 /** @type {Cell} */
                 let c = {};
 
