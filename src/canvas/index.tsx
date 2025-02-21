@@ -207,7 +207,7 @@ export const Canvas = React.memo(() => {
                 return cell;
             });
 
-            let cities = [];
+            let cities: number[] = [];
             gameMap.forEach((c, i) => {
                 let quality =
                     10 +
