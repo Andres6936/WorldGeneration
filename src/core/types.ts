@@ -16,6 +16,8 @@ export type Cell = {
     empty: boolean;
 };
 
+type ArrayPhoto = [number, number, number, number][];
+
 export type GenerateMap = {
     elevation: Float32Array,
     noise: Float32Array,
@@ -26,5 +28,5 @@ export type GenerateMap = {
     temperature: Float32Array,
     humidity: Float32Array,
     biome: Float32Array,
-    photo: [number, number, number, number][] | undefined,
+    photo: ArrayPhoto | undefined,
 }
