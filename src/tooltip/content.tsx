@@ -47,25 +47,34 @@ export const Content = React.memo(({index}: Props) => {
     }, [index, maps])
 
     return (
-        <section>
-            <div>Elevation</div>
-            <div>{elevation}</div>
-            <div>Noise</div>
-            <div>{noise}</div>
-            <div>Crust</div>
-            <div>{crust}</div>
-            <div>Tectonic</div>
-            <div>{tectonic}</div>
-            <div>Rivers</div>
-            <div>{rivers}</div>
-            <div>Wind</div>
-            <div>{wind}</div>
-            <div>Temperature</div>
-            <div>{temperature}</div>
-            <div>Humidity</div>
-            <div>{humidity}</div>
-            <div>Biome</div>
-            <div>{biome}</div>
+        <section className="bt:1px|solid|$(color-gray-500) pt:0.5rem mt:0.5rem">
+            <Info title="Elevation" value={elevation}/>
+            <Info title="Noise" value={noise}/>
+            <Info title="Crust" value={crust}/>
+            <Info title="Tectonic" value={tectonic}/>
+            <Info title="Rivers" value={rivers}/>
+            <Info title="Wind" value={wind}/>
+            <Info title="Temperature" value={temperature}/>
+            <Info title="Humidity" value={humidity}/>
+
+            <div className="flex flex:col bt:1px|solid|$(color-gray-500) mt:0.5rem pt:0.5rem">
+                <div className="opacity:0.6 text:center">Biome</div>
+                <div>{biome}</div>
+            </div>
         </section>
+    )
+})
+
+type InfoProps = {
+    title: string
+    value: number
+}
+
+const Info = React.memo(({title, value}: InfoProps) => {
+    return (
+        <div className="flex flex:row justify-content:space-between">
+            <div className="opacity:0.6">{title}</div>
+            <div>{value.toFixed(2)}</div>
+        </div>
     )
 })
