@@ -1,3 +1,5 @@
+import {Cell} from "./core/types.ts";
+
 export const SQUARE: number = 0;
 export const ODDR: number = 1;
 export const WIDTH2: number = 2;
@@ -171,7 +173,7 @@ export function distanceBetweenCells(a: number, b: number, columns: number, layo
     return dist;
 }
 
-export function shortestPath(world, start, end, columns, neighborDeltas, cellCost) {
+export function shortestPath(world: Cell[], start: number, end: number, columns: number, neighborDeltas: number[][], cellCost: (cell: Cell) => number) {
     let bag = [start];
     let wayCost = [];
     wayCost[start] = 0;
