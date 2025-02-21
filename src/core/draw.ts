@@ -15,13 +15,13 @@ export function drawAtContext(
 
     if (withReduceSize) {
         const rescaledCanvas = rescaleContext(image, size.w * scale, size.h * scale);
-        const ctx = rescaledCanvas.getContext("2d");
-        if (!ctx) {
+        const rescaledContext = rescaledCanvas.getContext("2d");
+        if (!rescaledContext) {
             throw new Error("Could not get context 2D of rescaled canvas");
         }
-        ctx.font = "14px Verdana";
-        ctx.fillStyle = "white";
-        ctx.strokeText(title, 5, 15);
-        ctx.fillText(title, 4, 14);
+        rescaledContext.font = "14px Verdana";
+        rescaledContext.fillStyle = "white";
+        rescaledContext.strokeText(title, 5, 15);
+        rescaledContext.fillText(title, 4, 14);
     }
 }
