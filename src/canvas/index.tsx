@@ -167,7 +167,7 @@ export const Canvas = React.memo(() => {
 
 
             let gameMap: Cell[] = hexCoords.map((i, hexi) => {
-                let cell: Cell = {...EMPTY_CELL};
+                let cell: Cell = {...EMPTY_CELL, empty: false};
 
                 let [e, h, t] = [elevation[i], humidity[i], temperature[i]];
 
