@@ -14,3 +14,7 @@ export type Cell = {
     road: number; // 0 or ROAD
     building: number; // 0 or CITY
 };
+
+export type CellEmpty = {
+    empty: true;
+}

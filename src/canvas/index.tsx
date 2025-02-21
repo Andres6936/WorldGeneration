@@ -14,7 +14,7 @@ import {generatePrettyRivers} from "../River.ts";
 import {drawTerrain, ISPATH} from "../HexDraw.ts";
 import {random, spread} from "../Util.ts";
 import {useShallow} from "zustand/react/shallow";
-import {Cell} from "../core/types.ts";
+import {Cell, CellEmpty} from "../core/types.ts";
 
 export const Canvas = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
@@ -155,7 +155,7 @@ export const Canvas = React.memo(() => {
             };
 
 
-            let gameMap: (Cell | { empty: true })[] = hexCoords.map((i, hexi) => {
+            let gameMap: (Cell | CellEmpty)[] = hexCoords.map((i, hexi) => {
                 let cell: Cell = {
                     cover: 0,
                     highlands: 0,
