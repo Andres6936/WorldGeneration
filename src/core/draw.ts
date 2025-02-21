@@ -1,13 +1,13 @@
 import {drawValuesAtContext} from "../CanvasContext.ts";
 import {rescaleContext} from "../UtilImage.ts";
-import {Size} from "./types.ts";
+import {ConverterFunc, Size} from "./types.ts";
 
 export function drawAtContext(
     context: CanvasRenderingContext2D,
     size: Size,
     data: Float32Array,
     title: string,
-    fun: (v: number, i: number) => [number, number, number, number],
+    fun: ConverterFunc,
     withReduceSize: boolean = false,
     scale = 1 / 4,
 ) {
