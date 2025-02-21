@@ -180,7 +180,7 @@ export function shortestPath(world: Cell[], start: number, end: number, columns:
     let prev = [];
     for (let limit = 0; limit < 10000; limit++) {
         if (bag.length == 0) return null;
-        let walking = bag.shift();
+        let walking = bag.shift() as number // Before validate if the bag array is empty, is safe make the cast;
         if (walking == end) {
             let r = [];
             while (walking) {
