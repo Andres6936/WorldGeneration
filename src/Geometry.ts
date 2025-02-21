@@ -173,13 +173,13 @@ export function distanceBetweenCells(a: number, b: number, columns: number, layo
     return dist;
 }
 
-export function shortestPath(world: Cell[], start: number, end: number, columns: number, neighborDeltas: number[][], cellCost: (cell: Cell) => number) {
+export function shortestPath(world: Cell[], start: number, end: number, columns: number, neighborDeltas: number[][], cellCost: (cell: Cell) => number): number[] {
     let bag = [start];
     let wayCost: number[] = [];
     wayCost[start] = 0;
     let prev = [];
     for (let limit = 0; limit < 10000; limit++) {
-        if (bag.length == 0) return null;
+        if (bag.length == 0) return [];
         let walking = bag.shift() as number // Before validate if the bag array is empty, is safe make the cast;
         if (walking == end) {
             let r = [];
