@@ -175,7 +175,7 @@ export function distanceBetweenCells(a: number, b: number, columns: number, layo
 
 export function shortestPath(world: Cell[], start: number, end: number, columns: number, neighborDeltas: number[][], cellCost: (cell: Cell) => number) {
     let bag = [start];
-    let wayCost = [];
+    let wayCost: number[] = [];
     wayCost[start] = 0;
     let prev = [];
     for (let limit = 0; limit < 10000; limit++) {
