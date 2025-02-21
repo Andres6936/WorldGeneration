@@ -2,10 +2,11 @@ import React, {useEffect, useRef} from "react";
 import {biomeNames} from "../Mapper.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
+import {useShallow} from "zustand/react/shallow";
 
 export const Tooltip = React.memo(() => {
-    const maps = useMaps(state => state.maps);
-    const settings = useSettings(state => state.settings);
+    const maps = useMaps(useShallow(state => state.maps));
+    const settings = useSettings(useShallow(state => state.settings));
 
     const tooltipAt = useRef<HTMLDivElement | null>(null);
 
