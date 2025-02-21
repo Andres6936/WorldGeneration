@@ -21,8 +21,8 @@ export const Tooltip = React.memo(() => {
             container.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
             container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
 
-            let isCanvas = e.target.tagName == "CANVAS";
-            let id = e.target.id;
+            let isCanvas = target.tagName == "CANVAS";
+            let id = target.id;
             container.style.display = isCanvas ? "grid" : window.tips[id] ? "block" : "none";
 
             if (isCanvas) {
