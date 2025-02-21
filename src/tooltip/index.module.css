@@ -9,11 +9,3 @@
     width: 260px;
     pointer-events: none;
 }
-
-.Tooltip div {
-    padding-left: 5px;
-}
-
-.Tooltip div:nth-child(odd) {
-    text-align: right;
-}
