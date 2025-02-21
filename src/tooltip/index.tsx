@@ -11,7 +11,7 @@ export const Tooltip = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
     const settings = useSettings(useShallow(state => state.settings));
 
-    const [clientVector, setClientVector] = useState<[number, number]>([0, 0])
+    const [position, setPosition] = useState<{ x: number, y: number }>({x: 0, y: 0})
     const [isCanvas, setIsCanvas] = useState(true);
     const [elevation, setElevation] = useState(0);
     const [noise, setNoise] = useState(0);
@@ -30,7 +30,7 @@ export const Tooltip = React.memo(() => {
             if (!e.target) return;
             if (e.target instanceof HTMLCanvasElement) {
                 setIsCanvas(true);
-                setClientVector([e.clientX, e.clientY]);
+                setPosition({x: e.clientX, y: e.clientY});
                 let localX = (e.offsetX / e.target.width) * settings.width;
                 let localY = (e.offsetY / e.target.height) * settings.height;
                 let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
@@ -71,7 +71,7 @@ export const Tooltip = React.memo(() => {
     return (
         <Popover.Root open={true}>
             <Popover.Portal>
-                <Popover.Trigger className="abs" style={{top: clientVector[1], left: clientVector[0]}}/>
+                <Popover.Trigger className="abs" style={{top: position.y, left: position.x}}/>
                 <Popover.Positioner sideOffset={8}>
                     <Popover.Popup className={styles.Popup}>
                         <Popover.Title className={styles.Title}>Details</Popover.Title>
