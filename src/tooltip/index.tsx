@@ -16,6 +16,7 @@ export const Tooltip = React.memo(() => {
 
         const handleMouseMove = (e: MouseEvent) => {
             let target = e.target;
+            if (!target) return;
 
             container.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
             container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
