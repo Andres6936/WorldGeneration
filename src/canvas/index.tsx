@@ -56,7 +56,7 @@ export const Canvas = React.memo(() => {
 
             container.setAttribute('style', `display:block;width:${container.width}px;height:${container.height}px;`)
 
-            window.randomSeed = settings.seed;
+            // window.randomSeed = settings.seed;
 
             let {riverDepth, flowsTo} = generatePrettyRivers(
                 hexCoords.map((i) => elevation[i]),
