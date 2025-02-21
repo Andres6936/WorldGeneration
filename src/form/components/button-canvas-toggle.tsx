@@ -10,13 +10,13 @@ export const ButtonCanvasToggle = React.memo(() => {
     if (showCanvasMap) {
         return (
             <button className={styles.Button} onClick={() => setShowCanvasMap(false)}>
-                Show canvas map
+                Hidden canvas map
             </button>
         )
     } else {
         return (
             <button className={styles.Button} onClick={() => setShowCanvasMap(true)}>
-                Hidden canvas map
+                Show canvas map
             </button>
         )
     }
