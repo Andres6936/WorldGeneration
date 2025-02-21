@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {biomeNames} from "../Mapper.ts";
 import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
@@ -10,8 +10,7 @@ export const Tooltip = React.memo(() => {
     const maps = useMaps(useShallow(state => state.maps));
     const settings = useSettings(useShallow(state => state.settings));
 
-    const tooltipAt = useRef<HTMLDivElement | null>(null);
-
+    const [isCanvas, setIsCanvas] = useState(true);
     const [elevation, setElevation] = useState(0);
     const [noise, setNoise] = useState(0);
     const [crust, setCrust] = useState(0);
@@ -23,19 +22,13 @@ export const Tooltip = React.memo(() => {
     const [biome, setBiome] = useState("");
 
     useEffect(() => {
-        if (tooltipAt.current === null || maps === null) return;
-        const container = tooltipAt.current;
+        if (maps === null) return;
 
         const handleMouseMove = (e: MouseEvent) => {
             if (!e.target) return;
-            // Needed for access to tagName property safely
-            if (!(e.target instanceof Element)) return;
-
-            container.style.left = Math.min(window.innerWidth - 300, e.screenX + 20).toString();
-            container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
 
             if (e.target instanceof HTMLCanvasElement) {
-                container.style.display = "block";
+                setIsCanvas(true);
                 let localX = (e.offsetX / e.target.width) * settings.width;
                 let localY = (e.offsetY / e.target.height) * settings.height;
                 let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
@@ -61,7 +54,7 @@ export const Tooltip = React.memo(() => {
                 setHumidity(humidity[ind]);
                 setBiome(biomeNames[biome[ind]].toUpperCase());
             } else {
-                container.style.display = "none";
+                setIsCanvas(false);
             }
         }
 
@@ -74,7 +67,7 @@ export const Tooltip = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div ref={tooltipAt} className={styles.Tooltip}>
+        <div className={styles.Tooltip + (isCanvas ? " block " : " hidden ")}>
             <div>Elevation</div>
             <div>{elevation}</div>
             <div>Noise</div>

@@ -1,6 +1,5 @@
 .Tooltip {
     position: fixed;
-    display: none;
     grid-template-columns: 0fr 1fr;
     color: var(--color-gray-900);
     background: var(--color-gray-200);
