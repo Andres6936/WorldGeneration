@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../draw/index.module.css";
+import styles from "./index.module.css" with {type: "css"};
 
 export function ArrowSvg(props: React.ComponentProps<'svg'>) {
     return (

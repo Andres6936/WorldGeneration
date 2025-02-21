@@ -54,21 +54,6 @@
     }
 }
 
-.ArrowFill {
-    fill: canvas;
-}
-
-.ArrowOuterStroke {
-    @media (prefers-color-scheme: light) {
-        fill: var(--color-gray-400);
-    }
-}
-
-.ArrowInnerStroke {
-    @media (prefers-color-scheme: dark) {
-        fill: var(--color-gray-500);
-    }
-}
 
 .Item {
     outline: 0;
