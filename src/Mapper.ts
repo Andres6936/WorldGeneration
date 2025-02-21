@@ -1,6 +1,5 @@
 "use strict";
 
-
 import {addFilter, data2image, image2alpha} from "./CanvasContext";
 import {colorFromRGBString} from "./UtilImage";
 import {gradientNoise} from "./Noise";
@@ -22,10 +21,6 @@ export type GenerateMap = {
   photo,
 }
 
-/**
- * @param {number} width
- * @param {number} height
- */
 export function generateMap({
   width,
   height,
@@ -45,7 +40,7 @@ export function generateMap({
   randomiseHumidity,
   generatePhoto
                             }: Settings): GenerateMap {
-  window.randomSeed = seed;
+  // window.randomSeed = seed;
 
   const mapSize = width * height;
   const mapDiagonal = Math.sqrt(width * width + height * height);
