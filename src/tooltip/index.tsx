@@ -23,9 +23,12 @@ export const Tooltip = React.memo(() => {
             container.style.top = Math.min(window.innerHeight - 200, e.screenY - 40).toString();
 
             let isCanvas = e.target.tagName == "CANVAS";
-            container.style.display = isCanvas ? "grid" : "block";
+            container.style.display = isCanvas ? "block" : "none";
 
             if (isCanvas) {
+                // Needed for access to width and height properties safely
+                if (!(e.target instanceof HTMLCanvasElement)) return;
+
                 let localX = (e.offsetX / e.target.width) * settings.width;
                 let localY = (e.offsetY / e.target.height) * settings.height;
                 let ind = Math.floor(localX) + Math.floor(localY) * settings.width;
