@@ -10,10 +10,6 @@ import {useMaps} from "./store/useMaps.ts";
 import {useSettings} from "./store/useSettings.ts";
 import {generateMap} from "./Mapper.ts";
 
-window.tips = {};
-window.maps = [];
-window.miniMaps = [];
-
 const Meta = React.memo(() => {
     return (
         <>
