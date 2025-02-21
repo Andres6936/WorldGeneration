@@ -43,7 +43,7 @@ export const Content = React.memo(({index}: Props) => {
         setWind(wind[index]);
         setTemperature(temperature[index]);
         setHumidity(humidity[index]);
-        setBiome(biomeNames[biome[index]].toUpperCase());
+        setBiome(biomeNames[biome[index]]?.toUpperCase());
     }, [index, maps])
 
     return (
@@ -72,7 +72,7 @@ type InfoProps = {
 
 const Info = React.memo(({title, value}: InfoProps) => {
     return (
-        <div className="flex flex:row justify-content:space-between">
+        <div className="flex flex:row justify-content:space-between gap:2rem">
             <div className="opacity:0.6">{title}</div>
             <div>{value.toFixed(2)}</div>
         </div>
