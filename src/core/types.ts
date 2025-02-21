@@ -1,8 +1,6 @@
 export type Size = { w: number, h: number };
 
-export type ConverterFuncPhoto = (value: [number, number, number, number], index: number) => ArrayLike<number>;
-
-export type ConverterFunc = (value: number, index: number) => ArrayLike<number>;
+export type ConverterFunc<DataArray extends Float32Array | ArrayPhoto> = (value: DataArray[number], index: number) => ArrayLike<number>;
 
 /**
  * Represents a cell with various geographical and infrastructural properties.

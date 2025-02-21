@@ -1,13 +1,13 @@
 import {drawValuesAtContext} from "../CanvasContext.ts";
 import {rescaleContext} from "../UtilImage.ts";
-import {ArrayPhoto, ConverterFunc, ConverterFuncPhoto, Size} from "./types.ts";
+import {ArrayPhoto, ConverterFunc, Size} from "./types.ts";
 
 export function drawAtContext<DataArray extends Float32Array | ArrayPhoto>(
     context: CanvasRenderingContext2D,
     size: Size,
     data: DataArray,
     title: string,
-    fun: DataArray extends ArrayPhoto ? ConverterFuncPhoto : ConverterFunc,
+    fun: ConverterFunc<DataArray>,
     withReduceSize: boolean = false,
     scale = 1 / 4,
 ) {
