@@ -5,7 +5,7 @@ import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
 type Props = {
-    withReduceSize: boolean,
+    withReduceSize?: boolean,
 }
 
 

@@ -18,19 +18,19 @@ export const Draw = React.memo(() => {
     const drawCurrentLayer = useCallback(() => {
         switch (currentLayer) {
             case Layer.Elevation:
-                return <Elevation withReduceSize={true}/>
+                return <Elevation/>
             case Layer.Tectonics:
-                return <Tectonics withReduceSize={true}/>
+                return <Tectonics/>
             case Layer.Temperature:
-                return <Temperature withReduceSize={true}/>
+                return <Temperature/>
             case Layer.Wind:
-                return <Wind withReduceSize={true}/>
+                return <Wind/>
             case Layer.Humidity:
-                return <Humidity withReduceSize={true}/>
+                return <Humidity/>
             case Layer.Biome:
-                return <Biome withReduceSize={true}/>
+                return <Biome/>
             case Layer.Photo:
-                return <Photo withReduceSize={true}/>
+                return <Photo/>
         }
     }, [currentLayer])
 

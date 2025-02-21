@@ -4,9 +4,8 @@ import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
 type Props = {
-    withReduceSize: boolean,
+    withReduceSize?: boolean,
 }
-
 
 export const Temperature = React.memo(({withReduceSize}: Props) => {
     const maps = useMaps(state => state.maps);
