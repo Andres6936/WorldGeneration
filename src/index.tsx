@@ -21,7 +21,7 @@ const Meta = React.memo(() => {
 })
 
 const Main = React.memo(() => {
-    const showCanvasMap = useSettings(state => state.showCanvasMap);
+    const showCanvasMap = useSettings(useShallow(state => state.showCanvasMap));
 
     return (
         <div className="flex flex:1 flex:row h:100vh w:100vw">
