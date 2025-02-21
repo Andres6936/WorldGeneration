@@ -50,8 +50,8 @@ export const Canvas = React.memo(() => {
 
         if (settings.gameMapScale) {
             let rescale = rescaleCoordinates(
-                settings.height,
                 settings.width,
+                settings.height,
                 32 / settings.gameMapScale,
                 typeLayout
             );
