@@ -3,7 +3,7 @@ import {RangeInput} from "./range.tsx";
 import {NumberInput} from "./number.tsx";
 import {CheckboxInput} from "./checkbox.tsx";
 import {TipInput} from "./tip.tsx";
-import {ActionsButtons} from "./actions-buttons.tsx";
+import {ButtonCanvasToggle} from "./button-canvas-toggle.tsx";
 
 export function Form() {
     return (
@@ -52,7 +52,7 @@ export function Form() {
                 Reset to default
             </button>
 
-            <ActionsButtons/>
+            <ButtonCanvasToggle/>
         </form>
     )
 }

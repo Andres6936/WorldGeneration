@@ -1,7 +1,7 @@
 import React from "react";
 import {useSettings} from "../store/useSettings.ts";
 
-export const ActionsButtons = React.memo(() => {
+export const ButtonCanvasToggle = React.memo(() => {
     const showCanvasMap = useSettings(state => state.showCanvasMap)
     const setShowCanvasMap = useSettings(state => state.setShowCanvasMap)
 
