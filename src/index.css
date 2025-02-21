@@ -41,7 +41,8 @@
     position: fixed;
     display: none;
     grid-template-columns: 0fr 1fr;
-    background: rgba(255, 255, 255, 0.6);
+    color: var(--color-gray-900);
+    background: var(--color-gray-200);
     padding: 1em;
     box-shadow: 2px 2px 2px black;
     width: 260px;
