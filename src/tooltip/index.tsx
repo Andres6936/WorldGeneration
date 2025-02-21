@@ -37,7 +37,7 @@ export const Tooltip = React.memo(() => {
 
     return (
         <Popover.Root open={showPopup}>
-            <Popover.Portal>
+            <Popover.Portal keepMounted>
                 <Popover.Trigger
                     render={(props) => (
                         <div {...props} className="abs" style={{top: position.y, left: position.x}}/>
