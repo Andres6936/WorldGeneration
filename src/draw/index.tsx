@@ -12,6 +12,7 @@ import {Photo} from "../maps/photo.tsx";
 import {Layers} from "lucide-react";
 
 import styles from './index.module.css' with {type: 'css'};
+import buttonStyles from '../components/button/index.module.css' with {type: 'css'};
 
 export const Draw = React.memo(() => {
     const currentLayer = useSettings(state => state.currentLayer)
@@ -44,7 +45,7 @@ export const Draw = React.memo(() => {
 
                 <div className="abs bottom:1rem right:1rem">
                     <Menu.Root>
-                        <Menu.Trigger className={styles.Button}>
+                        <Menu.Trigger className={buttonStyles.Button}>
                             <Layers/>
                         </Menu.Trigger>
                         <Menu.Portal>
