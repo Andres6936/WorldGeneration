@@ -1,7 +1,6 @@
 import React, {useCallback} from "react";
 import {Elevation} from "../maps/elevation.tsx";
 import {Menu} from "@base-ui-components/react";
-import styles from './index.module.css';
 import {useSettings} from "../store/useSettings.ts";
 import {Layer} from "../core/enums.ts";
 import {Tectonics} from "../maps/tectonics.tsx";
@@ -10,6 +9,8 @@ import {Wind} from "../maps/wind.tsx";
 import {Humidity} from "../maps/humidity.tsx";
 import {Biome} from "../maps/biome.tsx";
 import {Photo} from "../maps/photo.tsx";
+
+import styles from './index.module.css' with {type: 'css'};
 
 export const Draw = React.memo(() => {
     const currentLayer = useSettings(state => state.currentLayer)
