@@ -72,7 +72,7 @@ export const Tooltip = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div ref={tooltipAt} id="tooltip">
+        <div ref={tooltipAt}>
             <div>Elevation</div>
             <div>{elevation}</div>
             <div>Noise</div>
