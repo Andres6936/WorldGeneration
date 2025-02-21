@@ -218,8 +218,7 @@ export const Canvas = React.memo(() => {
                     (c.highlands == HILL ? -10 : 0) +
                     (c.highlands == DESERT ? -10 : 0);
                 let row = Math.floor(i / columns);
-                for (let delta of neighborDeltas[row % 2]) {
-                    let neighbor = gameMap[i + delta];
+                for (let _ of neighborDeltas[row % 2]) {
                     quality +=
                         (c.river ? 10 : 0) +
                         (c.water ? 50 : 0) +
