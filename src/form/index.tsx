@@ -8,42 +8,34 @@ import {ButtonReset} from "./components/button-reset.tsx";
 
 export function Form() {
     return (
-        <form className="p:1rem" onSubmit={e => e.preventDefault()}>
-            {parameters.map(({name, type, element}) => {
-                if (type === "tip") {
+        <form className="p:1rem overflow-y:scroll" onSubmit={e => e.preventDefault()}>
+            {parameters.map(param => {
+                if (param.type === "tip") {
                     return (
                         <TipInput
-                            key={name}
-                            name={name}
-                            type={type}
-                            element={element}
+                            key={param.name}
+                            {...param}
                         />
                     )
-                } else if (type === "checkbox") {
+                } else if (param.type === "checkbox") {
                     return (
                         <CheckboxInput
-                            key={name}
-                            name={name}
-                            type={type}
-                            element={element}
+                            key={param.name}
+                            {...param}
                         />
                     )
-                } else if (type === "number") {
+                } else if (param.type === "number") {
                     return (
                         <NumberInput
-                            key={name}
-                            name={name}
-                            type={type}
-                            element={element}
+                            key={param.name}
+                            {...param}
                         />
                     )
-                } else if (type === "range") {
+                } else if (param.type === "range") {
                     return (
                         <RangeInput
-                            key={name}
-                            name={name}
-                            type={type}
-                            element={element}
+                            key={param.name}
+                            {...param}
                         />
                     )
                 }

@@ -4,7 +4,7 @@ import {useSettings} from "../store/useSettings.ts";
 
 type Props = NumberForm & {}
 
-export const NumberInput = React.memo(({name}: Props) => {
+export const NumberInput = React.memo(({title, name}: Props) => {
     const settings = useSettings(state => state.settings)
     const setSettings = useSettings(state => state.setSettings)
 
@@ -22,7 +22,7 @@ export const NumberInput = React.memo(({name}: Props) => {
     return (
         <div className="flex flex:row gap:1rem">
             <div>
-                {name}
+                {title}
             </div>
             <input
                 onChange={({target}) => onChange(target.valueAsNumber)}

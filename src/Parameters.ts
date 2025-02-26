@@ -1,12 +1,14 @@
 import {Settings} from "./global";
 
 export type CheckboxForm = {
+    title: string,
     name: keyof Settings,
     type: "checkbox",
     element?: undefined,
 }
 
 export type RangeForm = {
+    title: string,
     name: keyof Settings,
     type: "range",
     element: {
@@ -18,6 +20,7 @@ export type RangeForm = {
 }
 
 export type NumberForm = {
+    title: string,
     name: keyof Settings,
     type: "number",
     element: { tip: string }
@@ -34,15 +37,17 @@ export type FormParameters = CheckboxForm | NumberForm | RangeForm | TipForm
 
 
 export const parameters: FormParameters[] = [
-    {name: "seed", type: "number", element: {tip: "Seed for the random number generator."}},
-    {name: "width", type: "number", element: {tip: "Map width in pixels"}},
-    {name: "height", type: "number", element: {tip: "Map height in pixels"}},
+    {title: "Seed", name: "seed", type: "number", element: {tip: "Seed for the random number generator."}},
+    {title: "Width", name: "width", type: "number", element: {tip: "Map width in pixels"}},
+    {title: "Height", name: "height", type: "number", element: {tip: "Map height in pixels"}},
     {
+        title: "Noise Smoothness",
         name: "noiseSmoothness",
         type: "range",
         element: {max: 10, step: 0.5, tip: "Smootheness of the elevation noise"},
     },
     {
+        title: "Tectonic Smoothness",
         name: "tectonicSmoothness",
         type: "range",
         element: {
@@ -53,6 +58,7 @@ export const parameters: FormParameters[] = [
         },
     },
     {
+        title: "Noise Factor",
         name: "noiseFactor",
         type: "range",
         element: {
@@ -63,6 +69,7 @@ export const parameters: FormParameters[] = [
         },
     },
     {
+        title: "Crust Factor",
         name: "crustFactor",
         type: "range",
         element: {
@@ -74,6 +81,7 @@ export const parameters: FormParameters[] = [
         },
     },
     {
+        title: "Tectonic Factor",
         name: "tectonicFactor",
         type: "range",
         element: {
@@ -84,6 +92,7 @@ export const parameters: FormParameters[] = [
         },
     },
     {
+        title: "Pangea",
         name: "pangaea",
         type: "range",
         element: {
@@ -93,20 +102,23 @@ export const parameters: FormParameters[] = [
                 "Increasing this will make land gravitate the centre of the map, and vice versa",
         },
     },
-    {name: "seaRatio", type: "range", element: {tip: "Sea percentage"}},
+    {title: "Sea Ratio", name: "seaRatio", type: "range", element: {tip: "Sea percentage"}},
     {
+        title: "Flatness",
         name: "flatness",
         type: "range",
         element: {tip: "Initial flatness of the non-mountain areas"},
     },
-    {name: "randomiseHumidity", type: "checkbox"},
-    {name: "averageTemperature", type: "range", element: {min: -30, max: 50, step: 1}},
+    {title: "Randomise Humidity", name: "randomiseHumidity", type: "checkbox"},
+    {title: "Average Temperature", name: "averageTemperature", type: "range", element: {min: -30, max: 50, step: 1}},
     {
+        title: "Erosion",
         name: "erosion",
         type: "range",
         element: {max: 100000, tip: "How long water-caused erosion will be simulated"},
     },
     {
+        title: "River Shown",
         name: "riversShown",
         type: "range",
         element: {
@@ -115,11 +127,12 @@ export const parameters: FormParameters[] = [
                 "Amount of rivers and lakes shown on elevation, humidity and biome maps",
         },
     },
-    {name: "biomeScrambling", type: "range", element: {tip: "Adds randomness to biomes"}},
+    {title: "Biome Scrambling", name: "biomeScrambling", type: "range", element: {tip: "Adds randomness to biomes"}},
     {name: "SET gameMapScale TO NOT 0 IF YOU WANT A GAME MAP", type: "tip"},
-    {name: "squareGrid", type: "checkbox"},
-    {name: "gameMapScale", type: "range", element: {min: 0, max: 4, step: 1}},
+    {title: "Square Grid", name: "squareGrid", type: "checkbox"},
+    {title: "Game Map Scale", name: "gameMapScale", type: "range", element: {min: 0, max: 4, step: 1}},
     {
+        title: "Game Map Rivers",
         name: "gameMapRivers",
         type: "range",
         element: {
@@ -129,7 +142,7 @@ export const parameters: FormParameters[] = [
         },
     },
     {name: "Graphical repesenation settings", type: "tip"},
-    {name: "generatePhoto", type: "checkbox"},
-    {name: "discreteHeights", type: "range", element: {max: 40, step: 1}},
-    {name: "terrainTypeColoring", type: "checkbox"},
+    {title: "Generate Photo", name: "generatePhoto", type: "checkbox"},
+    {title: "Discrete Heights", name: "discreteHeights", type: "range", element: {max: 40, step: 1}},
+    {title: "Terrain Type Coloring", name: "terrainTypeColoring", type: "checkbox"},
 ];

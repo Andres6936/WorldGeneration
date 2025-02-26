@@ -4,7 +4,7 @@ import {useSettings} from "../store/useSettings.ts";
 
 type Props = RangeForm & {}
 
-export const RangeInput = React.memo(({element, name}: Props) => {
+export const RangeInput = React.memo(({element, title, name}: Props) => {
     const settings = useSettings(state => state.settings)
 
     const min = element.min || 0;
@@ -12,9 +12,9 @@ export const RangeInput = React.memo(({element, name}: Props) => {
     const step = element.step || (max - min) / 100;
 
     return (
-        <div className="flex flex:row gap:1rem">
+        <div className="flex flex:col">
             <div className="w:8rem">
-                {name}
+                {title}
             </div>
             <input
                 className="w:8rem"
