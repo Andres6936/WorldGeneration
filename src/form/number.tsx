@@ -1,6 +1,10 @@
+import styles from '../components/field/index.module.css' with {type: 'css'}
+
 import React, {useCallback, useMemo} from "react";
 import {NumberForm} from "../Parameters.ts";
 import {useSettings} from "../store/useSettings.ts";
+import {Field} from "@base-ui-components/react";
+
 
 type Props = NumberForm & {}
 
@@ -20,17 +24,17 @@ export const NumberInput = React.memo(({title, name}: Props) => {
     }, [])
 
     return (
-        <div className="flex flex:row gap:1rem">
-            <div>
+        <Field.Root className={styles.Field}>
+            <Field.Label className={styles.Label}>
                 {title}
-            </div>
-            <input
+            </Field.Label>
+            <Field.Control
                 onChange={({target}) => onChange(target.valueAsNumber)}
-                className="number"
+                className={styles.Input}
                 type="number"
                 id={name}
                 value={value}
             />
-        </div>
+        </Field.Root>
     )
 })

@@ -1,6 +1,8 @@
 import React from "react";
 import {RangeForm} from "../Parameters.ts";
 import {useSettings} from "../store/useSettings.ts";
+import styles from "../components/field/index.module.css";
+import {Field} from "@base-ui-components/react";
 
 type Props = RangeForm & {}
 
@@ -12,12 +14,11 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
     const step = element.step || (max - min) / 100;
 
     return (
-        <div className="flex flex:col">
-            <div className="w:8rem">
+        <Field.Root className={styles.Field}>
+            <Field.Label className={styles.Label}>
                 {title}
-            </div>
-            <input
-                className="w:8rem"
+            </Field.Label>
+            <Field.Control
                 type="range"
                 id={name}
                 min={min}
@@ -28,6 +29,6 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
             <div className="w:4rem">
                 {settings[name]}
             </div>
-        </div>
+        </Field.Root>
     )
 })
