@@ -1,4 +1,5 @@
 import './index.css'
+import stylesScrollArea from './components/scrollarea/index.module.css' with {type: 'css'};
 
 import React, {StrictMode, useEffect} from 'react'
 import {createRoot} from 'react-dom/client'
@@ -10,6 +11,7 @@ import {useMaps} from "./store/useMaps.ts";
 import {useSettings} from "./store/useSettings.ts";
 import {generateMap} from "./Mapper.ts";
 import {useShallow} from "zustand/react/shallow";
+import {ScrollArea} from "@base-ui-components/react";
 
 const Meta = React.memo(() => {
     return (
@@ -25,7 +27,14 @@ const Main = React.memo(() => {
 
     return (
         <div className="flex flex:1 flex:row h:100vh w:100vw">
-            <Form/>
+            <ScrollArea.Root className={stylesScrollArea.ScrollArea}>
+                <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
+                    <Form/>
+                </ScrollArea.Viewport>
+                <ScrollArea.Scrollbar className={stylesScrollArea.Scrollbar}>
+                    <ScrollArea.Thumb className={stylesScrollArea.Thumb}/>
+                </ScrollArea.Scrollbar>
+            </ScrollArea.Root>
             {showCanvasMap ? <Canvas/> : <Draw/>}
         </div>
     )
