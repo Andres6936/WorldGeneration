@@ -16,7 +16,7 @@ export const CheckboxInput = React.memo(({title, name}: Props) => {
     }, [setSettings])
 
     return (
-        <div className="flex flex:col">
+        <div className="flex flex:row gap:1rem">
             <div>
                 {title}
             </div>
