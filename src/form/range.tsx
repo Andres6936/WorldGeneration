@@ -1,8 +1,10 @@
+import stylesField from "../components/field/index.module.css" with {type: "css"};
+import stylesSlider from "../components/slider/index.module.css" with {type: "css"};
+
 import React from "react";
 import {RangeForm} from "../Parameters.ts";
 import {useSettings} from "../store/useSettings.ts";
-import styles from "../components/field/index.module.css";
-import {Field} from "@base-ui-components/react";
+import {Field, Slider} from "@base-ui-components/react";
 
 type Props = RangeForm & {}
 
@@ -14,21 +16,24 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
     const step = element.step || (max - min) / 100;
 
     return (
-        <Field.Root className={styles.Field}>
-            <Field.Label className={styles.Label}>
-                {title}
+        <Field.Root className={stylesField.Field}>
+            <Field.Label className={stylesField.Label}>
+                {title}: <span className="ml:1rem font:1rem">{settings[name]}</span>
             </Field.Label>
-            <Field.Control
-                type="range"
-                id={name}
+
+            <Slider.Root
                 min={min}
                 max={max}
                 step={step}
                 value={settings[name] as number}
-            />
-            <div className="w:4rem">
-                {settings[name]}
-            </div>
+            >
+                <Slider.Control className={stylesSlider.Control}>
+                    <Slider.Track className={stylesSlider.Track}>
+                        <Slider.Indicator className={stylesSlider.Indicator}/>
+                        <Slider.Thumb className={stylesSlider.Thumb}/>
+                    </Slider.Track>
+                </Slider.Control>
+            </Slider.Root>
         </Field.Root>
     )
 })

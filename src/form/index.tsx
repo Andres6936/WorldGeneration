@@ -8,7 +8,7 @@ import {ButtonReset} from "./components/button-reset.tsx";
 
 export function Form() {
     return (
-        <form className="flex flex:col p:1rem overflow-y:scroll gap:0.5rem max-w:20rem"
+        <form className="flex flex:col py:1rem px:1.5rem overflow-y:scroll gap:0.5rem max-w:20rem"
               onSubmit={e => e.preventDefault()}>
             {parameters.map(param => {
                 if (param.type === "tip") {
