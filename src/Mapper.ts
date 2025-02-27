@@ -66,7 +66,7 @@ export class Mapper {
 
         console.time("main");
 
-        let elevation: Float32Array = this.noise.map(
+        this.elevation = this.noise.map(
             (_, i) =>
                 5 +
                 this.noise[i] * this.settings.noiseFactor +
@@ -80,9 +80,9 @@ export class Mapper {
 
         console.time("normalize");
 
-        elevation = normalizeValues(elevation);
-        let seaLevel: number = approximateQuantile(elevation, this.settings.seaRatio);
-        this.elevation = elevation.map((v, i) =>
+        this.elevation = normalizeValues(this.elevation);
+        let seaLevel: number = approximateQuantile(this.elevation, this.settings.seaRatio);
+        this.elevation = this.elevation.map((v, i) =>
             v < seaLevel
                 ? -Math.pow(1 - v / seaLevel, 0.35)
                 : Math.pow(
