@@ -36,7 +36,9 @@ const Main = React.memo(() => {
                 </ScrollArea.Scrollbar>
             </ScrollArea.Root>
 
-            {showCanvasMap ? <Canvas/> : <Draw/>}
+            <div className="relative flex flex:col flex:1">
+                {showCanvasMap ? <Canvas/> : <Draw/>}
+            </div>
         </div>
     )
 })

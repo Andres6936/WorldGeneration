@@ -47,68 +47,67 @@ export const Draw = React.memo(() => {
     }, [currentLayer])
 
     return (
-        <div className="relative flex flex:col flex:1">
-            <div
-                className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
-                {drawCurrentLayer()}
+        <div
+            className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
+            {drawCurrentLayer()}
 
-                <div className="abs bottom:1rem right:1rem">
-                    <Menu.Root>
-                        <Menu.Trigger className={buttonStyles.Button}>
-                            <Layers/>
-                        </Menu.Trigger>
-                        <Menu.Portal>
-                            <Menu.Positioner className={styles.Positioner} sideOffset={8}>
-                                <Menu.Popup className={styles.Popup}>
-                                    <Menu.Arrow className={styles.Arrow}>
-                                        <ArrowSvg/>
-                                    </Menu.Arrow>
+            <div className="abs bottom:1rem right:1rem">
+                <Menu.Root>
+                    <Menu.Trigger className={buttonStyles.Button}>
+                        <Layers/>
+                    </Menu.Trigger>
+                    <Menu.Portal>
+                        <Menu.Positioner className={styles.Positioner} sideOffset={8}>
+                            <Menu.Popup className={styles.Popup}>
+                                <Menu.Arrow className={styles.Arrow}>
+                                    <ArrowSvg/>
+                                </Menu.Arrow>
 
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Elevation)}>
-                                        Elevation
-                                    </Menu.Item>
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Tectonics)}>
-                                        Tectonics
-                                    </Menu.Item>
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Temperature)}>
-                                        Temperature
-                                    </Menu.Item>
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Wind)}>
-                                        Wind
-                                    </Menu.Item>
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Humidity)}>
-                                        Humidity
-                                    </Menu.Item>
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Biome)}>
-                                        Biome
-                                    </Menu.Item>
+                                <Menu.Item
+                                    className={styles.Item}
+                                    onClick={() => setCurrentLayer(Layer.Elevation)}>
+                                    Elevation
+                                </Menu.Item>
+                                <Menu.Item
+                                    className={styles.Item}
+                                    onClick={() => setCurrentLayer(Layer.Tectonics)}>
+                                    Tectonics
+                                </Menu.Item>
+                                <Menu.Item
+                                    className={styles.Item}
+                                    onClick={() => setCurrentLayer(Layer.Temperature)}>
+                                    Temperature
+                                </Menu.Item>
+                                <Menu.Item
+                                    className={styles.Item}
+                                    onClick={() => setCurrentLayer(Layer.Wind)}>
+                                    Wind
+                                </Menu.Item>
+                                <Menu.Item
+                                    className={styles.Item}
+                                    onClick={() => setCurrentLayer(Layer.Humidity)}>
+                                    Humidity
+                                </Menu.Item>
+                                <Menu.Item
+                                    className={styles.Item}
+                                    onClick={() => setCurrentLayer(Layer.Biome)}>
+                                    Biome
+                                </Menu.Item>
 
-                                    {settings.generatePhoto && (
-                                        <Menu.Item
-                                            className={styles.Item}
-                                            onClick={() => setCurrentLayer(Layer.Photo)}>
-                                            Photo
-                                        </Menu.Item>
-                                    )}
-                                </Menu.Popup>
-                            </Menu.Positioner>
-                        </Menu.Portal>
-                    </Menu.Root>
-                </div>
+                                {settings.generatePhoto && (
+                                    <Menu.Item
+                                        className={styles.Item}
+                                        onClick={() => setCurrentLayer(Layer.Photo)}>
+                                        Photo
+                                    </Menu.Item>
+                                )}
+                            </Menu.Popup>
+                        </Menu.Positioner>
+                    </Menu.Portal>
+                </Menu.Root>
             </div>
         </div>
+
     )
 })
 
