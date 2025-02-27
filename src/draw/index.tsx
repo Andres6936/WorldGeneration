@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect} from "react";
 import {Elevation} from "../maps/elevation.tsx";
 import {Menu} from "@base-ui-components/react";
 import {useSettings} from "../store/useSettings.ts";
@@ -19,6 +19,13 @@ export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
     const currentLayer = useSettings(state => state.currentLayer)
     const setCurrentLayer = useSettings(state => state.setCurrentLayer);
+
+    useEffect(() => {
+        // Avoid show the layer of photo when the user disable the generation of photo layer
+        if (!settings.generatePhoto && currentLayer === Layer.Photo) {
+            setCurrentLayer(Layer.Elevation);
+        }
+    }, [currentLayer, settings]);
 
     const drawCurrentLayer = useCallback(() => {
         switch (currentLayer) {
