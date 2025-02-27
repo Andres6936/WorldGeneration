@@ -16,6 +16,7 @@ import styles from './index.module.css' with {type: 'css'};
 import buttonStyles from '../components/button/index.module.css' with {type: 'css'};
 
 export const Draw = React.memo(() => {
+    const settings = useSettings(state => state.settings);
     const currentLayer = useSettings(state => state.currentLayer)
     const setCurrentLayer = useSettings(state => state.setCurrentLayer);
 
@@ -86,11 +87,14 @@ export const Draw = React.memo(() => {
                                         onClick={() => setCurrentLayer(Layer.Biome)}>
                                         Biome
                                     </Menu.Item>
-                                    <Menu.Item
-                                        className={styles.Item}
-                                        onClick={() => setCurrentLayer(Layer.Photo)}>
-                                        Photo
-                                    </Menu.Item>
+
+                                    {settings.generatePhoto && (
+                                        <Menu.Item
+                                            className={styles.Item}
+                                            onClick={() => setCurrentLayer(Layer.Photo)}>
+                                            Photo
+                                        </Menu.Item>
+                                    )}
                                 </Menu.Popup>
                             </Menu.Positioner>
                         </Menu.Portal>
