@@ -326,7 +326,7 @@ export const Canvas = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 overflow:scroll">
+        <div className="abs top:0 left:0 right:0 bottom:0 flex flex:1 overflow:scroll">
             <canvas ref={canvasAt} id="gameMap"/>
         </div>
     )
