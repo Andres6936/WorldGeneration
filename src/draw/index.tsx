@@ -39,7 +39,7 @@ export const Draw = React.memo(() => {
     }, [currentLayer])
 
     return (
-        <div className="relative flex flex:col flex:1 bl:2px|dotted|$(color-gray-900)">
+        <div className="relative flex flex:col flex:1">
             <div
                 className="absolute top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
                 {drawCurrentLayer()}

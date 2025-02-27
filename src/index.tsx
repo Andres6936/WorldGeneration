@@ -35,6 +35,7 @@ const Main = React.memo(() => {
                     <ScrollArea.Thumb className={stylesScrollArea.Thumb}/>
                 </ScrollArea.Scrollbar>
             </ScrollArea.Root>
+
             {showCanvasMap ? <Canvas/> : <Draw/>}
         </div>
     )
