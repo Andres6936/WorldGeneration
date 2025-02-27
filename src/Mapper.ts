@@ -13,15 +13,15 @@ export class Mapper {
     private mapSize: number = 0
     private mapDiagonal: number = 0
 
-    private noise: Float32Array;
-    private crust: Float32Array;
-    private tectonic: Float32Array;
-    private elevation: Float32Array;
-    private rivers: Float32Array;
-    private wind: Float32Array;
-    private temperature: Float32Array;
-    private humidity: Float32Array;
-    private biome: Float32Array;
+    private noise: Float32Array | undefined = undefined;
+    private crust: Float32Array | undefined = undefined;
+    private tectonic: Float32Array | undefined = undefined;
+    private elevation: Float32Array | undefined = undefined;
+    private rivers: Float32Array | undefined = undefined;
+    private wind: Float32Array | undefined = undefined;
+    private temperature: Float32Array | undefined = undefined;
+    private humidity: Float32Array | undefined = undefined;
+    private biome: Float32Array | undefined = undefined;
     private photo: [number, number, number, number][] | undefined = undefined;
 
     public isReady: boolean = false;
