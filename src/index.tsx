@@ -26,7 +26,7 @@ const Main = React.memo(() => {
     const showCanvasMap = useSettings(useShallow(state => state.showCanvasMap));
 
     return (
-        <div className="flex flex:1 flex:row h:100vh w:100vw">
+        <div className="flex flex:1 flex:row h:100vh max-h:100vh w:100vw max-w:100vw">
             <ScrollArea.Root className={stylesScrollArea.ScrollArea}>
                 <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
                     <Form/>
