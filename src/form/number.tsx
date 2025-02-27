@@ -8,7 +8,7 @@ import {Field} from "@base-ui-components/react";
 
 type Props = NumberForm & {}
 
-export const NumberInput = React.memo(({title, name}: Props) => {
+export const NumberInput = React.memo(({element, title, name}: Props) => {
     const settings = useSettings(state => state.settings)
     const setSettings = useSettings(state => state.setSettings)
 
@@ -24,7 +24,7 @@ export const NumberInput = React.memo(({title, name}: Props) => {
     }, [])
 
     return (
-        <Field.Root className={styles.Field}>
+        <Field.Root className={styles.Field + " bb:1px|solid|$(color-gray-200) pb:1rem"}>
             <Field.Label className={styles.Label}>
                 {title}
             </Field.Label>
@@ -35,6 +35,8 @@ export const NumberInput = React.memo(({title, name}: Props) => {
                 id={name}
                 value={value}
             />
+
+            {element.tip && <p className="opacity:0.5 font-size:0.75rem lh:1">{element.tip}</p>}
         </Field.Root>
     )
 })
