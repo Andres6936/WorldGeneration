@@ -22,7 +22,10 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
             </Field.Label>
 
             <div className="flex flex:row gap:0.85rem align-items:center">
-                <p>{min}</p>
+                <div className="flex flex:col justify-content:center text:center font:0.85rem">
+                    <p className="font:0.5rem opacity:0.5">Min</p>
+                    <p>{min}</p>
+                </div>
                 <Slider.Root
                     min={min}
                     max={max}
@@ -36,7 +39,10 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
                         </Slider.Track>
                     </Slider.Control>
                 </Slider.Root>
-                <p>{max}</p>
+                <div className="flex flex:col justify-content:center text:center font:0.85rem">
+                    <p className="font:0.5rem opacity:0.5">Max</p>
+                    <p>{max}</p>
+                </div>
             </div>
         </Field.Root>
     )
