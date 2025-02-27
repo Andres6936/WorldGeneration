@@ -5,7 +5,7 @@ type Props = TipForm & {}
 
 export const TipInput = React.memo(({name}: Props) => {
     return (
-        <div className="opacity:0.5">
+        <div className="opacity:0.5 font:0.85rem">
             {name}
         </div>
     )
