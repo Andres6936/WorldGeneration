@@ -21,19 +21,23 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
                 {title}: <span className="ml:1rem font:1rem">{settings[name]}</span>
             </Field.Label>
 
-            <Slider.Root
-                min={min}
-                max={max}
-                step={step}
-                value={settings[name] as number}
-            >
-                <Slider.Control className={stylesSlider.Control}>
-                    <Slider.Track className={stylesSlider.Track}>
-                        <Slider.Indicator className={stylesSlider.Indicator}/>
-                        <Slider.Thumb className={stylesSlider.Thumb}/>
-                    </Slider.Track>
-                </Slider.Control>
-            </Slider.Root>
+            <div className="flex flex:row gap:0.85rem align-items:center">
+                <p>{min}</p>
+                <Slider.Root
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={settings[name] as number}
+                >
+                    <Slider.Control className={stylesSlider.Control}>
+                        <Slider.Track className={stylesSlider.Track}>
+                            <Slider.Indicator className={stylesSlider.Indicator}/>
+                            <Slider.Thumb className={stylesSlider.Thumb}/>
+                        </Slider.Track>
+                    </Slider.Control>
+                </Slider.Root>
+                <p>{max}</p>
+            </div>
         </Field.Root>
     )
 })
