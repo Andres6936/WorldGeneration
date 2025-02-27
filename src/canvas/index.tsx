@@ -36,14 +36,12 @@ export const Canvas = React.memo(() => {
     const canvasAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (canvasAt.current === null || maps === null) return;
+        if (canvasAt.current === null || !maps.isReady) return;
 
-        const {
-            elevation,
-            tectonic,
-            temperature,
-            humidity,
-        } = maps;
+        const elevation = maps.withElevation();
+        const tectonic = maps.withTectonic();
+        const temperature = maps.withTemperature();
+        const humidity = maps.withHumidity();
 
         console.time("Drawing Canvas Map");
 
