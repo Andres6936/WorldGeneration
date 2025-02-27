@@ -1,9 +1,8 @@
 import {create} from "zustand";
-
-import {GenerateMap} from "../core/types.ts";
+import {Mapper} from "../Mapper.ts";
 
 type State = {
-    maps: GenerateMap | null,
+    maps: Mapper,
 }
 
 type Actions = {
@@ -11,7 +10,7 @@ type Actions = {
 }
 
 export const useMaps = create<State & Actions>((set) => ({
-    maps: null,
+    maps: new Mapper(),
     setMaps: (maps) => set({maps: maps}),
 }))
 

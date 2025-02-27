@@ -26,10 +26,3 @@ export interface Settings {
     generatePhoto: boolean,
     squareGrid: boolean,
 }
-
-declare module globalThis {
-    let maps: any[];
-    let miniMaps: any[];
-    let tips: Record<string, any>;
-    let settings: Settings;
-}

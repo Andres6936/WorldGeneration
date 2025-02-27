@@ -15,9 +15,10 @@ export const Elevation = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null || maps === null) return;
+        if (drawAt.current === null) return;
         const container = drawAt.current;
-        const {elevation, rivers} = maps;
+        const elevation = maps.withElevation();
+        const rivers = maps.withRivers();
         const size = {w: settings.width, h: elevation.length / settings.width};
         container.width = size.w;
         container.height = size.h;

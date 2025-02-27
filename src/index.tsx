@@ -9,7 +9,7 @@ import {Canvas} from "./canvas";
 import {Tooltip} from "./tooltip";
 import {useMaps} from "./store/useMaps.ts";
 import {useSettings} from "./store/useSettings.ts";
-import {generateMap} from "./Mapper.ts";
+import {Mapper} from "./Mapper.ts";
 import {useShallow} from "zustand/react/shallow";
 import {ScrollArea} from "@base-ui-components/react";
 
@@ -50,7 +50,7 @@ const App = React.memo(() => {
     useEffect(() => {
         console.time("Generation Map")
         // Generate the map with the current settings
-        setMaps(generateMap(settings))
+        setMaps(new Mapper().withSettings(settings))
         console.timeEnd("Generation Map")
 
     }, [settings, setMaps]);

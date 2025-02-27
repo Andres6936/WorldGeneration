@@ -15,9 +15,9 @@ export const Photo = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null || maps === null) return;
+        if (drawAt.current === null) return;
         const container = drawAt.current;
-        const {photo} = maps;
+        const photo = maps.withPhoto();
         if (!photo) return;
         const size = {w: settings.width, h: photo.length / settings.width};
         container.width = size.w;

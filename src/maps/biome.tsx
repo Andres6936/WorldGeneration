@@ -16,13 +16,11 @@ export const Biome = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null || maps === null) return;
+        if (drawAt.current === null) return;
         const container = drawAt.current;
-        const {
-            elevation,
-            rivers,
-            biome,
-        } = maps;
+        const elevation = maps.withElevation();
+        const rivers = maps.withRivers();
+        const biome = maps.withBiome();
         const size = {w: settings.width, h: biome.length / settings.width};
         container.width = size.w;
         container.height = size.h;

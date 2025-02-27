@@ -15,14 +15,13 @@ export const Humidity = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null || maps === null) return;
+        if (drawAt.current === null) return;
         const container = drawAt.current;
-        const {
-            elevation,
-            rivers,
-            wind,
-            humidity,
-        } = maps;
+        const elevation = maps.withElevation();
+        const rivers = maps.withRivers();
+        const wind = maps.withWind();
+        const humidity = maps.withHumidity();
+
         const size = {w: settings.width, h: humidity.length / settings.width};
         container.width = size.w;
         container.height = size.h;

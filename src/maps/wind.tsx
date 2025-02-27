@@ -15,9 +15,9 @@ export const Wind = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null || maps === null) return;
+        if (drawAt.current === null) return;
         const container = drawAt.current;
-        const {wind} = maps;
+        const wind = maps.withWind();
         const size = {w: settings.width, h: wind.length / settings.width};
         container.width = size.w;
         container.height = size.h;
