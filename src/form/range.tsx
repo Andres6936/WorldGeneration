@@ -21,7 +21,7 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
                 {title}: <span className="ml:1rem font:1rem">{settings[name]}</span>
             </Field.Label>
 
-            <div className="flex flex:row gap:0.85rem align-items:center">
+            <div className="flex flex:row gap:0.85rem align-items:center bb:1px|solid|$(color-gray-200) pb:0.5rem">
                 <div className="flex flex:col justify-content:center text:center font:0.85rem">
                     <p className="font:0.5rem opacity:0.5">Min</p>
                     <p>{min}</p>
