@@ -16,7 +16,7 @@ export const Biome = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null) return;
+        if (drawAt.current === null || maps.isReady === false) return;
         const container = drawAt.current;
         const elevation = maps.withElevation();
         const rivers = maps.withRivers();

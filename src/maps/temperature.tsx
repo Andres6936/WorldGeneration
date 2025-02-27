@@ -14,7 +14,7 @@ export const Temperature = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null) return;
+        if (drawAt.current === null || maps.isReady === false) return;
         const container = drawAt.current;
         const temperature = maps.withTemperature();
         const size = {w: settings.width, h: temperature.length / settings.width};

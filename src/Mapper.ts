@@ -24,12 +24,15 @@ export class Mapper {
     private biome: Float32Array;
     private photo: [number, number, number, number][] | undefined = undefined;
 
+    public isReady: boolean = false;
+
     public withSettings(_settings: Settings) {
         // window.randomSeed = seed;
 
         this.settings = _settings;
         this.mapSize = _settings.width * _settings.height;
         this.mapDiagonal = Math.sqrt(_settings.width * _settings.width + _settings.height * _settings.height);
+        this.isReady = true;
 
         return this;
     }

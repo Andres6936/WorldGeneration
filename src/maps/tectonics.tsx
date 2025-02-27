@@ -15,7 +15,7 @@ export const Tectonics = React.memo(({withReduceSize}: Props) => {
     const drawAt = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
-        if (drawAt.current === null) return;
+        if (drawAt.current === null || maps.isReady === false) return;
         const container = drawAt.current;
         const tectonic = maps.withTectonic();
         const size = {w: settings.width, h: tectonic.length / settings.width};
