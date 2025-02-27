@@ -128,9 +128,13 @@ export const parameters: FormParameters[] = [
         },
     },
     {title: "Biome Scrambling", name: "biomeScrambling", type: "range", element: {tip: "Adds randomness to biomes"}},
-    {name: "SET gameMapScale TO NOT 0 IF YOU WANT A GAME MAP", type: "tip"},
     {title: "Square Grid", name: "squareGrid", type: "checkbox"},
-    {title: "Game Map Scale", name: "gameMapScale", type: "range", element: {min: 0, max: 4, step: 1}},
+    {
+        title: "Game Map Scale",
+        name: "gameMapScale",
+        type: "range",
+        element: {min: 0, max: 4, step: 1, tip: "Set the value to 0 to disable the game map"}
+    },
     {
         title: "Game Map Rivers",
         name: "gameMapRivers",
