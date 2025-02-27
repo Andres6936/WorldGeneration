@@ -15,6 +15,8 @@ import {drawTerrain, ISPATH} from "../HexDraw.ts";
 import {random, spread} from "../Util.ts";
 import {useShallow} from "zustand/react/shallow";
 import {Cell} from "../core/types.ts";
+import stylesScrollArea from "../components/scrollarea/index.module.css";
+import {ScrollArea} from "@base-ui-components/react";
 
 const EMPTY_CELL: Cell = {
     cover: 0,
@@ -326,8 +328,15 @@ export const Canvas = React.memo(() => {
     }, [maps, settings]);
 
     return (
-        <div className="abs top:0 left:0 right:0 bottom:0 flex flex:1 overflow:scroll">
-            <canvas ref={canvasAt} id="gameMap"/>
+        <div className="abs top:0 left:0 right:0 bottom:0 flex flex:1">
+            <ScrollArea.Root>
+                <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
+                    <canvas ref={canvasAt}/>
+                </ScrollArea.Viewport>
+                <ScrollArea.Scrollbar className={stylesScrollArea.Scrollbar}>
+                    <ScrollArea.Thumb className={stylesScrollArea.Thumb}/>
+                </ScrollArea.Scrollbar>
+            </ScrollArea.Root>
         </div>
     )
 })
