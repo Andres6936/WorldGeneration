@@ -19,7 +19,7 @@ export const CheckboxInput = React.memo(({title, name}: Props) => {
     }, [setSettings])
 
     return (
-        <label className={stylesCheckbox.Field}>
+        <label className={stylesCheckbox.Label}>
             <Checkbox.Root
                 onCheckedChange={(checked) => onChange(checked)}
                 checked={settings[name] as boolean}
