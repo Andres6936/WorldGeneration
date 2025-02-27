@@ -45,8 +45,8 @@ export function Form() {
             })}
 
             <div className="flex flex:col pt:4rem gap:0.5rem">
-                <ButtonReset/>
                 <ButtonCanvasToggle/>
+                <ButtonReset/>
             </div>
         </form>
     )
