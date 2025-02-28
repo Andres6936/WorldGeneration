@@ -23,17 +23,15 @@ export const Content = React.memo(({index}: Props) => {
     useEffect(() => {
         if (!maps.isReady) return;
 
-        const {
-            elevation,
-            noise,
-            crust,
-            tectonic,
-            rivers,
-            wind,
-            temperature,
-            humidity,
-            biome
-        } = maps;
+        const elevation = maps.withElevation();
+        const noise = maps.withNoise();
+        const crust = maps.withCrust();
+        const tectonic = maps.withTectonic();
+        const rivers = maps.withRivers();
+        const wind = maps.withWind();
+        const temperature = maps.withTemperature();
+        const humidity = maps.withHumidity();
+        const biome = maps.withBiome();
 
         setElevation(elevation[index]);
         setNoise(noise[index]);
