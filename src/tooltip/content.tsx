@@ -21,7 +21,7 @@ export const Content = React.memo(({index}: Props) => {
     const [biome, setBiome] = useState("");
 
     useEffect(() => {
-        if (maps === null) return;
+        if (!maps.isReady) return;
 
         const {
             elevation,
