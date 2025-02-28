@@ -2,7 +2,9 @@
   "name": "worldgeneration",
   "type": "module",
   "scripts": {
-    "dev": "vite dev"
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@types/bun": "latest",
