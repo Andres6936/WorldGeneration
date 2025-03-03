@@ -1,3 +1,7 @@
+# New Design UI
+
+![Screenshot](/screenshots/redesign.png)
+
 # Voronoi-less Terrain Generator
 Fairly fast, fairly simple and fairly realistic terrain generator.
 
