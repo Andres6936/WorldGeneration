@@ -174,3 +174,5 @@ Town positioning uses very simple algorithm - it just adds some values for certa
 Then from each city, a shortest path to the nearest town is found and road is build on it. This considers the movement costs, insluding effect of already present roads.
 
 ###### Based on the work of [@baturinsky](https://github.com/baturinsky/worldgen)
+
+###### Image Comparison [See](https://codepen.io/stanko/pen/myddXKm)
