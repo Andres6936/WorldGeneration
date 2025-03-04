@@ -4,11 +4,12 @@ import {useMaps} from "../store/useMaps.ts";
 import {useSettings} from "../store/useSettings.ts";
 
 type Props = {
+    className?: string,
     withReduceSize?: boolean,
 }
 
 
-export const Humidity = React.memo(({withReduceSize}: Props) => {
+export const Humidity = React.memo(({className, withReduceSize}: Props) => {
     const maps = useMaps(state => state.maps);
     const settings = useSettings(state => state.settings);
 
@@ -46,6 +47,6 @@ export const Humidity = React.memo(({withReduceSize}: Props) => {
     }, [maps, settings]);
 
     return (
-        <canvas className="h:full w:auto max-w:fit" ref={drawAt}/>
+        <canvas className={"h:full w:auto max-w:fit " + className} ref={drawAt}/>
     )
 })

@@ -19,6 +19,10 @@ import {Compare} from "../components/compare";
 import {useShallow} from "zustand/react/shallow";
 import {ToggleDebugCanvas} from "../components/actions/toggle-debug-canvas.tsx";
 
+type OptionsDraw = {
+    className?: string,
+}
+
 export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
     const currentLayer = useSettings(state => state.currentLayer)
@@ -32,22 +36,22 @@ export const Draw = React.memo(() => {
         }
     }, [currentLayer, settings]);
 
-    const drawCurrentLayer = useCallback(() => {
+    const drawCurrentLayer = useCallback((options?: OptionsDraw) => {
         switch (currentLayer) {
             case Layer.Elevation:
-                return <Elevation/>
+                return <Elevation className={options?.className}/>
             case Layer.Tectonics:
-                return <Tectonics/>
+                return <Tectonics className={options?.className}/>
             case Layer.Temperature:
-                return <Temperature/>
+                return <Temperature className={options?.className}/>
             case Layer.Wind:
-                return <Wind/>
+                return <Wind className={options?.className}/>
             case Layer.Humidity:
-                return <Humidity/>
+                return <Humidity className={options?.className}/>
             case Layer.Biome:
-                return <Biome/>
+                return <Biome className={options?.className}/>
             case Layer.Photo:
-                return <Photo/>
+                return <Photo className={options?.className}/>
         }
     }, [currentLayer])
 
@@ -56,7 +60,10 @@ export const Draw = React.memo(() => {
             className="abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
             <div
                 className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) ' : ''}`}>
-                {drawCurrentLayer()}
+                {drawCurrentLayer({
+                    className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c' : ''
+                })}
+                
                 <Compare>
                     <Biome/>
                 </Compare>
