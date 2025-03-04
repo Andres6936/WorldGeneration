@@ -17,6 +17,7 @@ import {ArrowSvg} from "../components/icons/arrow-svg.tsx";
 import {ToggleTooltip} from "../components/actions/toggle-tooltip.tsx";
 import {Compare} from "../components/compare";
 import {useShallow} from "zustand/react/shallow";
+import {ToggleDebugCanvas} from "../components/actions/toggle-debug-canvas.tsx";
 
 export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
@@ -62,6 +63,7 @@ export const Draw = React.memo(() => {
             </div>
 
             <div className="abs bottom:1rem right:1rem flex flex:col gap:0.5rem">
+                <ToggleDebugCanvas/>
                 <ToggleTooltip/>
 
                 <Menu.Root>
