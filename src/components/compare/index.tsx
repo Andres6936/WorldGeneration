@@ -14,7 +14,7 @@ export function Compare({children}: Props) {
     return (
         <>
             <div
-                className={`abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col overflow:hidden z:1 w:${value}% ${showDebugCanvasMap ? 'translateZ(calc(120px*2)) shadow:0|calc(120px*0.66)|5px|rgb(0|0|0/0.5) ' : ''}`}>
+                className={`abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col overflow:hidden z:1 w:${value}% ${showDebugCanvasMap ? 'translateZ(calc(120px*2)) shadow:0|calc(120px*0.66)|5px|rgb(0|0|0/0.5) outline:2px|solid|transparent outline:#2ecc71 ' : ''}`}>
                 <div className={`overflow:hidden`}>
                     {children}
                 </div>
@@ -31,7 +31,7 @@ export function Compare({children}: Props) {
             </div>
 
             <input
-                className={`appearance:none abs top:0 left:calc(32px/-2) width:calc(100%+32px) h:full opacity:0 z:2 cursor:col-resize bg:transparent opacity:1 ${showDebugCanvasMap ? 'translateZ(calc(120px*2)) ' : ''}`}
+                className={`appearance:none abs top:0 left:calc(32px/-2) width:calc(100%+32px) h:full opacity:0 z:2 cursor:col-resize bg:transparent opacity:1 ${showDebugCanvasMap ? 'translateZ(calc(120px*2)) outline:2px|solid|transparent outline:#3498db ' : ''}`}
                 type="range" min="0" step="0.5" max="100" value={value}
                 onChange={e => setValue(e.target.valueAsNumber)}/>
         </>
