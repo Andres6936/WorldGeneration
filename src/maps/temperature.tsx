@@ -39,6 +39,6 @@ export const Temperature = React.memo(({withReduceSize}: Props) => {
     }, [maps, settings]);
 
     return (
-        <canvas ref={drawAt}/>
+        <canvas className="h:full w:auto max-w:fit" ref={drawAt}/>
     )
 })
