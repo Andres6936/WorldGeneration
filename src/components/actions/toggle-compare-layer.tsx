@@ -26,6 +26,11 @@ export function ToggleCompareLayer() {
 
                         <Menu.Item
                             className={styles.Item}
+                            onClick={() => setCompareLayer(null)}>
+                            None
+                        </Menu.Item>
+                        <Menu.Item
+                            className={styles.Item}
                             onClick={() => setCompareLayer(Layer.Elevation)}>
                             Elevation
                         </Menu.Item>
