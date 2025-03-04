@@ -175,4 +175,4 @@ Then from each city, a shortest path to the nearest town is found and road is bu
 
 ###### Based on the work of [@baturinsky](https://github.com/baturinsky/worldgen)
 
-###### Image Comparison [See](https://codepen.io/stanko/pen/myddXKm)
+###### Image Comparison Slider [See](https://codepen.io/stanko/pen/myddXKm)
