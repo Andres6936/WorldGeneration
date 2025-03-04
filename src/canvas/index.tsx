@@ -329,7 +329,9 @@ export const Canvas = React.memo(() => {
         <div className="abs top:0 left:0 right:0 bottom:0 flex flex:1">
             <ScrollArea.Root className="box:border w:full">
                 <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
-                    <canvas ref={canvasAt} className="max-w:max p:2rem"/>
+                    <div className="flex flex:1 justify-content:center align-items:center">
+                        <canvas ref={canvasAt} className="max-w:max p:2rem"/>
+                    </div>
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar className={stylesScrollArea.Scrollbar}>
                     <ScrollArea.Thumb className={stylesScrollArea.Thumb}/>
