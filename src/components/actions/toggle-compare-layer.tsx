@@ -1,4 +1,4 @@
-import styles from "../button/index.module.css" with {type: "css"};
+import styles from "../menu/index.module.css" with {type: "css"};
 import buttonStyles from "../button/index.module.css" with {type: "css"};
 
 import {useSettings} from "../../store/useSettings.ts";

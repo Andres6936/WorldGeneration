@@ -1,4 +1,4 @@
-import styles from './index.module.css' with {type: 'css'};
+import styles from '../components/menu/index.module.css' with {type: 'css'};
 import buttonStyles from '../components/button/index.module.css' with {type: 'css'};
 
 import React, {useCallback, useEffect} from "react";
