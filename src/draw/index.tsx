@@ -27,6 +27,8 @@ export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
     const currentLayer = useSettings(state => state.currentLayer)
     const setCurrentLayer = useSettings(state => state.setCurrentLayer);
+    const showCompare = useSettings(useShallow(state => state.showCompare));
+    const compareLayer = useSettings(useShallow(state => state.compareLayer));
     const showDebugCanvasMap = useSettings(useShallow(state => state.showDebugCanvasMap));
 
     useEffect(() => {
@@ -36,8 +38,8 @@ export const Draw = React.memo(() => {
         }
     }, [currentLayer, settings]);
 
-    const drawCurrentLayer = useCallback((options?: OptionsDraw) => {
-        switch (currentLayer) {
+    const drawLayer = useCallback((layer: Layer, options?: OptionsDraw) => {
+        switch (layer) {
             case Layer.Elevation:
                 return <Elevation className={options?.className}/>
             case Layer.Tectonics:
@@ -53,20 +55,22 @@ export const Draw = React.memo(() => {
             case Layer.Photo:
                 return <Photo className={options?.className}/>
         }
-    }, [currentLayer])
+    }, [])
 
     return (
         <div
             className="abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
             <div
                 className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) outline:2px|solid|transparent will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''}`}>
-                {drawCurrentLayer({
+                {drawLayer(currentLayer, {
                     className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''
                 })}
 
-                <Compare>
-                    <Biome/>
-                </Compare>
+                {showCompare && (
+                    <Compare>
+                        {drawLayer(compareLayer)}
+                    </Compare>
+                )}
             </div>
 
             <div className="abs bottom:1rem right:1rem flex flex:col gap:0.5rem">
