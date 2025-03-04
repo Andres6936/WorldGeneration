@@ -14,6 +14,7 @@ import {ArrowSvg} from "../components/icons/arrow-svg.tsx";
 
 import styles from './index.module.css' with {type: 'css'};
 import buttonStyles from '../components/button/index.module.css' with {type: 'css'};
+import {ToggleTooltip} from "../components/actions/toggle-tooltip.tsx";
 
 export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
@@ -51,7 +52,9 @@ export const Draw = React.memo(() => {
             className="abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
             {drawCurrentLayer()}
 
-            <div className="abs bottom:1rem right:1rem">
+            <div className="abs bottom:1rem right:1rem flex flex:col gap:0.5rem">
+                <ToggleTooltip/>
+
                 <Menu.Root>
                     <Menu.Trigger className={buttonStyles.Button}>
                         <Layers/>
