@@ -1,4 +1,6 @@
 import './index.css'
+import hexSheet from './tilesets/hexSheet.png' with {type: 'png'};
+import squareSheet from './tilesets/squareSheet.png' with {type: 'png'};
 import stylesScrollArea from './components/scrollarea/index.module.css' with {type: 'css'};
 
 import React, {StrictMode, useEffect} from 'react'
@@ -16,8 +18,8 @@ import {ScrollArea} from "@base-ui-components/react";
 const Meta = React.memo(() => {
     return (
         <>
-            <img className="hidden" id="hexSheet" src="/tilesets/hexSheet.png" alt="Hidden Hex Sheet"/>
-            <img className="hidden" id="squareSheet" src="/tilesets/squareSheet.png" alt="Hidden Square Sheet"/>
+            <img className="hidden" id="hexSheet" src={hexSheet} alt="Hidden Hex Sheet"/>
+            <img className="hidden" id="squareSheet" src={squareSheet} alt="Hidden Square Sheet"/>
         </>
     )
 })
