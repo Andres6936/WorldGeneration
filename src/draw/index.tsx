@@ -28,7 +28,6 @@ export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
     const currentLayer = useSettings(state => state.currentLayer)
     const setCurrentLayer = useSettings(state => state.setCurrentLayer);
-    const showCompare = useSettings(useShallow(state => state.showCompare));
     const compareLayer = useSettings(useShallow(state => state.compareLayer));
     const showDebugCanvasMap = useSettings(useShallow(state => state.showDebugCanvasMap));
 
@@ -67,7 +66,7 @@ export const Draw = React.memo(() => {
                     className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''
                 })}
 
-                {showCompare && (
+                {compareLayer && (
                     <Compare>
                         {drawLayer(compareLayer)}
                     </Compare>
