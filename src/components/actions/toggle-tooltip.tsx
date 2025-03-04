@@ -1,6 +1,6 @@
 import styles from '../button/index.module.css' with {type: 'css'};
 
-import {Search, SearchX} from "lucide-react";
+import {MousePointer2, MousePointerBan} from "lucide-react";
 import {useSettings} from "../../store/useSettings.ts";
 import {useShallow} from "zustand/react/shallow";
 
@@ -10,7 +10,7 @@ export function ToggleTooltip() {
 
     return (
         <button type="button" className={styles.Button} onClick={() => setShowTooltip(!showTooltip)}>
-            {showTooltip ? <Search/> : <SearchX/>}
+            {showTooltip ? <MousePointer2/> : <MousePointerBan/>}
         </button>
     )
 }
