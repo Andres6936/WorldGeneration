@@ -16,11 +16,13 @@ import {Layers} from "lucide-react";
 import {ArrowSvg} from "../components/icons/arrow-svg.tsx";
 import {ToggleTooltip} from "../components/actions/toggle-tooltip.tsx";
 import {Compare} from "../components/compare";
+import {useShallow} from "zustand/react/shallow";
 
 export const Draw = React.memo(() => {
     const settings = useSettings(state => state.settings);
     const currentLayer = useSettings(state => state.currentLayer)
     const setCurrentLayer = useSettings(state => state.setCurrentLayer);
+    const showDebugCanvasMap = useSettings(useShallow(state => state.showDebugCanvasMap));
 
     useEffect(() => {
         // Avoid show the layer of photo when the user disable the generation of photo layer
@@ -51,7 +53,8 @@ export const Draw = React.memo(() => {
     return (
         <div
             className="abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
-            <div className="rel">
+            <div
+                className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) ' : ''}`}>
                 {drawCurrentLayer()}
                 <Compare>
                     <Biome/>
