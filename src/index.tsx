@@ -46,6 +46,7 @@ const Main = React.memo(() => {
 })
 
 const App = React.memo(() => {
+    const showTooltip = useSettings(useShallow(state => state.showTooltip));
     const settings = useSettings(useShallow(state => state.settings));
     const setMaps = useMaps(useShallow(state => state.setMaps))
 
@@ -60,7 +61,7 @@ const App = React.memo(() => {
     return (
         <>
             <Meta/>
-            <Tooltip/>
+            {showTooltip && <Tooltip/>}
             <Main/>
         </>
     )
