@@ -1,4 +1,4 @@
-import {Settings} from "./global";
+import {Settings} from "./d.ts";
 
 export type CheckboxForm = {
     title: string,

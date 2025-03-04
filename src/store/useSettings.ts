@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import {Settings} from "../global";
+import {Settings} from "../d.ts";
 import {defaultSettings} from "../settings.ts";
 import {Layer} from "../core/enums.ts";
 

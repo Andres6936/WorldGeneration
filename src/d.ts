@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 export interface Settings {
     mapMode: number,
     seed: number,

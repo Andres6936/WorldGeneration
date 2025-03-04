@@ -6,7 +6,7 @@ import {gradientNoise} from "./Noise";
 import {approximateQuantile, normalizeValues} from "./Util";
 import {generateRiversAndErosion} from "./River";
 import {generateHumidity} from "./Humidity";
-import {Settings} from "./global";
+import {Settings} from "./d.ts";
 
 export class Mapper {
     private settings: Settings | null = null;
