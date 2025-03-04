@@ -3,7 +3,7 @@ import buttonStyles from "../button/index.module.css" with {type: "css"};
 
 import {useSettings} from "../../store/useSettings.ts";
 import {useShallow} from "zustand/react/shallow";
-import {AlignHorizontalJustifyCenter} from "lucide-react";
+import {FlipHorizontal} from "lucide-react";
 import {Menu} from "@base-ui-components/react";
 import {ArrowSvg} from "../icons/arrow-svg.tsx";
 import {Layer} from "../../core/enums.ts";
@@ -15,7 +15,7 @@ export function ToggleCompareLayer() {
     return (
         <Menu.Root>
             <Menu.Trigger className={buttonStyles.Button}>
-                <AlignHorizontalJustifyCenter/>
+                <FlipHorizontal/>
             </Menu.Trigger>
             <Menu.Portal>
                 <Menu.Positioner className={styles.Positioner} sideOffset={8}>
