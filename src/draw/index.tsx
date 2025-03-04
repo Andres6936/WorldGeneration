@@ -18,6 +18,7 @@ import {ToggleTooltip} from "../components/actions/toggle-tooltip.tsx";
 import {Compare} from "../components/compare";
 import {useShallow} from "zustand/react/shallow";
 import {ToggleDebugCanvas} from "../components/actions/toggle-debug-canvas.tsx";
+import {ToggleCompareLayer} from "../components/actions/toggle-compare-layer.tsx";
 
 type OptionsDraw = {
     className?: string,
@@ -76,6 +77,7 @@ export const Draw = React.memo(() => {
             <div className="abs bottom:1rem right:1rem flex flex:col gap:0.5rem">
                 <ToggleDebugCanvas/>
                 <ToggleTooltip/>
+                <ToggleCompareLayer/>
 
                 <Menu.Root>
                     <Menu.Trigger className={buttonStyles.Button}>

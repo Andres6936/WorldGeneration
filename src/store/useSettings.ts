@@ -20,6 +20,7 @@ type Actions = {
     setShowCanvasMap: (showCanvasMap: State['showCanvasMap']) => void,
     setShowDebugCanvasMap: (showDebugCanvasMap: State['showDebugCanvasMap']) => void,
     setCurrentLayer: (layer: State['currentLayer']) => void,
+    setCompareLayer: (layer: State['compareLayer']) => void,
 }
 
 export const useSettings = create<State & Actions>((set) => ({
@@ -36,5 +37,6 @@ export const useSettings = create<State & Actions>((set) => ({
     setShowCanvasMap: (showCanvasMap) => set({showCanvasMap: showCanvasMap}),
     setShowDebugCanvasMap: (showDebugCanvasMap) => set({showDebugCanvasMap: showDebugCanvasMap}),
     setCurrentLayer: (layer) => set({currentLayer: layer}),
+    setCompareLayer: (layer) => set({compareLayer: layer}),
 }))
 
