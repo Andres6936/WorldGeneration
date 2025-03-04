@@ -61,7 +61,7 @@ export const Draw = React.memo(() => {
             <div
                 className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) outline:2px|solid|transparent will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''}`}>
                 {drawCurrentLayer({
-                    className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c' : ''
+                    className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''
                 })}
 
                 <Compare>
