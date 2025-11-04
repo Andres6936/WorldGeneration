@@ -1,9 +1,9 @@
-import stylesCheckbox from "../components/checkbox/index.module.css" with {type: "css"};
+import stylesCheckbox from "../components/checkbox/index.module.css" with { type: "css" };
 
-import React, {useCallback} from "react";
-import {CheckboxForm} from "../Parameters.ts";
-import {useSettings} from "../store/useSettings.ts";
-import {Checkbox} from "@base-ui-components/react";
+import { Checkbox } from "@base-ui-components/react";
+import React from "react";
+import { CheckboxForm } from "../Parameters.ts";
+import { useSettings } from "../store/useSettings.ts";
 
 type Props = CheckboxForm & {}
 
@@ -11,17 +11,10 @@ export const CheckboxInput = React.memo(({title, name}: Props) => {
     const settings = useSettings(state => state.settings)
     const setSettings = useSettings(state => state.setSettings)
 
-    const onChange = useCallback((checked: boolean) => {
-        setSettings({
-            ...settings,
-            [name]: checked,
-        })
-    }, [setSettings])
-
     return (
         <label className={stylesCheckbox.Label}>
             <Checkbox.Root
-                onCheckedChange={(checked) => onChange(checked)}
+                onCheckedChange={(checked) => setSettings({ ...settings,  [name]: checked})}
                 checked={settings[name] as boolean}
                 className={stylesCheckbox.Checkbox}
             >
