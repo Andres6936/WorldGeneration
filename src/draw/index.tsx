@@ -21,6 +21,7 @@ import {Compare} from "../components/compare";
 import {useShallow} from "zustand/react/shallow";
 import {ToggleDebugCanvas} from "../components/actions/toggle-debug-canvas.tsx";
 import {ToggleCompareLayer} from "../components/actions/toggle-compare-layer.tsx";
+import { TransformationDebugAwareness } from './transformation-debug-awarness.tsx';
 
 type OptionsDraw = {
     className?: string,
@@ -66,18 +67,15 @@ export const Draw = React.memo(() => {
               <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
                 <ScrollArea.Content className={stylesScrollArea.Content + ' flex:1 h:full'}>
                   <div className='flex flex:1 flex:col justify-content:center align-items:center p:2rem'>
-                    <div
-                        className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) outline:2px|solid|transparent will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''}`}>
-                        {drawLayer(currentLayer, {
-                            className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''
-                        })}
+                    <TransformationDebugAwareness active={showDebugCanvasMap}>
+                      {drawLayer(currentLayer)}
 
                         {compareLayer && (
                             <Compare>
                                 {drawLayer(compareLayer)}
                             </Compare>
                         )}
-                    </div>
+                    </TransformationDebugAwareness>
                   </div>
                 </ScrollArea.Content>
               </ScrollArea.Viewport>
