@@ -10,6 +10,7 @@ type Props = RangeForm & {}
 
 export const RangeInput = React.memo(({element, title, name}: Props) => {
     const settings = useSettings(state => state.settings)
+    const setSettings = useSettings(state => state.setSettings)
 
     const min = element.min || 0;
     const max = element.max || 1;
@@ -31,6 +32,7 @@ export const RangeInput = React.memo(({element, title, name}: Props) => {
                     max={max}
                     step={step}
                     value={settings[name] as number}
+                    onValueChange={value => setSettings({ ...settings, [name]: value })}
                 >
                     <Slider.Control className={stylesSlider.Control}>
                         <Slider.Track className={stylesSlider.Track}>
