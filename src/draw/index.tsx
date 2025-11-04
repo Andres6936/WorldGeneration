@@ -1,9 +1,11 @@
 import styles from '../components/menu/index.module.css' with {type: 'css'};
 import buttonStyles from '../components/button/index.module.css' with {type: 'css'};
+import stylesScrollArea from "../components/scrollarea/index.module.css" with {type: 'css'};
 
 import React, {useCallback, useEffect} from "react";
 import {Elevation} from "../maps/elevation.tsx";
-import {Menu} from "@base-ui-components/react";
+import {Menu} from "@base-ui-components/react/menu";
+import { ScrollArea } from '@base-ui-components/react/scroll-area';
 import {useSettings} from "../store/useSettings.ts";
 import {Layer} from "../core/enums.ts";
 import {Tectonics} from "../maps/tectonics.tsx";
@@ -59,19 +61,30 @@ export const Draw = React.memo(() => {
 
     return (
         <div
-            className="abs top:0 left:0 right:0 bottom:0 flex flex:1 flex:col justify-content:center align-items:center overflow:auto">
-            <div
-                className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) outline:2px|solid|transparent will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''}`}>
-                {drawLayer(currentLayer, {
-                    className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''
-                })}
+            className="abs top:0 left:0 right:0 bottom:0 flex flex:1">
+            <ScrollArea.Root className="box:border w:full h:full">
+              <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
+                <ScrollArea.Content className={stylesScrollArea.Content + ' flex:1 h:full'}>
+                  <div className='flex flex:1 flex:col justify-content:center align-items:center p:2rem'>
+                    <div
+                        className={`rel transform:preserve-3d ${showDebugCanvasMap ? 'transform:scale(0.75)|translateY(5%)|rotateX(30deg)|rotateZ(10deg) outline:2px|solid|transparent will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''}`}>
+                        {drawLayer(currentLayer, {
+                            className: showDebugCanvasMap ? 'outline:1px|solid|transparent outline:#e74c3c will-change:transform ~easing:ease-out transition:transform|1s,outline|1s,box-shadow|1s,opacity|1s ' : ''
+                        })}
 
-                {compareLayer && (
-                    <Compare>
-                        {drawLayer(compareLayer)}
-                    </Compare>
-                )}
-            </div>
+                        {compareLayer && (
+                            <Compare>
+                                {drawLayer(compareLayer)}
+                            </Compare>
+                        )}
+                    </div>
+                  </div>
+                </ScrollArea.Content>
+              </ScrollArea.Viewport>
+              <ScrollArea.Scrollbar className={stylesScrollArea.Scrollbar}>
+                  <ScrollArea.Thumb className={stylesScrollArea.Thumb}/>
+              </ScrollArea.Scrollbar>
+            </ScrollArea.Root>
 
             <div className="abs bottom:1rem right:1rem flex flex:col gap:0.5rem">
                 <ToggleDebugCanvas/>
@@ -136,4 +149,3 @@ export const Draw = React.memo(() => {
 
     )
 })
-

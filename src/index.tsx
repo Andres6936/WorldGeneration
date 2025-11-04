@@ -31,7 +31,9 @@ const Main = React.memo(() => {
         <div className="flex flex:1 flex:row h:100vh max-h:100vh w:100vw max-w:100vw">
             <ScrollArea.Root className={stylesScrollArea.ScrollArea + " box:border w:0 w:24rem@sm hidden block@sm"}>
                 <ScrollArea.Viewport className={stylesScrollArea.Viewport}>
+                  <ScrollArea.Content className={stylesScrollArea.Content}>
                     <Form/>
+                  </ScrollArea.Content>
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar className={stylesScrollArea.Scrollbar}>
                     <ScrollArea.Thumb className={stylesScrollArea.Thumb}/>
