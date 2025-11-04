@@ -20,6 +20,7 @@
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-alpha.6",
     "@master/normal.css": "^3.1.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

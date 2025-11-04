@@ -1,9 +1,10 @@
-import styles from '../components/field/index.module.css' with {type: 'css'}
+import styles from '../components/field/index.module.css' with { type: 'css' };
 
-import React, {useCallback, useMemo} from "react";
-import {NumberForm} from "../Parameters.ts";
-import {useSettings} from "../store/useSettings.ts";
-import {Field} from "@base-ui-components/react";
+import { Field } from "@base-ui-components/react";
+import { useDebounce } from '@uidotdev/usehooks';
+import React, { useEffect, useState } from "react";
+import { NumberForm } from "../Parameters.ts";
+import { useSettings } from "../store/useSettings.ts";
 
 
 type Props = NumberForm & {}
@@ -12,16 +13,12 @@ export const NumberInput = React.memo(({element, title, name}: Props) => {
     const settings = useSettings(state => state.settings)
     const setSettings = useSettings(state => state.setSettings)
 
-    const value = useMemo(() => {
-        return settings[name] as number
-    }, [settings])
+    const [value, setValue] = useState(settings[name] as number)
+    const debounceValue = useDebounce(value, 500)
 
-    const onChange = useCallback((valueAsNumber: number) => {
-        setSettings({
-            ...settings,
-            [name]: valueAsNumber,
-        })
-    }, [])
+    useEffect(() => {
+        setSettings({ ...settings, [name]: debounceValue })
+    }, [debounceValue])
 
     return (
         <Field.Root className={styles.Field + " bb:1px|solid|$(color-gray-200) pb:1rem"}>
@@ -29,7 +26,7 @@ export const NumberInput = React.memo(({element, title, name}: Props) => {
                 {title}
             </Field.Label>
             <Field.Control
-                onChange={({target}) => onChange(target.valueAsNumber)}
+                onChange={({target}) => setValue(target.valueAsNumber)}
                 className={styles.Input}
                 type="number"
                 id={name}
